@@ -1,2 +1,4 @@
-<h1>Researchers::Sessions#new</h1>
-<p>Find me in app/views/researchers/sessions/new.html.erb</p>
+<h2><%= t :login%></h2>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+<%= render "signing_fields"%>
+<% end %>

@@ -35,7 +35,9 @@ class ResearchersController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
-
+  def show
+     
+  end
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.
