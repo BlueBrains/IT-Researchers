@@ -1,0 +1,2 @@
+module Researchers::SessionsHelper
+end
