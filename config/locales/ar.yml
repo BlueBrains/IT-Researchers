@@ -2,3 +2,6 @@ ar:
   login:"تسجيل الدخول"
   username:"اسم المستخدم"
   password:"كلمة السر"
+  signup:"التسجيل"
+  password_confirmation:"تأكيد كلمة المرور"
+  email:"البريد اﻹلكتروني"

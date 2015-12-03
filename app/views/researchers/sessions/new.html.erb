@@ -1,4 +1,15 @@
-<h2><%= t :login%></h2>
+<h2><%= t :login %></h2>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<%= render "signing_fields"%>
+  <div class="field">
+    <%= f.label (t :username) %><br />
+    <%= f.text_field :username, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label (t :password) %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+  <div class="actions">
+    <%= f.submit (t :login) %>
+  </div>
 <% end %>
