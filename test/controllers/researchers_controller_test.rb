@@ -2,13 +2,11 @@ require 'test_helper'
 
 class ResearchersControllerTest < ActionController::TestCase
   test "should get new" do
+    @request.env["devise.mapping"] = Devise.mappings[:researcher]
     get :new
-    assert_response :success
+    assert_response :success, "failed to open the signup page"
   end
 
-  test "should get create" do
-    get :create
-    assert_response :success
-  end
+  
 
 end
