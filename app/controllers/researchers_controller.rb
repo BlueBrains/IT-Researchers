@@ -11,7 +11,12 @@ before_filter :configure_sign_up_params, only: [:create]
   def create
     super
   end
-
+  def show
+    @researcher=Researcher.find(params[:id])
+    unless @researcher == current_researcher
+      redirect_to :back, :alert => "تم رفض الوصول."
+    end
+  end
   # GET /resource/edit
   # def edit
   #   super
@@ -42,7 +47,10 @@ before_filter :configure_sign_up_params, only: [:create]
   def configure_sign_up_params
     devise_parameter_sanitizer.for(:sign_up) << :username
   end
-
+  private
+  def researcher_params
+    params.require(:researcher).permit(:email,:username,:password)
+  end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
   #   devise_parameter_sanitizer.for(:account_update) << :attribute

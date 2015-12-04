@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   
   as :researcher do   
      root :to => "researchers#new"
+     resources :researchers
   end
-  devise_for :researchers, controllers: { sessions: "researchers/sessions", registrations: "researchers" }  
-  resources :researchers
+  devise_for :researchers, controllers: { sessions: "researchers/sessions", registrations: "researchers" }
+    
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
