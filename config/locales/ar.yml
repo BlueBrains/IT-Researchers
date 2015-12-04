@@ -64,3 +64,4 @@ ar:
   password_confirmation: "تأكيد كلمة المرور"
   signup: التسجيل
   username: "اسم المستخدم"
+  signout: "تسجيل الخروج"

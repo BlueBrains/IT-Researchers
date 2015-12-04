@@ -6,7 +6,7 @@ class Researcher
   #, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
-  field :email,              type: String, default: ""
+  field :email,              type: String, default: "",localize: true
   field :encrypted_password, type: String, default: ""
 
   ## Recoverable
@@ -33,5 +33,5 @@ class Researcher
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
-  field :username, type: String
+  field :username, type: String,localize: true
 end
