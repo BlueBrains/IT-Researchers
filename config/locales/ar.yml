@@ -49,17 +49,7 @@ ar:
     unlocks: 
       send_instructions: "سيصلك خلال دقائق بريدًا إلكترونيًّا يتضمّن المعلومات اللّازمة لتنشيط حسابك."
       send_paranoid_instructions: "إذا كان حسابك موجودًاً، فسيصلك خلال دقائق بريدًا إلكترونيًّا يتضمّن المعلومات اللّازمة لتنشيطه."
-      unlocked: "تمّ إعادة تفعيل حسابك بنجاح، يُرجى تسجيل الدخول للمُتابعة."  
-  errors: 
-    messages: 
-      already_confirmed: "تمّ تأكيد الحساب مُسبقًا، يُرجى مُحاولة تسجيل الدخول."
-      confirmation_period_expired: "كان يجب تأكيده خلال %{period}، يُرجى طلب تأكيد الحساب مُجدّدًا."
-      expired: "انتهت صلاحيته، يُرجى الطلب من جديد."
-      not_found: "غير موجود."
-      not_locked: "لم يكن مُعلّقًا."
-      not_saved: 
-        one: "لم يتمّ حِفظ %{resource} بسبب الخطأ التّالي:"
-        other: "لم يتمّ حِفظ %{resource} بسبب الأخطاء الـ %{count} التّالية:"
+      unlocked: "تمّ إعادة تفعيل حسابك بنجاح، يُرجى تسجيل الدخول للمُتابعة." 
   mongoid:
     errors:
       messages:
@@ -222,6 +212,14 @@ ar:
   errors:
     format: "%{attribute} %{message}"
     messages:
+      already_confirmed: "تمّ تأكيد الحساب مُسبقًا، يُرجى مُحاولة تسجيل الدخول."
+      confirmation_period_expired: "كان يجب تأكيده خلال %{period}، يُرجى طلب تأكيد الحساب مُجدّدًا."
+      expired: "انتهت صلاحيته، يُرجى الطلب من جديد."
+      not_found: "غير موجود."
+      not_locked: "لم يكن مُعلّقًا."
+      not_saved:  
+        one: "لم يتمّ حِفظ %{resource} بسبب الخطأ التّالي:"
+        other: "لم يتمّ حِفظ %{resource} بسبب الأخطاء الـ %{count} التّالية:"
       accepted: يجب أن تقبل
       blank: فارغ، يرجى ملء الحقل
       present: يجب ترك الحقل فارغاً
