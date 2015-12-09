@@ -45,12 +45,12 @@ before_filter :configure_sign_up_params, only: [:create]
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.for(:sign_up) << :username
+    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:email,:username,:password,:password_confirmation)}
   end
-  private
-  def researcher_params
-    params.require(:researcher).permit(:email,:username,:password)
-  end
+  #private
+  #def researcher_params
+   # params.require(:researcher).permit(:email,:username,:password)
+  #end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
   #   devise_parameter_sanitizer.for(:account_update) << :attribute

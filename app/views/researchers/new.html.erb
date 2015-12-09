@@ -12,7 +12,7 @@
   <div class="field">
     <%= f.label t(:password) %>
     <% if @minimum_password_length %>
-    <em><%= @minimum_password_length.to_s+t(:characters_minimum)%></em>
+    <em>(<%= @minimum_password_length.to_s+' '+t(:characters_minimum)%>)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
