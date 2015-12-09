@@ -42,6 +42,8 @@ en:
         subject: "Reset password instructions"
       unlock_instructions:
         subject: "Unlock instructions"
+      password_change:
+        subject: "Password Changed"
     omniauth_callbacks:
       failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
       success: "Successfully authenticated from %{kind} account."
@@ -76,10 +78,35 @@ en:
       not_locked: "was not locked"
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
-        other: "%{count} errors prohibited this %{resource} from being saved:"
+        other: "%{count} errors prohibited this %{resource} from being saved:" 
+  mongoid:
+    errors:
+      messages:  
+        blank_in_locale:
+          "can't be blank in %{location}"     
+        message_title: "message"
+        summary_title: "summary"
+        resolution_title: "resolution"        
+        validations:
+          message: "Validation of %{document} failed."
+          summary: "The following errors were found: %{errors}"
+          resolution: "Try persisting the document with valid data or remove
+            the validations."  
+        invalid_value:
+          message: "Value of type %{value_class} cannot be written to a field of type %{field_class}"
+          summary: "Tried to set a value of type %{value_class} to a field of type %{field_class}"
+          resolution: "Verify if the value to be set correspond to field definition"
+        taken:
+          "is already taken"       
   login: "login"
   username: "username"
   password: "password"
   signup: "signup"
   password_confirmation: "password confirmation"
   email: "email" 
+  characters_minimum: "characters minimum"
+  signout: "logout"
+  resend_confirmation_instructions: "Resend confirmations instructions"
+  welcome: "Welcome"
+  confirm_message: "You can confirm your account email through the link below:"
+  confirm_link: "Confirm my account"
