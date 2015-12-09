@@ -2,8 +2,8 @@ class Researcher
   include Mongoid::Document
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable
-  #, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :validatable
+  #, :rememberable, :trackable
 
   ## Database authenticatable
   field :email,              type: String, default: "",localize: true
