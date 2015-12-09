@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   as :researcher do   
-    root :to => "researchers#new"
+    root :to => 'researchers#new'
   end
-  devise_for :researchers, controllers: { sessions: "researchers/sessions", registrations: "researchers" }
+  devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations' }
   as :researcher do        
      resources :researchers
   end  
