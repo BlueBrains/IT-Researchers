@@ -1,10 +1,22 @@
 Rails.application.routes.draw do
+  
+  mount Ckeditor::Engine => '/ckeditor'
+  mount Wirispluginengine::Engine => 'wirispluginengine'
+  
+  get 'dashboard/index'
+
+  get 'home/index'
+
   as :researcher do   
     root :to => 'researchers#new'
   end
+
   devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations' }
+
   as :researcher do        
-     resources :researchers
+     resources :researchers do
+      resources :papers
+     end
   end  
   
   # The priority is based upon order of creation: first created -> highest priority.

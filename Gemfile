@@ -25,6 +25,14 @@ gem 'bson_ext'
 #authentication gem
 gem 'devise','~> 3.5'
 
+#pagination gem
+gem 'kaminari'
+
+# WYSIWYG text editor
+gem 'ckeditor'
+#math formula
+gem 'wirispluginengine'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -33,6 +41,8 @@ gem 'devise','~> 3.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+
 group :test do
   gem 'minitest-around'
   gem 'database_cleaner'
