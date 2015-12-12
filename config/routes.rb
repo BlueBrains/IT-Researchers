@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   as :researcher do   
     root :to => 'researchers#new'
   end
-  devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations' }
+  devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations', passwords: 'researchers/passwords', omniauth_callbacks: 'researchers/omniauth_callbacks' }
   as :researcher do        
-     resources :researchers
+     resources :researchers     
+     #delete 'sign_out',:to => 'researchers/sessions#destroy',:as => :destroy_researcher_session
   end  
   
   # The priority is based upon order of creation: first created -> highest priority.

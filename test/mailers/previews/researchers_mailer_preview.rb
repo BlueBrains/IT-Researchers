@@ -1,7 +1,12 @@
 # Preview all emails at http://localhost:3000/rails/mailers/researchers_confirmation
-class ResearchersConfirmationPreview < ActionMailer::Preview
-  def confirmation_instructions
-    val=Researcher.last
-    ResearchersConfirmation.confirmation_instructions(val,val.confirmation_token , {})
+class ResearchersMailerPreview < ActionMailer::Preview 
+  def initialize
+    @val=Researcher.first
+  end
+  def confirmation_instructions        
+    ResearchersMailer.confirmation_instructions(@val,@val.confirmation_token , {})    
+  end
+  def reset_password_instructions         
+    ResearchersMailer.reset_password_instructions(@val, @token, {})       
   end
 end

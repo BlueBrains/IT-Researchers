@@ -28,6 +28,10 @@ gem 'devise','~> 3.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+#for facebook
+#gem 'omniauth-facebook'
+gem 'omniauth-gplus','~> 2.0'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
