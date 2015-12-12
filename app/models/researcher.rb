@@ -36,7 +36,7 @@ class Researcher
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
-<<<<<<< HEAD
+
   field :username, type: String
   field :provider,type: String
   field :uid,type: String
@@ -55,8 +55,7 @@ class Researcher
     researcher.password = Devise.friendly_token[0,20]       
   end
 end
-=======
-  field :username, type: String  
+
   field :_id, type: String, default: ->{ username }
->>>>>>> 78c5699adf359d2ddde8dcaf891b14f5643796e0
+
 end
