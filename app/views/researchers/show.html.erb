@@ -1,2 +1,5 @@
-<%= @researcher %>
+<div>hello Mr.<%= @researcher.username %></div>
+<div>آخر منشوراتك</div>
+<!-- //for -->
+<div><%= link_to "إنشاء بحث جديد",  new_researcher_paper_path(@researcher) %></div>
 <%= link_to t(:signout), destroy_researcher_session_path, :method=>'delete' %>
