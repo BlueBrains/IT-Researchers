@@ -1,0 +1,35 @@
+<%= form_for([@researcher,@paper]) do |f| %>
+  <% if @paper.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@paper.errors.count, "error") %> prohibited this paper from being saved:</h2>
+
+      <ul>
+      <% @paper.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div><br>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.cktext_area :content, :class => 'someclass', :ckeditor => {:uiColor => '#AADC6E', :language => 'ar'} %>
+  </div><br>  
+  <div class="field">
+  <%= f.label :state %><br>
+  <%= f.select(:state, options_for_select(
+      [
+        ['publish', 'published', { 'class' => 'published_paper' }],
+        ['draft', 'draft', { 'class' => 'draft_paper' }]
+      ], f.object.state
+  )) %>
+
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
