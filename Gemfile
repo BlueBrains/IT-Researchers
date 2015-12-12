@@ -25,6 +25,7 @@ gem 'bson_ext'
 #authentication gem
 gem 'devise','~> 3.5'
 
+gem 'devise_security_extension','~> 0.9'
 #admin panel gem
 gem 'rails_admin'
 
