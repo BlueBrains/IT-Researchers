@@ -25,6 +25,9 @@ gem 'bson_ext'
 #authentication gem
 gem 'devise','~> 3.5'
 
+#admin panel gem
+gem 'rails_admin'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
