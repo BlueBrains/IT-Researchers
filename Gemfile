@@ -33,6 +33,9 @@ gem 'ckeditor'
 #math formula
 gem 'wirispluginengine'
 
+#admin panel gem
+gem 'rails_admin'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
