@@ -3,7 +3,7 @@ class Researcher
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  devise :database_authenticatable, :registerable, :validatable,:confirmable,:recoverable,:omniauthable, :omniauth_providers => [:gplus]
+  devise :database_authenticatable, :registerable, :secure_validatable#,:confirmable,:recoverable,:omniauthable, :omniauth_providers => [:gplus]
   has_many :papers
 
   #, :rememberable, :trackable
@@ -13,8 +13,8 @@ class Researcher
   field :encrypted_password, type: String, default: ""
 
   ## Recoverable
-  field :reset_password_token,   type: String
-  field :reset_password_sent_at, type: Time
+  #field :reset_password_token,   type: String
+  #field :reset_password_sent_at, type: Time
 
   ## Rememberable
   #field :remember_created_at, type: Time
@@ -27,10 +27,10 @@ class Researcher
   #field :last_sign_in_ip,    type: String
 
   ## Confirmable
-  field :confirmation_token,   type: String
-  field :confirmed_at,         type: Time
-  field :confirmation_sent_at, type: Time
-  field :unconfirmed_email,    type: String # Only if using reconfirmable
+  #field :confirmation_token,   type: String
+  #field :confirmed_at,         type: Time
+  #field :confirmation_sent_at, type: Time
+  #field :unconfirmed_email,    type: String # Only if using reconfirmable
 
   ## Lockable
   # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
