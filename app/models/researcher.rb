@@ -2,7 +2,7 @@ class Researcher
   include Mongoid::Document
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  has_many :papers
+  has_and_belongs_to_many :papers
   devise :database_authenticatable, :registerable, :validatable
   #, :rememberable, :trackable
 
@@ -35,5 +35,4 @@ class Researcher
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
   field :username, type: String  
-  field :_id, type: String, default: ->{ username }
 end
