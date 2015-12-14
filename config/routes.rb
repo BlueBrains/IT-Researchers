@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   as :researcher do   
     root :to => 'researchers#new'
   end
-  devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations', passwords: 'researchers/passwords', omniauth_callbacks: 'researchers/omniauth_callbacks' }
+  devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations'}#, passwords: 'researchers/passwords', omniauth_callbacks: 'researchers/omniauth_callbacks' }
   as :researcher do        
-     resources :researchers     
+     resources :researchers do 
+      resources :papers
+     end
      #delete 'sign_out',:to => 'researchers/sessions#destroy',:as => :destroy_researcher_session
   end  
   

@@ -3,7 +3,7 @@ class Researcher
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  devise :database_authenticatable, :registerable, :secure_validatable#,:confirmable,:recoverable,:omniauthable, :omniauth_providers => [:gplus]
+  devise :database_authenticatable, :registerable #,:confirmable,:recoverable,:omniauthable, :omniauth_providers => [:gplus]
   has_many :papers
 
   #, :rememberable, :trackable
