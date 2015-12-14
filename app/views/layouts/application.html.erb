@@ -2,13 +2,11 @@
 <html lang="ar" dir="rtl">
 <head>
   <title>الباحثون السوريون</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+
 </head>
 <body>
-
 <%= yield %>
 
+<%= render 'layouts/links'%>
 </body>
 </html>

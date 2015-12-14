@@ -12,13 +12,14 @@ Rails.application.routes.draw do
     root :to => 'researchers#new'
   end
 
-  devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations' }
+  devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations' }#, passwords: 'researchers/passwords', omniauth_callbacks: 'researchers/omniauth_callbacks' }
 
   as :researcher do        
      resources :researchers do
       resources :papers
      end
   end
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

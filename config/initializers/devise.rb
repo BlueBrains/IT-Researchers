@@ -15,7 +15,7 @@ Devise.setup do |config|
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
   # Configure the class responsible to send e-mails.
-  config.mailer = 'ResearchersConfirmation'
+  config.mailer = 'ResearchersMailer'
 
   # ==> ORM configuration
   # Load and configure the ORM. Supports :active_record (default) and
@@ -234,7 +234,7 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
+  config.omniauth :gplus, '1053398619292-2on2nqe41e0bp8c7kmtkiukpd7nc6fam.apps.googleusercontent.com', 'LOuo7pa-shK7G3FtzYWUWMSP'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
@@ -257,5 +257,43 @@ Devise.setup do |config|
   #
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
-  # config.omniauth_path_prefix = '/my_engine/users/auth'
+  config.omniauth_path_prefix = '/github/researchers/auth'
+
+  # ==> Security Extension
+  # Configure security extension for devise
+
+  # Should the password expire (e.g 3.months)
+  # config.expire_password_after = false
+
+  # Need 1 char of A-Z, a-z and 0-9
+  # config.password_regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])/
+
+  # How many passwords to keep in archive
+  # config.password_archiving_count = 5
+
+  # Deny old password (true, false, count)
+  # config.deny_old_passwords = true
+
+  # enable email validation for :secure_validatable. (true, false, validation_options)
+  # dependency: need an email validator like rails_email_validator
+  # config.email_validation = true
+
+  # captcha integration for recover form
+  # config.captcha_for_recover = true
+
+  # captcha integration for sign up form
+  # config.captcha_for_sign_up = true
+
+  # captcha integration for sign in form
+  # config.captcha_for_sign_in = true
+
+  # captcha integration for unlock form
+  # config.captcha_for_unlock = true
+
+  # captcha integration for confirmation form
+  # config.captcha_for_confirmation = true
+
+  # Time period for account expiry from last_activity_at
+  # config.expire_after = 90.days
+
 end
