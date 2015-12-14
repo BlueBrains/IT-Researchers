@@ -4,7 +4,7 @@ class Researcher
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
   has_and_belongs_to_many :papers
-
+  
 
   devise :database_authenticatable, :registerable, :validatable#,:confirmable,:recoverable,:omniauthable, :omniauth_providers => [:gplus]
   
