@@ -35,5 +35,5 @@ class Researcher
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
   field :username, type: String  
-  field :_id, type: String, default: ->{ username }
+  #field :_id, type: String, default: ->{ username }
 end
