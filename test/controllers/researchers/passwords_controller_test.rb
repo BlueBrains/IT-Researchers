@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ResearchersConfirmationTest < ActionMailer::TestCase
+class Researchers::PasswordsControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

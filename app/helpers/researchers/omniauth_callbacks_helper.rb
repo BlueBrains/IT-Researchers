@@ -1,0 +1,2 @@
+module Researchers::OmniauthCallbacksHelper
+end

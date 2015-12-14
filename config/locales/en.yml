@@ -35,6 +35,7 @@ en:
       timeout: "Your session expired. Please sign in again to continue."
       unauthenticated: "You need to sign in or sign up before continuing."
       unconfirmed: "You have to confirm your email address before continuing."
+      session_limited: 'Your login credentials were used in another browser. Please sign in again to continue in this browser.'
     mailer:
       confirmation_instructions:
         subject: "Confirmation instructions"
@@ -78,7 +79,10 @@ en:
       not_locked: "was not locked"
       not_saved:
         one: "1 error prohibited this %{resource} from being saved:"
-        other: "%{count} errors prohibited this %{resource} from being saved:" 
+        other: "%{count} errors prohibited this %{resource} from being saved:"      
+      taken_in_past: "was already taken in the past!"
+      equal_to_current_password: "must be different to the current password!"
+      password_format: "must contain big, small letters and digits"
   mongoid:
     errors:
       messages:  

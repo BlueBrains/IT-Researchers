@@ -25,11 +25,17 @@ gem 'bson_ext'
 #authentication gem
 gem 'devise','~> 3.5'
 
+gem 'rails_email_validator','~> 0.1'
+gem 'devise_security_extension','~> 0.9'
 #admin panel gem
 gem 'rails_admin'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+#for facebook
+#gem 'omniauth-facebook'
+gem 'omniauth-gplus','~> 2.0'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
