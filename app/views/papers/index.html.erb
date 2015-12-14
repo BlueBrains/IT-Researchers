@@ -20,7 +20,7 @@
       <tr>
         <td><%= paper.title %></td>
         <td><%= paper.created_at %></td>
-        <td><%= paper.content %></td>
+        <td><%= paper.content.html_safe %></td>
         <td><%= paper.state %></td>
         <td><%= link_to 'Show', [@researcher,paper] %></td>
         <td><%= link_to 'Delete', [@researcher,paper], method: :delete %></td>

@@ -1,10 +1,10 @@
 class Paper
   include Mongoid::Document
   include Mongoid::Timestamps
-  belongs_to :researcher
+  has_and_belongs_to_many :researcher
+  embeds_many :tags
   field :title
-  field :content  
+  field :content
   field :state
   validates_presence_of :title
-  field :_id, type: String, default: ->{ title }
 end

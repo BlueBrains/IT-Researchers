@@ -25,8 +25,17 @@ gem 'bson_ext'
 #authentication gem
 gem 'devise','~> 3.5'
 
+#pagination gem
+gem 'kaminari'
+
+# WYSIWYG text editor
+gem 'ckeditor'
+#math formula
+gem 'wirispluginengine'
+
 gem 'rails_email_validator','~> 0.1'
 gem 'devise_security_extension','~> 0.9'
+
 #admin panel gem
 gem 'rails_admin'
 
@@ -42,6 +51,8 @@ gem 'omniauth-gplus','~> 2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+
 group :test do
   gem 'minitest-around'
   gem 'database_cleaner'

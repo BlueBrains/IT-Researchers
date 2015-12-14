@@ -3,9 +3,11 @@ class Researcher
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  devise :database_authenticatable, :registerable #,:confirmable,:recoverable,:omniauthable, :omniauth_providers => [:gplus]
-  has_many :papers
+  has_and_belongs_to_many :papers
+  
 
+  devise :database_authenticatable, :registerable, :validatable#,:confirmable,:recoverable,:omniauthable, :omniauth_providers => [:gplus]
+  
   #, :rememberable, :trackable
 
   ## Database authenticatable
@@ -61,6 +63,5 @@ class Researcher
 end
 
   field :_id, type: String, default: ->{ username }
-
 
 end

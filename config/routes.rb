@@ -1,15 +1,25 @@
 Rails.application.routes.draw do
+  
+  mount Ckeditor::Engine => '/ckeditor'
+  mount Wirispluginengine::Engine => 'wirispluginengine'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  get 'dashboard/index'
+
+  get 'home/index'
+
   as :researcher do   
     root :to => 'researchers#new'
   end
-  devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations'}#, passwords: 'researchers/passwords', omniauth_callbacks: 'researchers/omniauth_callbacks' }
+
+  devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations' }#, passwords: 'researchers/passwords', omniauth_callbacks: 'researchers/omniauth_callbacks' }
+
   as :researcher do        
-     resources :researchers do 
+     resources :researchers do
       resources :papers
      end
-     #delete 'sign_out',:to => 'researchers/sessions#destroy',:as => :destroy_researcher_session
-  end  
+  end
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
