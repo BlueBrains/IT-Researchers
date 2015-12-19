@@ -62,6 +62,5 @@ class Researcher
   end
 end
 
-  field :_id, type: String, default: ->{ username }
 
 end
