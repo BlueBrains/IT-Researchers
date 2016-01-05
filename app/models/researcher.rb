@@ -62,5 +62,4 @@ class Researcher
   end
 end
 
-
 end

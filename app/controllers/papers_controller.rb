@@ -5,6 +5,7 @@ class PapersController < ApplicationController
 
   def index
     @papers = @researcher.papers.page(params[:page]).per(8)
+    authorize! :read, @papers
   end
 
   def show
