@@ -4,14 +4,12 @@ Rails.application.routes.draw do
   mount Wirispluginengine::Engine => 'wirispluginengine'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  get 'dashboard/index'
 
+
+  root :to => 'home#index'
+  get 'papers/:id' =>'home#show'
   get 'home/index'
-
-  as :researcher do   
-    root :to => 'researchers#new'
-  end
-
+  get 'paper/:id/like' => "home#like_it", :as => 'like_paper'
   devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations' }#, passwords: 'researchers/passwords', omniauth_callbacks: 'researchers/omniauth_callbacks' }
 
   as :researcher do        
@@ -20,6 +18,11 @@ Rails.application.routes.draw do
      end
   end
 
+resources :papers, only: [:show] do
+  resources :comments
+end
+
+resources :papers, only: [:index]
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
