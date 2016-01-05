@@ -28,6 +28,21 @@ gem 'devise','~> 3.5'
 #pagination gem
 gem 'kaminari'
 
+group :assets do
+  gem 'chosen-rails'
+end
+
+#taggable
+gem 'mongoid-tags-arent-hard'
+
+#commentable		
+gem 'mongoid_commentable' ,:git => 'https://github.com/madaarya/mongoid_commentable.git'
+
+#for uploading files		
+gem 'carrierwave','~> 0.10'		
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'		
+
+
 # WYSIWYG text editor
 gem 'ckeditor'
 #math formula
