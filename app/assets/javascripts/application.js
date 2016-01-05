@@ -11,7 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require js/bootstrap
+//= require js/bootstrap-tagsinput
 //= require jquery_ujs
 //= require turbolinks
-//= require ckeditor/init
 //= require_tree .
