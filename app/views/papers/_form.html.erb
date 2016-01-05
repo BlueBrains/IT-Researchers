@@ -26,10 +26,26 @@
         ['draft', 'draft', { 'class' => 'draft_paper' }]
       ], f.object.state
   )) %>
-
   </div>
-  <br>
+
+  <div class="field">
+    <%= f.label :tags %><br />    
+    <%= f.text_field :tags, "data-role" => "tagsinput", "value"=> @paper.tags %>    
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<script type="text/javascript">  
+$( "#new_paper" ).submit(function( event ) {
+  var e = $(".bootstrap-tagsinput").find("input")[0];
+  var ee = $(':focus').context.activeElement;
+  if(ee==e)
+    event.preventDefault();
+});
+  $("#submit").click(function() {    
+    $("#new_paper").submit();    
+});
+</script>

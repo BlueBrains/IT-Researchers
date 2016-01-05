@@ -1,10 +1,18 @@
 class Paper
   include Mongoid::Document
   include Mongoid::Timestamps
-  has_and_belongs_to_many :researcher
-  embeds_many :tags
+  include Mongoid::TagsArentHard   
+  include Mongoid::Commentable  
+  has_and_belongs_to_many :researchers  
+  belongs_to :category
   field :title
   field :content
   field :state
-  validates_presence_of :title
+  field :likers, type: Array
+  field :likes, type: Integer
+  field :times_seen, type: Integer
+  validates_presence_of :title  
+  taggable_with :tags
+  #  searchkick language: "arabic"
 end
+

@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<div id="paper-content">
+	<p>
+	  <strong>Title:</strong>
+	  <%= @paper.title %>
+	</p>
+
+	<p>
+	  <strong>paper creation_date:</strong>
+	  <%= @paper.created_at%>
+	</p>
+
+	<p>
+	  <strong>Content:</strong>  
+	</p>
+	  <%= @paper.content.html_safe %>
+	  
+
+</div>
+<div id="like">
+	<p><%= @paper.likes %><span> like</span></p>
+	<% if ((current_researcher.likes.nil?) || (!current_researcher.likes.include?(@paper.id))) %>
+		<div><%=link_to "Like", like_paper_path(@paper.id) %></div>
+	<%else %>
+		<div><%=link_to "Unlike", like_paper_path(@paper.id) %></div>
+	<%end%>
+</div>
+<div id='tags'>
+    <% @paper.tags.each do |tag| %>
+    <p> <%= tag %></p>
+    <% end %>
+</div>
+
+<div id='comments'>
+	<% @paper.comments_list.each do |comment| %>
+	    <% researcher = Researcher.find(comment.author.to_s)  %>
+		<p> writen by <%= link_to researcher.username, researcher_path(researcher) %> </p>
+		<p> <%= comment.text %> </p> 
+	<% end %>                
+</div>
+
+<% if current_researcher  %>
+	<div id="comment-form">
+		<%= render :partial => 'comments/form', :locals => {:model => @paper, :comment => Comment.new} %>
+	</div>
+<% else %>
+	<p>you should be a member to leave a comment <%= link_to "Sign Up", new_researcher_registration_path %> 
+	| <%= link_to "Log In", new_researcher_session_path %> </p>
+<%end%>

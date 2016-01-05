@@ -1,24 +1,6 @@
-<% require "cgi" %>
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @paper.title %>
-</p>
-
-<p>
-  <strong>paper creation_date:</strong>
-  <%= @paper.created_at%>
-</p>
-
-<p>
-  <strong>Content:</strong>  
-</p>
-  <%= @paper.content.html_safe %>
-  
-  <strong>State:</strong>
-  <%= @paper.state %>
-<br>
-
+<%= render partial: 'shared/paper_show', :locals => {:paper=> @paper}%>
+<strong>State:</strong>
+<%= @paper.state %>
 <%= link_to 'Edit', edit_researcher_paper_path(@researcher,@paper) %> |
 <%= link_to 'Back', researcher_papers_path(@researcher) %>
