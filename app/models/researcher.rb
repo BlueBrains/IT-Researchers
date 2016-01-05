@@ -41,11 +41,28 @@ class Researcher
 
 
   #field :_id, type: String, default: ->{ username }
+  field :general_info,          type:String
+  field :phone,                 type:String
+  field :address,              type:String
+  field :birthdate,            type:Date
+  ## Lockable
+  # field :failed_attempts, type: Integer, default: 0 # Only if lock strategy is :failed_attempts
+  # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
+  # field :locked_at,       type: Time
 
 
+  #field :_id, type: String, default: ->{ username }
+
+  field :avatar, type: String
+  field :description
+  field :coordinates, :type => Array
+  field :address
+  field :phone
+  field :websiteurl
   field :username, type: String
   field :provider,type: String
   field :uid,type: String
+  field :likes ,type: Array
   
   def self.new_with_session(params, session)
     super.tap do |researcher|
