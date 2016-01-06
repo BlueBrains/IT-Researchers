@@ -1,2 +1,40 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+    <div class="slider">
+        <ul class="rslides" id="slider1">
+          <li><img src="images/2.jpg" alt=""></li>
+          <li><img src="images/1.jpg" alt=""></li>
+        </ul>
+            <div class="callbacks_div" style="z-index: 10; margin-top: 22%; margin-left: 5%; margin-right: 37%;">
+              <form style="width: 100%;">           
+              <div class="input-group"  style="opacity: 0.6;">
+                  <input type="text" class="search-form-control " value="عنوان البحث" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'أدخل الكلمات المفتاحية للبحث';}" style="direction: rtl;">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn-lg btn-search-default" style="border-radius: 0px ! important;" type="button">! ابحث </button>
+                  </span>
+                </div>
+                <div class="col-md-12 welcome_top_right" style="text-align: right;">
+                <h2 style="color: white;">أهلا و سهلا</h3>
+                <h3 style="color: white;">الهدف من مشروع الباحثون المعلوماتيون</h5>
+                <p style="color: white;">يهدف هذا المشروع إلى توفير منصة اجتماعية تشاركية بين الباحثين و الطلاب المهتمين بتقنيات تكنولوجيا المعلومات تمكنهم من الوصول إلى الموارد العلمية و المشاركة في بنائها و نقدها و مما يسهل عملية الوصول إلى المعلومة.</p>
+                </div>
+              </form>
+            </div>
+    </div>
+	<div class="content">
+        <div class="news-section" id="last_researches" style="text-align: right; direction: rtl;">
+             <div class="container">
+                <div class="news-section-head text-center">
+                    <header>
+                        <h2> آخر الأبحاث العلمية</h2>
+                    </header>
+                </div>
+                <div class="news-section-grids">
+                    <%@papers.in_groups_of(4,false) do |group|%>
+                        <%group.each do |paper|%>
+                          <%= render partial: 'shared/paper_preview', :locals => {:paper=> paper}%>
+                        <%end%>
+                    <%end%>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+     </div>   

@@ -1,50 +1,75 @@
-<p id="notice"><%= notice %></p>
+  <div class="content">
+  <!-- Single-page -->
+    <div class="single-page">
+      <div class="container">
+      	<h2 class="heading text-center"><%= @paper.title %></h2>
+      	<div class="blog-to1 service_info" >		
+			<p id="notice"><%= notice %></p>
 
-<div id="paper-content">
-	<p>
-	  <strong>Title:</strong>
-	  <%= @paper.title %>
-	</p>
+			<div id="paper-content">
+				<div class="blog-top" style="text-align: right;">
+						<div class="blog-left">
+							<b><%= @paper.created_at.strftime("%Y") %></b>
+							<span><%= @paper.created_at.strftime("%m-%d") %></span>
+							<hr>
+							<div id="like">
+							<span>likes  &nbsp; <%= @paper.likes %></span><br>
+							<span>
+							<% if ((current_researcher.likes.nil?) || (!current_researcher.likes.include?(@paper.id))) %>
+								<%=link_to "", like_paper_path(@paper.id) ,:class=>"glyphicon glyphicon-thumbs-up", :style=>"color: rgb(191, 231, 205) ! important;"%>
+							<%else %>
+								<%=link_to "", like_paper_path(@paper.id) , :class=>"glyphicon glyphicon-thumbs-down" ,:style=>"color: rgb(191, 231, 205) ! important;"%>
+							<%end%>
+							</span>
+						</div>
+						</div>
+						<div class="top-blog">
+								<a class="fast" href="#"> الكلمات المفتاحية :
+									<% @paper.tags.each do |tag| %>
+								    	 <%= tag %> &nbsp; , &nbsp;
+								    <% end %> 
+								</a>
+								<p class="sed">
+						  			<%= @paper.content.html_safe %>
+						  		</p>
+						  		<p>الإشارات المرجعية :  
+						  		<% @paper.tags.each do |tag| %>
+								   <a href="#"><%= tag %></a> | 
+								<% end %></p>	
+						</div> 
+				</div>					
+			</div>
+			<div class="clearfix"> </div>
+		</div>	
+     		<div class="single-middle">
+     			<h3>التعليقات</h3>
+				<div id='comments'>
+					<% @paper.comments_list.each do |comment| %>
+					    <% researcher = Researcher.find(comment.author.to_s)  %>
+						<div class="media">
+		                  <div class="media-left">
+			                  <a href="#">
+			                    <img class="media-object" src="images/co.png" alt="">
+			                  </a>
+		                  </div>
+		                  <div class="media-body">
+						   <h4 class="media-heading"><%= link_to researcher.username, researcher_path(researcher) %> </h4>
+							<p> <%= comment.text %> </p> 
+		                  </div>
+                		</div>
+					<% end %>
+	              <div class="clearfix"> </div>
+     			</div>                
+			</div>
 
-	<p>
-	  <strong>paper creation_date:</strong>
-	  <%= @paper.created_at%>
-	</p>
+			<% if current_researcher  %>
+				<div id="comment-form">
+					<%= render :partial => 'comments/form', :locals => {:model => @paper, :comment => Comment.new} %>
+				</div>
+			<% else %>
+				<p>you should be a member to leave a comment <%= link_to "Sign Up", new_researcher_registration_path %> 
+				| <%= link_to "Log In", new_researcher_session_path %> </p>
+			<%end%>
+			</div>
 
-	<p>
-	  <strong>Content:</strong>  
-	</p>
-	  <%= @paper.content.html_safe %>
-	  
-
-</div>
-<div id="like">
-	<p><%= @paper.likes %><span> like</span></p>
-	<% if ((current_researcher.likes.nil?) || (!current_researcher.likes.include?(@paper.id))) %>
-		<div><%=link_to "Like", like_paper_path(@paper.id) %></div>
-	<%else %>
-		<div><%=link_to "Unlike", like_paper_path(@paper.id) %></div>
-	<%end%>
-</div>
-<div id='tags'>
-    <% @paper.tags.each do |tag| %>
-    <p> <%= tag %></p>
-    <% end %>
-</div>
-
-<div id='comments'>
-	<% @paper.comments_list.each do |comment| %>
-	    <% researcher = Researcher.find(comment.author.to_s)  %>
-		<p> writen by <%= link_to researcher.username, researcher_path(researcher) %> </p>
-		<p> <%= comment.text %> </p> 
-	<% end %>                
-</div>
-
-<% if current_researcher  %>
-	<div id="comment-form">
-		<%= render :partial => 'comments/form', :locals => {:model => @paper, :comment => Comment.new} %>
-	</div>
-<% else %>
-	<p>you should be a member to leave a comment <%= link_to "Sign Up", new_researcher_registration_path %> 
-	| <%= link_to "Log In", new_researcher_session_path %> </p>
-<%end%>
+			

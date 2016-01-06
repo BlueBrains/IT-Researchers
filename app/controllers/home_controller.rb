@@ -2,8 +2,12 @@ class HomeController < ApplicationController
  before_action :set_paper, only: [:show]
 
   def index  	  	
+    @researcher = current_researcher
   	@researchers = Researcher.all
-    @papers=Paper.all.limit(8)       
+    @papers=Paper.all.limit(8)  
+    @index=false
+
+    #render :file=>'home/index' , :layout=>false     
   end
     
   def show

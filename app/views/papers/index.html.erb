@@ -1,33 +1,37 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>مقالاتك المنشورة</strong>
-</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Created at</th>
-      <th>Content</th>
-      <th>State</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @papers.each do |paper| %>
-      <tr>
-        <td><%= paper.title %></td>
-        <td><%= paper.created_at %></td>
-        <td><%= paper.content.html_safe %></td>
-        <td><%= paper.state %></td>
-        <td><%= link_to 'Show', [@researcher,paper] %></td>
-        <td><%= link_to 'Delete', [@researcher,paper], method: :delete %></td>
-      </tr>
-    <% end %>    
-  </tbody>
-</table>
-<%= paginate @papers %>
-<br>
-<%= link_to 'New paper', new_researcher_paper_path(@researcher) %>
+<div class="content">
+    <!-- blogs -->
+<div class="blog">
+  <div class="container">
+    <h2 class="heading text-center">المنشورات العلمية</h2>
+      <div class="single-inline">
+          <p id="notice"><%= notice %></p>
+        
+        <% @papers.each do |paper| %>
+        <div class="col-md-4 blog-to" style="border: 1px solid rgb(21, 19, 19); margin-right: 5px; width: 32%;">            
+            <div class="blog-top">
+              <div class="blog-left">
+                <b><%= paper.created_at.strftime("%Y") %></b>
+                <span><%= paper.created_at.strftime("%m-%d") %></span>
+                <hr>
+                <span><%= paper.state %></span>
+              </div>
+              <div class="blog-right">
+                  <h3 class="fast"><%= paper.title %></h3>
+                  <hr>
+                  <p class="sed"><%= paper.content.html_safe %></p> 
+              </div> 
+              <div class="clearfix"> 
+              <%= link_to 'Show', [@researcher,paper] ,:class=> "more"%>
+                  <%= link_to 'Delete', [@researcher,paper], method: :delete ,:class=> "more"%>
+              </div>
+            </div>
+          </div>
+        <%end%>  
+      </div>
+  </div> 
+</div>  
+<nav>
+  <ul class="pagination blog-pagination">
+    <%= paginate @papers %>
+  </ul>
+</nav>     
