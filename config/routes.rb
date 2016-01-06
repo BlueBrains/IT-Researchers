@@ -8,12 +8,13 @@ Rails.application.routes.draw do
   # authenticated :researcher do
   #   root :to => 'researcher#index', as: :authenticated_root
   # end
-
-  root :to => 'home#index'
-  get 'papers/:id' =>'home#show'
-  get 'home/index'
-  get 'paper/:id/like' => "home#like_it", :as => 'like_paper'
-  devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations' }#, passwords: 'researchers/passwords', omniauth_callbacks: 'researchers/omniauth_callbacks' }
+  as :researcher do   
+    root :to => 'home#index'
+    get 'papers/:id' =>'home#show'
+    get 'home/index'
+    get 'paper/:id/like' => "home#like_it", :as => 'like_paper'
+    devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations' }#, passwords: 'researchers/passwords', omniauth_callbacks: 'researchers/omniauth_callbacks' }
+  end
 
   as :researcher do        
      resources :researchers do
