@@ -24,8 +24,10 @@ class PapersController < ApplicationController
 
     respond_to do |format|
       if @paper.save
-        params[:post_attachments]['file'].each do |a|
-          @post_attachment = @paper.post_attachments.create!(:file => a)
+        if !params[:post_attachments].nil?
+          params[:post_attachments]['file'].each do |a|
+            @post_attachment = @paper.post_attachments.create!(:file => a)
+          end
         end
         format.html { redirect_to [@researcher,@paper], notice: 'Paper was successfully created.' }
         format.json { render :show, status: :created, location: @paper }
