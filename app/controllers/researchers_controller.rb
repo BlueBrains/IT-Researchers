@@ -18,15 +18,15 @@ before_filter :configure_sign_up_params, only: [:create]
       redirect_to :back, :alert => "تم رفض الوصول."
     end
   end
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  
+  def edit
+    super
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+  end
 
   # DELETE /resource
   # def destroy
