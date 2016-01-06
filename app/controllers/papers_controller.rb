@@ -62,7 +62,9 @@ class PapersController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def paper_params      
-      params.require(:paper).permit(:title, :content, :state, :tags)
+      params.require(:paper).permit(:title, :abstract, :introduction, :literature_survey, 
+      :notation, :theory, :specification, :implementation,
+      :valuation, :related_work, :further_work, :conclusion, :appendices, :state, :tags)
     end
 
 end
