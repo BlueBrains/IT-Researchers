@@ -3,14 +3,16 @@ class Ability
 
   def initialize(researcher)
     guest = Researcher.new
-    guest.add_role "Regular"
+    guest.add_role "guest"
     researcher ||= guest # Guest user if there's no user
     # Define abilities for the passed in user here. For example:
     #
       if researcher.has_role? :admin
          can :manage, :all
       else
-          can :read, :all
+        can :read, Paper unless researcher.has_role? :block
+        #can :create, Paper if researcher.has_role? :researcher
+        can [:update, :destroy], Paper, :researcher_id => researcher._id  if researcher.has_role? :researcher
       end
     #
     # The first argument to `can` is the action you are giving the user

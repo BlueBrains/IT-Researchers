@@ -66,7 +66,6 @@ class Researcher
   field :provider,type: String
   field :uid,type: String
   field :likes ,type: Array
-  field :block, type: Boolean
   
   def self.new_with_session(params, session)
     super.tap do |researcher|
