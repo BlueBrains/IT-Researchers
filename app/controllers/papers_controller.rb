@@ -20,10 +20,16 @@ class PapersController < ApplicationController
   end
 
   def create
-    @paper = current_researcher.papers.new(paper_params)
-
-    respond_to do |format|
+    @paper = current_researcher.papers.new(paper_params)    
+    respond_to do |format|      
       if @paper.save
+        params[:paper][:researcher_ids].shift
+        if !params[:paper][:researcher_ids].nil?
+          params[:paper][:researcher_ids].each do |res|
+            researcher = Researcher.find(res)
+            @paper.researchers.push(researcher)
+          end
+        end
         if !params[:post_attachments].nil?
           params[:post_attachments]['file'].each do |a|
             @post_attachment = @paper.post_attachments.create!(:file => a)
@@ -39,8 +45,22 @@ class PapersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
+    respond_to do |format|      
       if @paper.update(paper_params)
+        params[:paper][:researcher_ids].shift
+        if !params[:paper][:researcher_ids].nil?
+          @paper.researcher_ids.clear
+          @paper.researchers.push(current_researcher)
+          params[:paper][:researcher_ids].each do |res|
+            researcher = Researcher.find(res)
+            @paper.researchers.push(researcher)
+          end
+        end
+        if !params[:post_attachments].nil?
+          params[:post_attachments]['file'].each do |a|
+            @post_attachment = @paper.post_attachments.create!(:file => a)
+          end
+        end        
         format.html { redirect_to [@researcher,@paper], notice: 'Paper was successfully updated.' }
         format.json { render :show, status: :ok, location: @paper }
       else
@@ -71,7 +91,7 @@ class PapersController < ApplicationController
     def paper_params      
       params.require(:paper).permit(:title, :abstract, :introduction, :literature_survey, 
       :notation, :theory, :specification, :implementation,
-      :valuation, :related_work, :further_work, :conclusion, :appendices, :state, :tags)
+      :valuation, :related_work, :further_work, :conclusion, :appendices, :state, :tags, :researcher_ids)
     end
 
 end
