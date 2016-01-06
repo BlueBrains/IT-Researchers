@@ -3,12 +3,14 @@ class Paper
   include Mongoid::Timestamps
   include Mongoid::TagsArentHard   
   include Mongoid::Commentable
+  include Mongoid::Slug
   has_and_belongs_to_many :researchers  
   has_many :post_attachments
   accepts_nested_attributes_for :post_attachments
   belongs_to :category
   
   field :title
+  slug :title
   field :abstract
   field :introduction
   field :literature_survey

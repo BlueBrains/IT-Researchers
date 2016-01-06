@@ -1,5 +1,6 @@
 class Researcher
   include Mongoid::Document
+  include Mongoid::Slug
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
@@ -60,6 +61,7 @@ class Researcher
   field :phone
   field :websiteurl
   field :username, type: String
+  slug :username
   field :provider,type: String
   field :uid,type: String
   field :likes ,type: Array
