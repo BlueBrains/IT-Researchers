@@ -7,11 +7,11 @@ class Ability
        #researcher ||= Researcher.new # guest user (not logged in)
       if researcher.admin?
          can :manage, :all
+      else
+        unless researcher.block?
+          can :read, :all
+        end
       end
-      # end
-    #   else
-    #     can :read, :all
-    #   end
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.
