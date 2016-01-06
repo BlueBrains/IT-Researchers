@@ -25,6 +25,11 @@ gem 'bson_ext'
 #authentication gem
 gem 'devise','~> 3.5'
 
+#authorization gem
+gem 'cancancan', '~> 1.10'
+#for roles
+gem 'rolify'
+
 #pagination gem
 gem 'kaminari'
 
@@ -53,6 +58,9 @@ gem 'devise_security_extension','~> 0.9'
 
 #admin panel gem
 gem 'rails_admin'
+
+#pretty url for SEO
+gem 'mongoid-slug'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -15,6 +15,7 @@
  *= require css/style
  *= require bootstrap-tagsinput
  *= require bootstrap-theme
+ *= require chosen
  *= require_tree .
  *= require_self
  */

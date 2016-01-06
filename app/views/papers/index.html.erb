@@ -1,35 +1,36 @@
 <div class="content">
     <!-- blogs -->
-<div class="blog">
-  <div class="container">
-    <h2 class="heading text-center">المنشورات العلمية</h2>
-      <div class="single-inline">
-          <p id="notice"><%= notice %></p>
-        
-        <% @papers.each do |paper| %>
-        <div class="col-md-4 blog-to" style="border: 1px solid rgb(21, 19, 19); margin-right: 5px; width: 32%;">            
-            <div class="blog-top">
-              <div class="blog-left">
-                <b><%= paper.created_at.strftime("%Y") %></b>
-                <span><%= paper.created_at.strftime("%m-%d") %></span>
-                <hr>
-                <span><%= paper.state %></span>
-              </div>
-              <div class="blog-right">
-                  <h3 class="fast"><%= paper.title %></h3>
+  <div class="blog">
+    <div class="container">
+      <h2 class="heading text-center">المنشورات العلمية</h2>
+        <div class="single-inline">
+            <p id="notice"><%= notice %></p>
+          
+          <% @papers.each do |paper| %>
+          <div class="col-md-4 blog-to" style="border: 1px solid rgb(21, 19, 19); margin-right: 5px; width: 32%;">            
+              <div class="blog-top">
+                <div class="blog-left">
+                  <b><%= paper.created_at.strftime("%Y") %></b>
+                  <span><%= paper.created_at.strftime("%m-%d") %></span>
                   <hr>
-                  <p class="sed"><%= paper.content.html_safe %></p> 
-              </div> 
-              <div class="clearfix"> 
-              <%= link_to 'Show', [@researcher,paper] ,:class=> "more"%>
-                  <%= link_to 'Delete', [@researcher,paper], method: :delete ,:class=> "more"%>
+                  <span><%= paper.state %></span>
+                </div>
+                <div class="blog-right">
+                    <h3 class="fast"><%= paper.title %></h3>
+                    <hr>
+                    <p class="sed"><%= paper.abstract.html_safe if !paper.abstract.nil? %></p> 
+                </div> 
+                <div class="clearfix"> 
+                <%= link_to 'Show', [@researcher,paper] ,:class=> "more"%>
+                    <%= link_to 'Delete', [@researcher,paper], method: :delete ,:class=> "more"%>
+                </div>
               </div>
             </div>
-          </div>
-        <%end%>  
-      </div>
-  </div> 
-</div>  
+          <%end%>  
+        </div>
+    </div> 
+  </div>
+</div>    
 <nav>
   <ul class="pagination blog-pagination">
     <%= paginate @papers %>

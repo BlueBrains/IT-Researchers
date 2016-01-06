@@ -3,6 +3,7 @@
     <div class="single-page">
       <div class="container">
       	<h2 class="heading text-center"><%= @paper.title %></h2>
+      	<h1><%= @paper.introduction.html_safe %></h1>
       	<div class="blog-to1 service_info" >		
 			<p id="notice"><%= notice %></p>
 
@@ -28,6 +29,8 @@
 									<% @paper.tags.each do |tag| %>
 								    	 <%= tag %> &nbsp; , &nbsp;
 								    <% end %> 
+								    <br>
+								    <%= @paper.abstract.html_safe %>
 								</a>
 								<p class="sed">
 						  			<%= @paper.content.html_safe %>
@@ -35,8 +38,71 @@
 						  		<p>الإشارات المرجعية :  
 						  		<% @paper.tags.each do |tag| %>
 								   <a href="#"><%= tag %></a> | 
-								<% end %></p>	
+								<% end %>
+								</p>
+								<% if !@paper.literature_survey.nil? %>	  
+										<p class="sed">
+										  <strong>Literature Survay:</strong>
+										</p>
+										  <%= @paper.introduction.html_safe %>
+								<%end%>	  	
+								<% if !@paper.notation.nil? %>	  
+										<p class="sed">
+										  <strong>Notation:</strong>
+										</p>
+										  <%= @paper.notation.html_safe %>
+								<%end%>	  		
+								<% if !@paper.theory.nil? %>	  
+										<p class="sed">
+										  <strong>Theory:</strong>
+										</p>
+										  <%= @paper.theory.html_safe %>
+								<%end%>	  			
+								<% if !@paper.specification.nil? %>	  
+										<p class="sed">
+										  <strong>Specification:</strong>
+										</p>
+										  <%= @paper.specification.html_safe %>
+								<%end%>	  				
+								<% if !@paper.implementation.nil? %>	  
+										<p class="sed">
+										  <strong>Implementation:</strong>
+										</p>
+										  <%= @paper.implementation.html_safe %>
+								<%end%>	  					
+									<p class="sed">
+									  <strong>Valuation:</strong>
+									</p>
+									  <%= @paper.valuation.html_safe %>
+								<% if !@paper.related_work.nil? %>	  
+										<p class="sed">
+										  <strong>Related work:</strong>
+										</p>
+										  <%= @paper.related_work.html_safe %>
+								<%end%>	  			
+								<% if !@paper.further_work.nil? %>	  
+										<p class="sed">
+										  <strong>Further work:</strong>
+										</p>
+										  <%= @paper.further_work.html_safe %>
+								<%end%>
+									<p class="sed">
+									  <strong>conclusion:</strong>
+									</p>
+									  <%= @paper.conclusion.html_safe %>
+								<% if !@paper.appendices.nil? %>	  
+										<p class="sed">
+										  <strong>Appendices:</strong>
+										</p>
+										  <%= @paper.appendices.html_safe %>
+								<%end%>	  									
 						</div> 
+				</div>
+				<div id='attachment'>
+					<% @paper.post_attachments.each do |attach| %>
+					   <p><%=File.basename(attach.file_identifier)%></p>
+					    <p> <%=  attach.file_url %> </p>
+					<% end %>                
 				</div>					
 			</div>
 			<div class="clearfix"> </div>
@@ -71,5 +137,5 @@
 				| <%= link_to "Log In", new_researcher_session_path %> </p>
 			<%end%>
 			</div>
-
-			
+  </div>
+</div> 			

@@ -5,6 +5,7 @@ class PapersController < ApplicationController
 
   def index
     @papers = @researcher.papers.page(params[:page]).per(8)
+    #authorize! :read, @papers
   end
 
   def show
@@ -12,6 +13,7 @@ class PapersController < ApplicationController
 
   def new
     @paper = Paper.new
+    @post_attachment = @paper.post_attachments.build
   end
 
   def edit
@@ -22,6 +24,11 @@ class PapersController < ApplicationController
 
     respond_to do |format|
       if @paper.save
+        if !params[:post_attachments].nil?
+          params[:post_attachments]['file'].each do |a|
+            @post_attachment = @paper.post_attachments.create!(:file => a)
+          end
+        end
         format.html { redirect_to [@researcher,@paper], notice: 'Paper was successfully created.' }
         format.json { render :show, status: :created, location: @paper }
       else
@@ -62,7 +69,9 @@ class PapersController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def paper_params      
-      params.require(:paper).permit(:title, :content, :state, :tags)
+      params.require(:paper).permit(:title, :abstract, :introduction, :literature_survey, 
+      :notation, :theory, :specification, :implementation,
+      :valuation, :related_work, :further_work, :conclusion, :appendices, :state, :tags)
     end
 
 end
