@@ -65,6 +65,7 @@ class Researcher
   field :likes ,type: Array
   field :admin, type: Boolean
   field :block, type: Boolean
+  #acts_as_slugoid :generate_from => :username
   
   def self.new_with_session(params, session)
     super.tap do |researcher|
