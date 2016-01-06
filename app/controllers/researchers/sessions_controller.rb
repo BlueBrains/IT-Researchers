@@ -5,7 +5,7 @@ class Researchers::SessionsController < Devise::SessionsController
   def new
     super
   end
-  # POST /resource/sign_in
+  # POST /resource/sign_up
   def create
     #byebug    
     super         
