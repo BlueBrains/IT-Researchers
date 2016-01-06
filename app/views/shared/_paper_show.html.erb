@@ -10,13 +10,94 @@
 	  <strong>paper creation_date:</strong>
 	  <%= @paper.created_at%>
 	</p>
-
-	<p>
-	  <strong>Content:</strong>  
-	</p>
-	  <%= @paper.content.html_safe %>
-	  
-
+	<div>
+		<p>
+		  <strong>Abstract:</strong>  
+		</p>
+		  <%= @paper.abstract.html_safe %>
+	</div>
+	<div>
+		<p>
+		  <strong>Introduction:</strong>  
+		</p>
+		  <%= @paper.introduction.html_safe %>
+	</div>
+	<% if !@paper.literature_survey.nil? %>	  
+		<div>
+			<p>
+			  <strong>Literature Survay:</strong>
+			</p>
+			  <%= @paper.introduction.html_safe %>
+		</div>
+	<%end%>	  	
+	<% if !@paper.notation.nil? %>	  
+		<div>
+			<p>
+			  <strong>Notation:</strong>
+			</p>
+			  <%= @paper.notation.html_safe %>
+		</div>
+	<%end%>	  		
+	<% if !@paper.theory.nil? %>	  
+		<div>
+			<p>
+			  <strong>Theory:</strong>
+			</p>
+			  <%= @paper.theory.html_safe %>
+		</div>
+	<%end%>	  			
+	<% if !@paper.specification.nil? %>	  
+		<div>
+			<p>
+			  <strong>Specification:</strong>
+			</p>
+			  <%= @paper.specification.html_safe %>
+		</div>
+	<%end%>	  				
+	<% if !@paper.implementation.nil? %>	  
+		<div>
+			<p>
+			  <strong>Implementation:</strong>
+			</p>
+			  <%= @paper.implementation.html_safe %>
+		</div>
+	<%end%>	  					
+	<div>
+		<p>
+		  <strong>Valuation:</strong>
+		</p>
+		  <%= @paper.valuation.html_safe %>
+	</div>
+	<% if !@paper.related_work.nil? %>	  
+		<div>
+			<p>
+			  <strong>Related work:</strong>
+			</p>
+			  <%= @paper.related_work.html_safe %>
+		</div>
+	<%end%>	  			
+	<% if !@paper.further_work.nil? %>	  
+		<div>
+			<p>
+			  <strong>Further work:</strong>
+			</p>
+			  <%= @paper.further_work.html_safe %>
+		</div>
+	<%end%>
+	<div>
+		<p>
+		  <strong>conclusion:</strong>
+		</p>
+		  <%= @paper.conclusion.html_safe %>
+	</div>		  					
+	<% if !@paper.appendices.nil? %>	  
+		<div>
+			<p>
+			  <strong>Appendices:</strong>
+			</p>
+			  <%= @paper.appendices.html_safe %>
+		</div>
+	<%end%>	  								
 </div>
 <div id="like">
 	<p><%= @paper.likes %><span> like</span></p>

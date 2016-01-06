@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   
-  resources :post_attachments
+  
   mount Ckeditor::Engine => '/ckeditor'
   mount Wirispluginengine::Engine => 'wirispluginengine'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-
+  authenticated :researcher do
+    root :to => 'researcher#index', as: :authenticated_root
+  end
 
   root :to => 'home#index'
   get 'papers/:id' =>'home#show'
@@ -24,7 +26,7 @@ resources :papers, only: [:show] do
 end
 
 resources :papers, only: [:index]
-  
+resources :post_attachments
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

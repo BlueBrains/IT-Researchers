@@ -1,4 +1,13 @@
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>
+
+<%@most_watched_papers.in_groups_of(4,false) do |group|%>
+      <div class="row">                    
+        <%group.each do |paper|%>
+          <%= render partial: 'shared/paper_preview', :locals => {:paper=> paper}%>
+        <%end%>
+      </div>
+<%end%>
+
 <!-- some body handle it in html for me it admin panle messege You are not authorized to access this page-->
 <%= flash[:notice] if flash[:notice] %>

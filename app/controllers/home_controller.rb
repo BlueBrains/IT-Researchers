@@ -3,10 +3,16 @@ class HomeController < ApplicationController
 
   def index  	  	
   	@researchers = Researcher.all
-    @papers=Paper.all.limit(8)       
+    # @researchers = Researcher.collection.aggregate([
+    #   {"$unwind" => "$paper_ids"},
+    #   {"$group" => {_id: "$_id", paper_ids: {"$push"=>"$paper_ids"}, size: {"$sum" => 1}}}, 
+    #   {"$sort" => {size: 1}}]);
+    @most_watched_papers=Paper.order_by(:times_seen => 'desc').limit(8)
   end
     
   def show
+    @paper.inc(times_seen: 1)
+    @related_papers = @paper.similar.limit(3)
   end
 
   def like_it

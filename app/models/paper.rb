@@ -7,14 +7,36 @@ class Paper
   has_many :post_attachments
   accepts_nested_attributes_for :post_attachments
   belongs_to :category
+  
   field :title
-  field :content
+  field :abstract
+  field :introduction
+  field :literature_survey
+  field :notation
+  field :theory
+  field :specification
+  field :implementation
+  field :valuation
+  field :related_work
+  field :further_work
+  field :conclusion
+  field :appendices
+  
   field :state
   field :likers, type: Array
   field :likes, type: Integer
   field :times_seen, type: Integer
-  validates_presence_of :title  
   taggable_with :tags
+  taggable_with :keywords
+
+  scope :exclude, -> paper { ne(_id: paper.id) }
+  scope :similar_to, -> paper { exclude(paper).in(tags: paper.tags ) }
+
+  def similar
+    @similar ||= self.class.similar_to self
+  end
+
+  validates_presence_of :title, :abstract, :introduction, :valuation, :conclusion
   #  searchkick language: "arabic"
 end
 

@@ -9,7 +9,7 @@
     <tr>
       <th>Title</th>
       <th>Created at</th>
-      <th>Content</th>
+      <th>Abstract</th>
       <th>State</th>
       <th colspan="3"></th>
     </tr>
@@ -20,7 +20,7 @@
       <tr>
         <td><%= paper.title %></td>
         <td><%= paper.created_at %></td>
-        <td><%= paper.content.html_safe %></td>
+        <td><%= paper.abstract.html_safe if !paper.abstract.nil? %></td>
         <td><%= paper.state %></td>
         <td><%= link_to 'Show', [@researcher,paper] %></td>
         <td><%= link_to 'Delete', [@researcher,paper], method: :delete %></td>

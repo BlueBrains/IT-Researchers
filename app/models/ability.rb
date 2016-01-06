@@ -2,6 +2,9 @@ class Ability
   include CanCan::Ability
 
   def initialize(researcher)
+    guest = Researcher.new
+    guest.role = "Regular"
+    researcher ||= guest # Guest user
     # Define abilities for the passed in user here. For example:
     #
        #researcher ||= Researcher.new # guest user (not logged in)
