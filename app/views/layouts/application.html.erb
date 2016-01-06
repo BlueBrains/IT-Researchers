@@ -8,10 +8,14 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>الباحثون المعلوماتيون</title>
+  <title>الباحثون المعلوماتيون</title>  
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application'%>
+  <%= csrf_meta_tags %>  
   <link href="/assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="/assets/js/jquery.min.js"></script>
+  <script src="/assets/js/pusher.min.js" ></script>
   <!-- Custom Theme files -->
   <link href="/assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -46,9 +50,7 @@
       });
 </script>
 <% if (@index)%>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+
 <%end%>  
 </head>
 <body>

@@ -41,7 +41,7 @@ end
 gem 'mongoid-tags-arent-hard'
 
 #commentable		
-gem 'mongoid_commentable' ,:git => 'https://github.com/madaarya/mongoid_commentable.git'
+gem 'mongoid_commentable' ,:git => 'https://github.com/molhaMaleh/mongoid_commentable.git'
 
 #for uploading files		
 gem 'carrierwave','~> 0.10'		
@@ -75,6 +75,7 @@ gem 'omniauth-gplus','~> 2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+ gem 'pusher'
 
 group :test do
   gem 'minitest-around'

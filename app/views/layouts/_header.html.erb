@@ -15,7 +15,7 @@
                 <% if((@researcher.present?)&&(@researcher.email.present?)) %>
                   <p style="text-align: right;">
                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
-                    <%= link_to t(:signout), destroy_researcher_session_path,method: :delete , :style=>"color: white;"%> 
+                    <%= link_to t(:signout), destroy_researcher_session_path, method: :delete , :style=>"color: white;"%>
                     </p>
                 <% else %>
                 <p style="text-align: right;"><a onclick="sign_in()" style="color: white;" >تسجيل الدخول </a> &nbsp;<span class="glyphicon glyphicon-user" aria-hidden="true"></span></p>

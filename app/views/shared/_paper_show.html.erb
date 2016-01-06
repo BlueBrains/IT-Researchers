@@ -3,7 +3,6 @@
     <div class="single-page">
       <div class="container">
       	<h2 class="heading text-center"><%= @paper.title %></h2>
-      	<h1><%= @paper.introduction.html_safe %></h1>
       	<div class="blog-to1 service_info" >		
 			<p id="notice"><%= notice %></p>
 
@@ -14,15 +13,16 @@
 							<span><%= @paper.created_at.strftime("%m-%d") %></span>
 							<hr>
 							<div id="like">
-							<span>likes  &nbsp; <%= @paper.likes %></span><br>
-							<span>
-							<% if ((current_researcher.likes.nil?) || (!current_researcher.likes.include?(@paper.id))) %>
-								<%=link_to "", like_paper_path(@paper.id) ,:class=>"glyphicon glyphicon-thumbs-up", :style=>"color: rgb(191, 231, 205) ! important;"%>
-							<%else %>
-								<%=link_to "", like_paper_path(@paper.id) , :class=>"glyphicon glyphicon-thumbs-down" ,:style=>"color: rgb(191, 231, 205) ! important;"%>
-							<%end%>
-							</span>
-						</div>
+								<span id="like_num">likes  &nbsp; <%= @paper.likes %></span><br>
+								<span id="thumbs_link">
+								<% if ((current_researcher.likes.nil?) || (!current_researcher.likes.include?(@paper.id))) %>
+									<a class="glyphicon glyphicon-thumbs-up" style="color: rgb(191, 231, 205) ! important;" onclick="like_unlike()"></a>
+
+								<%else %>
+									<a class="glyphicon glyphicon-thumbs-down" style="color: rgb(191, 231, 205) ! important;" onclick="like_unlike()"></a>
+								<%end%>
+								</span>
+							</div>
 						</div>
 						<div class="top-blog">
 								<a class="fast" href="#"> الكلمات المفتاحية :
@@ -30,17 +30,16 @@
 								    	 <%= tag %> &nbsp; , &nbsp;
 								    <% end %> 
 								    <br>
+								<% if !@paper.abstract.nil? %>	      
 								    <%= @paper.abstract.html_safe %>
+								<% end %>     
 								</a>
-								<p class="sed">
-						  			<%= @paper.content.html_safe %>
-						  		</p>
 						  		<p>الإشارات المرجعية :  
 						  		<% @paper.tags.each do |tag| %>
 								   <a href="#"><%= tag %></a> | 
 								<% end %>
 								</p>
-								<% if !@paper.literature_survey.nil? %>	  
+								<% if !@paper.introduction.nil? %>	  
 										<p class="sed">
 										  <strong>Literature Survay:</strong>
 										</p>
@@ -70,10 +69,12 @@
 										</p>
 										  <%= @paper.implementation.html_safe %>
 								<%end%>	  					
+								<% if !@paper.valuation.nil? %>	 
 									<p class="sed">
 									  <strong>Valuation:</strong>
 									</p>
 									  <%= @paper.valuation.html_safe %>
+								<%end%>	  						  
 								<% if !@paper.related_work.nil? %>	  
 										<p class="sed">
 										  <strong>Related work:</strong>
@@ -86,10 +87,12 @@
 										</p>
 										  <%= @paper.further_work.html_safe %>
 								<%end%>
+								<% if !@paper.conclusion.nil? %>	  
 									<p class="sed">
 									  <strong>conclusion:</strong>
 									</p>
 									  <%= @paper.conclusion.html_safe %>
+								<%end%>	  								  
 								<% if !@paper.appendices.nil? %>	  
 										<p class="sed">
 										  <strong>Appendices:</strong>
@@ -115,7 +118,7 @@
 						<div class="media">
 		                  <div class="media-left">
 			                  <a href="#">
-			                    <img class="media-object" src="images/co.png" alt="">
+			                    <img class="media-object" src="/images/co.png" alt="">
 			                  </a>
 		                  </div>
 		                  <div class="media-body">
@@ -124,8 +127,9 @@
 		                  </div>
                 		</div>
 					<% end %>
+				</div>	
 	              <div class="clearfix"> </div>
-     			</div>                
+     			                
 			</div>
 
 			<% if current_researcher  %>
@@ -138,4 +142,46 @@
 			<%end%>
 			</div>
   </div>
-</div> 			
+</div>
+
+<div id"itemform"></div>
+
+<script src="https://js.pusher.com/3.0/pusher.min.js" ></script>
+<script>
+var pusher = new Pusher('80b5913c49bad64d4921', {
+      encrypted: true
+    });
+var channel = pusher.subscribe('<%= @paper.id %>');
+
+channel.bind('like', function(data) {
+  document.getElementById("like_num").innerHTML=data.message;
+
+  if(data.types.localeCompare("like") != 0)
+  	document.getElementById("thumbs_link").innerHTML='<a class="glyphicon glyphicon-thumbs-up" style="color: rgb(191, 231, 205) ! important;" onclick="like_unlike()"></a>'
+  else
+  	document.getElementById("thumbs_link").innerHTML='<a class="glyphicon glyphicon-thumbs-down" style="color: rgb(191, 231, 205) ! important;" onclick="like_unlike()"></a>'
+});
+
+channel.bind('comment', function(data) {
+  var newdiv = document.createElement('div');
+            newdiv.setAttribute('class','media');
+            newdiv.innerHTML=xmlhttp.responseText;
+            document.getElementById("comments").appendChild(newdiv);
+});
+
+function like_unlike() {
+        if (window.XMLHttpRequest) {
+          // code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp=new XMLHttpRequest();
+        } else { // code for IE6, IE5
+          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function() {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+          	document.getElementById("itemform").innerHTML="";
+          }
+        }
+        xmlhttp.open("GET","/paper/<%= @paper.id %>/like",true);
+        xmlhttp.send();
+  }
+</script>		
