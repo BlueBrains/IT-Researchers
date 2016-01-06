@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   mount Wirispluginengine::Engine => 'wirispluginengine'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  authenticated :researcher do
-    root :to => 'researcher#index', as: :authenticated_root
-  end
+  # authenticated :researcher do
+  #   root :to => 'researcher#index', as: :authenticated_root
+  # end
 
   root :to => 'home#index'
   get 'papers/:id' =>'home#show'
