@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   # end
 
   root :to => 'home#index'
+
+  post 'researcher/create_xml_temp' =>'home#create_xml_temp'
+  get '/start', :to => redirect('/xopus/examples/simple/start.html')
+  get 'home/get_xopus/:id' =>'home#get_xopus'
   get 'papers/:id' =>'home#show'
   get 'home/index'
   get 'paper/:id/like' => "home#like_it", :as => 'like_paper'

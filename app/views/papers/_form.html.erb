@@ -1,96 +1,66 @@
-<%= form_for([@researcher,@paper]) do |f| %>
-  <% if @paper.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@paper.errors.count, "error") %> prohibited this paper from being saved:</h2>
+<div class="content">
+    <!-- blogs -->
+  <div class="blog">
+    <div class="container">
+      <h2 class="heading text-center">إضافة البحث العلمي</h2>
+        <div class="single-inline">
 
-      <ul>
-      <% @paper.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div><br>
-  <div class="field">
-    <%= f.label :abstract %><br>
-    <%= f.cktext_area :abstract, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-  </div><br>
-  <div class="field">
-    <%= f.label :introduction %><br>
-    <%= f.cktext_area :introduction, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-  </div><br>
-  <div class="field">
-    <%= f.label :literature_survey %><br>
-    <%= f.cktext_area :literature_survey, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-  </div><br>
-  <div class="field">
-    <%= f.label :notation %><br>
-    <%= f.cktext_area :notation, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-  </div><br>    
-  <div class="field">
-    <%= f.label :theory %><br>
-    <%= f.cktext_area :theory, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-  </div><br>    
-  <div class="field">
-    <%= f.label :specification %><br>
-    <%= f.cktext_area :specification, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-  </div><br>      
-      <div class="field">
-    <%= f.label :implementation %><br>
-    <%= f.cktext_area :implementation, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-  </div><br>    
-  <div class="field">
-    <%= f.label :valuation %><br>
-    <%= f.cktext_area :valuation, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-  </div><br>    
-  <div class="field">
-    <%= f.label :related_work %><br>
-    <%= f.cktext_area :related_work, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-  </div><br>
-  <div class="field">
-    <%= f.label :further_work %><br>
-    <%= f.cktext_area :further_work, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-  </div><br>
-  <div class="field">
-    <%= f.label :conclusion %><br>
-    <%= f.cktext_area :conclusion, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-  </div><br>
-  <div class="field">
-  <%= f.label :appendices %><br>
-    <%= f.cktext_area :appendices, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-  </div><br>  
-  <div class="field">
-  <%= f.label :state %><br>
-  <%= f.select(:state, options_for_select(
-      [
-        ['publish', 'published', { 'class' => 'published_paper' }],
-        ['draft', 'draft', { 'class' => 'draft_paper' }]
-      ], f.object.state
-  )) %>
-  </div>
-  <div class="field">
-    <%= f.label :tags %><br />    
-    <%= f.text_field :tags, "data-role" => "tagsinput", "value"=> @paper.tags %>    
-  </div>
-  <%= f.fields_for :post_attachments do |p| %>
-     <div class="field">
-       <%= p.label :file %><br>
-       <%= p.file_field :file, :multiple => true, name: "post_attachments[file][]" %>
-     </div>
-   <% end %>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+          <%= form_for([@researcher,@paper]) do |f| %>
+            <% if @paper.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@paper.errors.count, "error") %> prohibited this paper from being saved:</h2>
 
-<script type="text/javascript">  
-$( "#new_paper" ).submit(function( event ) {
-  var e = $(".bootstrap-tagsinput").find("input")[0];
-  var ee = $(':focus').context.activeElement;
-  if(ee==e)
-    event.preventDefault();
-});
-</script>
+                <ul>
+                <% @paper.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+           <div class="field">
+           <iframe src="http://localhost:3000/home/get_xopus/document" width="100%" style="height: 710px;" id="rails_iframe">error!</iframe>
+              
+          </div>
+            <div class="field">
+              <%= f.label :conclusion %><br>
+              <%= f.cktext_area :conclusion, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
+            </div><br>
+            <div class="field">
+            <%= f.label :appendices %><br>
+              <%= f.cktext_area :appendices, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
+            </div><br>  
+            <div class="field">
+            <%= f.label :state %><br>
+            <%= f.select(:state, options_for_select(
+                [
+                  ['publish', 'published', { 'class' => 'published_paper' }],
+                  ['draft', 'draft', { 'class' => 'draft_paper' }]
+                ], f.object.state
+            )) %>
+            </div>
+            <div class="field">
+              <%= f.label :tags %><br />    
+              <%= f.text_field :tags, "data-role" => "tagsinput", "value"=> @paper.tags %>    
+            </div>
+            <%= f.fields_for :post_attachments do |p| %>
+               <div class="field">
+                 <%= p.label :file %><br>
+                 <%= p.file_field :file, :multiple => true, name: "post_attachments[file][]" %>
+               </div>
+             <% end %>
+            <div class="actions">
+              <%= f.submit %>
+            </div>
+          <% end %>
+          </div>
+    </div> 
+  </div>
+</div>
+          <script type="text/javascript">  
+          $( "#new_paper" ).submit(function( event ) {
+            var e = $(".bootstrap-tagsinput").find("input")[0];
+            var ee = $(':focus').context.activeElement;
+            if(ee==e)
+              event.preventDefault();
+          });
+          </script>

@@ -14,6 +14,7 @@ class PapersController < ApplicationController
   def new
     @paper = Paper.new
     @post_attachment = @paper.post_attachments.build
+    response.headers.delete "X-Frame-Options"
   end
 
   def edit
