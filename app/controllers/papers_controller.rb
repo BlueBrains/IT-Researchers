@@ -1,7 +1,8 @@
 class PapersController < ApplicationController
-
+  before_filter :authenticate_researcher!
   before_action :set_researcher
   before_action :set_paper, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
     @papers = @researcher.papers.page(params[:page]).per(8)
