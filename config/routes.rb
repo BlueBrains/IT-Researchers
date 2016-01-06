@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :post_attachments
   mount Ckeditor::Engine => '/ckeditor'
   mount Wirispluginengine::Engine => 'wirispluginengine'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

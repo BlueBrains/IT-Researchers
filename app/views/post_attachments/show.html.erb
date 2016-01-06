@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Paper:</strong>
+  <%= @post_attachment.paper_id %>
+</p>
+
+<p>
+  <strong>Fname:</strong>
+  <%= @post_attachment.fname %>
+</p>
+
+<%= link_to 'Edit', edit_post_attachment_path(@post_attachment) %> |
+<%= link_to 'Back', post_attachments_path %>
