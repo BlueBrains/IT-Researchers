@@ -25,6 +25,9 @@ gem 'bson_ext'
 #authentication gem
 gem 'devise','~> 3.5'
 
+#authorization gem
+gem 'cancancan', '~> 1.10'
+
 #pagination gem
 gem 'kaminari'
 

@@ -52,6 +52,7 @@ GEM
     bson_ext (1.5.1)
     builder (3.2.2)
     byebug (8.2.1)
+    cancancan (1.13.1)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -278,6 +279,7 @@ PLATFORMS
 DEPENDENCIES
   bson_ext
   byebug
+  cancancan (~> 1.10)
   carrierwave (~> 0.10)
   carrierwave-mongoid
   chosen-rails
@@ -304,4 +306,4 @@ DEPENDENCIES
   wirispluginengine
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

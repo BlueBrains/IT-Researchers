@@ -11,6 +11,7 @@ before_filter :configure_sign_up_params, only: [:create]
   def create
     super
   end
+  
   def show
     @researcher=Researcher.find(params[:id])
     unless @researcher == current_researcher

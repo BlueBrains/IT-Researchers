@@ -370,3 +370,135 @@ ar:
   reset_instruction: "أحدٌ ما أرسل رسالة تغيير كلمة السر، إن كنت قد فعلت ذلك فيمكنك تغيير كلمة السر من الرابط التالي:"
   ignore_reset_email: "إذا لم تكن صاحب الطلب يمكنك تجاهل هذه الرسالة."
   sign_in_with_provider: "سجل الدخول بـ %{provider}"
+  admin:
+    loading: "تحميل..."
+    home:
+      name: "البداية"
+    pagination:
+      previous: "&laquo; السابق"
+      next: "التالي &raquo;"
+      truncate: "…"
+    misc:
+      filter_date_format: "mm/dd/yy"
+      search: "بحث"
+      filter: "تصفية"
+      refresh: "تحديث"
+      show_all: "إظهار الكل"
+      add_filter: "إضافة عامل تصفية"
+      bulk_menu_title: "اختر فقرة"
+      remove: "إزالة"
+      add_new: "إضافة جديد"
+      chosen: "Chosen %{name}"
+      chose_all: "اختيار الكل"
+      clear_all: "إزالة الكل"
+      up: "للأعلى"
+      down: "للأسفل"
+      navigation: "قائمة التصفح"
+      navigation_static_label: "روابط"
+      log_out: "تسجيل الخروج"
+      ago: "مضت"
+    flash:
+      successful: " تم بنجاح %{action} %{name}"
+      error: "%{name} فشل بعملية %{action}"
+      noaction: "لم يتم تلقي أي عملية"
+      model_not_found: "Model '%{model}' غير موجود"
+      object_not_found: "%{model} ذا الرقم التسلسلي '%{id}' غير موجود"
+    table_headers:
+      model_name: "اسم النموذج"
+      last_used: "آخر استخدام"
+      records: "التسجيلات/المحفوظات"
+      username: "المستخدم"
+      changes: "تغييرات"
+      created_at: "تاريخ/وقت"
+      item: "عنصير"
+      message: "رسالة"
+    actions:
+      dashboard:
+        title: "إدارة الموقع"
+        menu: "لوحة المعلومات"
+        breadcrumb: "لوحة المعلومات"
+      index:
+        title: "قائمة %{model_label_plural}"
+        menu: "قائمة"
+        breadcrumb: "%{model_label_plural}"
+      show:
+        title: "تفاصيل عن %{model_label} '%{object_label}'"
+        menu: "عرض"
+        breadcrumb: "%{model_label}"
+      show_in_app:
+        menu: "عرض بالمشروع"
+      new:
+        title: "%{model_label} جديد"
+        menu: إضافة جديد
+        breadcrumb: "جديد"
+        link: "إضافة %{model_label} جديد"
+        done: "إضافة"
+      edit:
+        title: "تعديل %{model_label} '%{object_label}'"
+        menu: "تعديل"
+        breadcrumb: "تعديل"
+        link: "تعديل %{model_label}"
+        done: "تعديل"
+      delete:
+        title: "حذف %{model_label} '%{object_label}'"
+        menu: "حذف"
+        breadcrumb: "حذف"
+        link: "حذف '%{object_label}'"
+        done: "حذف"
+      bulk_delete:
+        title: "حذف %{model_label_plural}"
+        menu: "حذف مضاعف"
+        breadcrumb: "حذف مضاعف"
+        bulk_link: "حذف المختار %{model_label_plural}"
+      export:
+        title: "تصدير %{model_label_plural}"
+        menu: "تصدير"
+        breadcrumb: "تصدير"
+        link: "تصدير %{model_label_plural} الموجودة"
+        bulk_link: "تصدير الكائنات المحددة"
+        done: "مصدر"
+      history_index:
+        title: "تأريخ ل %{model_label_plural}"
+        menu: "تأريخ"
+        breadcrumb: "تأريخ"
+      history_show:
+        title: "تأريخ ل %{model_label} '%{object_label}'"
+        menu: "تأريخ"
+        breadcrumb: "تأريخ"
+    form:
+      cancel: "إلغاء"
+      basic_info: "معلومات أساسية"
+      required: "مطلوب"
+      optional: "اختياري"
+      one_char: "رمز"
+      char_length_up_to: "الطول الأعظم "
+      char_length_of: "طول "
+      save: "حفظ"
+      save_and_add_another: "حفظ وإضافة أخر"
+      save_and_edit: "حفظ وتعديل"
+
+      all_of_the_following_related_items_will_be_deleted: "؟ قد يتم حذف العناصر التالية المرتبطة به :"
+      are_you_sure_you_want_to_delete_the_object: " هل انت متأكد أنك تريد حذف  هذا %{model_name} ؟"
+      confirmation: "نعم, متأكد"
+      bulk_delete: " سيتم حذف الكائنات التالية، مما قد يؤدي إلى حذف الكائنات المرتبطة بهم او ابقاءها منفصلة عنهم "
+      new_model: "%{name} (جديد)"
+    export:
+      confirmation: "تصدير إلى %{name}"
+      select: "اختيار الحقول للتصدير"
+      select_all_fields: "اختيار كل الحقول"
+      fields_from: "حقول من %{name}"
+      fields_from_associated: "حقول من النماذج المرتبطة %{name}"
+      display: "إظهار %{name}: %{type}"
+      options_for: "خيارات %{name}"
+      empty_value_for_associated_objects: "<فارغ>"
+      click_to_reverse_selection: ' انقر لعكس التحديد '
+      csv:
+        header_for_root_methods: "%{name}" # 'النموذج' متوفر 
+        header_for_association_methods: "%{name} [%{association}]"
+        encoding_to: "ترميز"
+        encoding_to_help: "اختر ترميز الخرج.اتركه فارغا لترك ترميز الدخل كما هو: (%{name})"
+        skip_header: "لا يوجد ترويسة"
+        skip_header_help: " لا يوجد خرج للترويسة ( لا يوجد حقول الوصف)"
+        default_col_sep: ","
+        col_sep: "الفاصل بين الحقول"
+        col_sep_help: "اتركه فارغا لتعين الفاصل الافتراضي ('%{value}')" # الفاصل الافتراضي default_col_sep

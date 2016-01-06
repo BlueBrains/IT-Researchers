@@ -63,6 +63,9 @@ class Researcher
   field :provider,type: String
   field :uid,type: String
   field :likes ,type: Array
+  field :admin, type: Boolean
+  field :block, type: Boolean
+  field :role, type: String
   
   def self.new_with_session(params, session)
     super.tap do |researcher|
@@ -78,6 +81,5 @@ class Researcher
     researcher.password = Devise.friendly_token[0,20]       
   end
 end
-
 
 end
