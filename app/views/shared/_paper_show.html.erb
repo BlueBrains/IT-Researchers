@@ -39,6 +39,12 @@
 		<p> <%= comment.text %> </p> 
 	<% end %>                
 </div>
+<div id='attachment'>
+	<% @paper.post_attachments.each do |attach| %>
+	   <p><%=File.basename(attach.file_identifier)%></p>
+	    <p> <%=  attach.file_url %> </p>
+	<% end %>                
+</div>
 
 <% if current_researcher  %>
 	<div id="comment-form">

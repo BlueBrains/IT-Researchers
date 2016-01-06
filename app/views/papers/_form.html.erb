@@ -27,12 +27,16 @@
       ], f.object.state
   )) %>
   </div>
-
   <div class="field">
     <%= f.label :tags %><br />    
     <%= f.text_field :tags, "data-role" => "tagsinput", "value"=> @paper.tags %>    
   </div>
-
+  <%= f.fields_for :post_attachments do |p| %>
+     <div class="field">
+       <%= p.label :file %><br>
+       <%= p.file_field :file, :multiple => true, name: "post_attachments[file][]" %>
+     </div>
+   <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
