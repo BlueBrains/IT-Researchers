@@ -2,7 +2,12 @@ class HomeController < ApplicationController
  before_action :set_paper, only: [:show]
 
   def index  	  	
+    @researcher = current_researcher
   	@researchers = Researcher.all
+    @papers=Paper.all.limit(8)  
+    @index=false
+
+    #render :file=>'home/index' , :layout=>false     
     # @researchers = Researcher.collection.aggregate([
     #   {"$unwind" => "$paper_ids"},
     #   {"$group" => {_id: "$_id", paper_ids: {"$push"=>"$paper_ids"}, size: {"$sum" => 1}}}, 

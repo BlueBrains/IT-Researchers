@@ -1,0 +1,50 @@
+	<div class="footer">
+		<div class="footer-top" style="padding :2em 0px !important">
+		</div>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="copyrights text-center">
+					<p>© 2015 Literacy. All Rights Reserved | Design by   <a href="http://w3layouts.com">  W3layouts</a></p>					
+				</div>
+				<div class="footer-nav">
+					<ul>
+						<li><a class="scroll" href="#movetop">Home <span class="sr-only">(current)</span></a></li>
+						<li><a href="about.html">ABOUT</a></li>
+						<li><a href="typography.html">Short codes</a></li>
+						<li><a href="gallery.html">GALLERY</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="contact.html">Contact Us</a></li>
+					</ul>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!-- //footer-section -->
+	<!-- //footer-section-ends-here -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+				/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+				*/
+		$().UItoTop({ easingType: 'easeOutQuart' });
+});
+</script>
+	<script>
+			$('a[href^="#"]').click(function(e) {
+				e.preventDefault();
+				var target = this.hash, $target = $(target);
+				$('html, body').stop().animate({
+					'scrollTop': $target.offset().top
+				}, 900, 'swing', function() {
+					window.location.hash = target;
+				});
+			});
+	</script>
+<a href="#to-top" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+<!----> 

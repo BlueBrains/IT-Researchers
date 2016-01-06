@@ -13,7 +13,7 @@ before_filter :configure_sign_up_params, only: [:create]
   end
   
   def show
-    @researcher=Researcher.find(params[:id])
+    @researcher=Researcher.find params[:id]
     unless @researcher == current_researcher
       redirect_to :back, :alert => "تم رفض الوصول."
     end

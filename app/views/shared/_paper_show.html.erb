@@ -1,137 +1,141 @@
-<p id="notice"><%= notice %></p>
+  <div class="content">
+  <!-- Single-page -->
+    <div class="single-page">
+      <div class="container">
+      	<h2 class="heading text-center"><%= @paper.title %></h2>
+      	<h1><%= @paper.introduction.html_safe %></h1>
+      	<div class="blog-to1 service_info" >		
+			<p id="notice"><%= notice %></p>
 
-<div id="paper-content">
-	<p>
-	  <strong>Title:</strong>
-	  <%= @paper.title %>
-	</p>
+			<div id="paper-content">
+				<div class="blog-top" style="text-align: right;">
+						<div class="blog-left">
+							<b><%= @paper.created_at.strftime("%Y") %></b>
+							<span><%= @paper.created_at.strftime("%m-%d") %></span>
+							<hr>
+							<div id="like">
+							<span>likes  &nbsp; <%= @paper.likes %></span><br>
+							<span>
+							<% if ((current_researcher.likes.nil?) || (!current_researcher.likes.include?(@paper.id))) %>
+								<%=link_to "", like_paper_path(@paper.id) ,:class=>"glyphicon glyphicon-thumbs-up", :style=>"color: rgb(191, 231, 205) ! important;"%>
+							<%else %>
+								<%=link_to "", like_paper_path(@paper.id) , :class=>"glyphicon glyphicon-thumbs-down" ,:style=>"color: rgb(191, 231, 205) ! important;"%>
+							<%end%>
+							</span>
+						</div>
+						</div>
+						<div class="top-blog">
+								<a class="fast" href="#"> الكلمات المفتاحية :
+									<% @paper.tags.each do |tag| %>
+								    	 <%= tag %> &nbsp; , &nbsp;
+								    <% end %> 
+								    <br>
+								    <%= @paper.abstract.html_safe %>
+								</a>
+								<p class="sed">
+						  			<%= @paper.content.html_safe %>
+						  		</p>
+						  		<p>الإشارات المرجعية :  
+						  		<% @paper.tags.each do |tag| %>
+								   <a href="#"><%= tag %></a> | 
+								<% end %>
+								</p>
+								<% if !@paper.literature_survey.nil? %>	  
+										<p class="sed">
+										  <strong>Literature Survay:</strong>
+										</p>
+										  <%= @paper.introduction.html_safe %>
+								<%end%>	  	
+								<% if !@paper.notation.nil? %>	  
+										<p class="sed">
+										  <strong>Notation:</strong>
+										</p>
+										  <%= @paper.notation.html_safe %>
+								<%end%>	  		
+								<% if !@paper.theory.nil? %>	  
+										<p class="sed">
+										  <strong>Theory:</strong>
+										</p>
+										  <%= @paper.theory.html_safe %>
+								<%end%>	  			
+								<% if !@paper.specification.nil? %>	  
+										<p class="sed">
+										  <strong>Specification:</strong>
+										</p>
+										  <%= @paper.specification.html_safe %>
+								<%end%>	  				
+								<% if !@paper.implementation.nil? %>	  
+										<p class="sed">
+										  <strong>Implementation:</strong>
+										</p>
+										  <%= @paper.implementation.html_safe %>
+								<%end%>	  					
+									<p class="sed">
+									  <strong>Valuation:</strong>
+									</p>
+									  <%= @paper.valuation.html_safe %>
+								<% if !@paper.related_work.nil? %>	  
+										<p class="sed">
+										  <strong>Related work:</strong>
+										</p>
+										  <%= @paper.related_work.html_safe %>
+								<%end%>	  			
+								<% if !@paper.further_work.nil? %>	  
+										<p class="sed">
+										  <strong>Further work:</strong>
+										</p>
+										  <%= @paper.further_work.html_safe %>
+								<%end%>
+									<p class="sed">
+									  <strong>conclusion:</strong>
+									</p>
+									  <%= @paper.conclusion.html_safe %>
+								<% if !@paper.appendices.nil? %>	  
+										<p class="sed">
+										  <strong>Appendices:</strong>
+										</p>
+										  <%= @paper.appendices.html_safe %>
+								<%end%>	  									
+						</div> 
+				</div>
+				<div id='attachment'>
+					<% @paper.post_attachments.each do |attach| %>
+					   <p><%=File.basename(attach.file_identifier)%></p>
+					    <p> <%=  attach.file_url %> </p>
+					<% end %>                
+				</div>					
+			</div>
+			<div class="clearfix"> </div>
+		</div>	
+     		<div class="single-middle">
+     			<h3>التعليقات</h3>
+				<div id='comments'>
+					<% @paper.comments_list.each do |comment| %>
+					    <% researcher = Researcher.find(comment.author.to_s)  %>
+						<div class="media">
+		                  <div class="media-left">
+			                  <a href="#">
+			                    <img class="media-object" src="images/co.png" alt="">
+			                  </a>
+		                  </div>
+		                  <div class="media-body">
+						   <h4 class="media-heading"><%= link_to researcher.username, researcher_path(researcher) %> </h4>
+							<p> <%= comment.text %> </p> 
+		                  </div>
+                		</div>
+					<% end %>
+	              <div class="clearfix"> </div>
+     			</div>                
+			</div>
 
-	<p>
-	  <strong>paper creation_date:</strong>
-	  <%= @paper.created_at%>
-	</p>
-	<div>
-		<p>
-		  <strong>Abstract:</strong>  
-		</p>
-		  <%= @paper.abstract.html_safe %>
-	</div>
-	<div>
-		<p>
-		  <strong>Introduction:</strong>  
-		</p>
-		  <%= @paper.introduction.html_safe %>
-	</div>
-	<% if !@paper.literature_survey.nil? %>	  
-		<div>
-			<p>
-			  <strong>Literature Survay:</strong>
-			</p>
-			  <%= @paper.introduction.html_safe %>
-		</div>
-	<%end%>	  	
-	<% if !@paper.notation.nil? %>	  
-		<div>
-			<p>
-			  <strong>Notation:</strong>
-			</p>
-			  <%= @paper.notation.html_safe %>
-		</div>
-	<%end%>	  		
-	<% if !@paper.theory.nil? %>	  
-		<div>
-			<p>
-			  <strong>Theory:</strong>
-			</p>
-			  <%= @paper.theory.html_safe %>
-		</div>
-	<%end%>	  			
-	<% if !@paper.specification.nil? %>	  
-		<div>
-			<p>
-			  <strong>Specification:</strong>
-			</p>
-			  <%= @paper.specification.html_safe %>
-		</div>
-	<%end%>	  				
-	<% if !@paper.implementation.nil? %>	  
-		<div>
-			<p>
-			  <strong>Implementation:</strong>
-			</p>
-			  <%= @paper.implementation.html_safe %>
-		</div>
-	<%end%>	  					
-	<div>
-		<p>
-		  <strong>Valuation:</strong>
-		</p>
-		  <%= @paper.valuation.html_safe %>
-	</div>
-	<% if !@paper.related_work.nil? %>	  
-		<div>
-			<p>
-			  <strong>Related work:</strong>
-			</p>
-			  <%= @paper.related_work.html_safe %>
-		</div>
-	<%end%>	  			
-	<% if !@paper.further_work.nil? %>	  
-		<div>
-			<p>
-			  <strong>Further work:</strong>
-			</p>
-			  <%= @paper.further_work.html_safe %>
-		</div>
-	<%end%>
-	<div>
-		<p>
-		  <strong>conclusion:</strong>
-		</p>
-		  <%= @paper.conclusion.html_safe %>
-	</div>		  					
-	<% if !@paper.appendices.nil? %>	  
-		<div>
-			<p>
-			  <strong>Appendices:</strong>
-			</p>
-			  <%= @paper.appendices.html_safe %>
-		</div>
-	<%end%>	  								
-</div>
-<div id="like">
-	<p><%= @paper.likes %><span> like</span></p>
-	<% if ((current_researcher.likes.nil?) || (!current_researcher.likes.include?(@paper.id))) %>
-		<div><%=link_to "Like", like_paper_path(@paper.id) %></div>
-	<%else %>
-		<div><%=link_to "Unlike", like_paper_path(@paper.id) %></div>
-	<%end%>
-</div>
-<div id='tags'>
-    <% @paper.tags.each do |tag| %>
-    <p> <%= tag %></p>
-    <% end %>
-</div>
-
-<div id='comments'>
-	<% @paper.comments_list.each do |comment| %>
-	    <% researcher = Researcher.find(comment.author.to_s)  %>
-		<p> writen by <%= link_to researcher.username, researcher_path(researcher) %> </p>
-		<p> <%= comment.text %> </p> 
-	<% end %>                
-</div>
-<div id='attachment'>
-	<% @paper.post_attachments.each do |attach| %>
-	   <p><%=File.basename(attach.file_identifier)%></p>
-	    <p> <%=  attach.file_url %> </p>
-	<% end %>                
-</div>
-
-<% if current_researcher  %>
-	<div id="comment-form">
-		<%= render :partial => 'comments/form', :locals => {:model => @paper, :comment => Comment.new} %>
-	</div>
-<% else %>
-	<p>you should be a member to leave a comment <%= link_to "Sign Up", new_researcher_registration_path %> 
-	| <%= link_to "Log In", new_researcher_session_path %> </p>
-<%end%>
+			<% if current_researcher  %>
+				<div id="comment-form">
+					<%= render :partial => 'comments/form', :locals => {:model => @paper, :comment => Comment.new} %>
+				</div>
+			<% else %>
+				<p>you should be a member to leave a comment <%= link_to "Sign Up", new_researcher_registration_path %> 
+				| <%= link_to "Log In", new_researcher_session_path %> </p>
+			<%end%>
+			</div>
+  </div>
+</div> 			

@@ -1,0 +1,54 @@
+		<div class="service-section" id="researcher_panel">
+				<div class="container" >
+					<div class="service-section-head text-center">
+						<header>
+							<h3 style="color: black;">لوحة تحكم الباحث</h3>
+							<p>Lorem Ipsum is simply error sit voluptatem accusantium doloremque laudantium.</p>
+						</header>
+					</div>
+					<div class="service-section-grids">
+						<div class="col-md-6 service-grid">
+							<div class="service-section-grid">
+								<div class="icon">
+									<span class="d1 glyphicon glyphicon-pencil"></span>
+								</div>
+								<div class="icon-text">
+									<%= link_to 'إضافة بحث علمي جديد', new_researcher_paper_path(@researcher),:style=>"color: black;" %>
+									<p>يمكنك نشر مقالتك العلمية من هنا</p>
+								</div>
+							</div>
+							<div class="service-section-grid">
+								<div class="icon">
+									<span class="d2 glyphicon glyphicon-ok-sign"></span>
+								</div>
+								<div class="icon-text">
+									<a href="single.html" style="color: black;">أبحاثي العلمية المنشورة</a>
+									<p>Many desktop publishing packages and web  web sites still in their infancy</p>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div class="col-md-6 service-grid">
+							<div class="service-section-grid">
+								<div class="icon">
+									<span class="d4 glyphicon glyphicon-folder-open"></span>	
+								</div>
+								<div class="icon-text">
+									<%= link_to 'جميع أبحاثي العلمية',researcher_papers_path(@researcher),:style=>"color: black;" %>
+									<p>استعراض جميع الابحاث العلمية</p>
+								</div>
+							</div>
+							<div class="service-section-grid">
+								<div class="icon">
+									<span class="d5 glyphicon glyphicon-globe"></span>
+								</div>
+								<div class="icon-text">
+									<a href="single.html" style="color: black;">إعداد ملفي الشخصي</a>
+									<p>There are many variations of passages look even slightly believable.</p>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+			</div>

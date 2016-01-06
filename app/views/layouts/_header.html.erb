@@ -1,0 +1,103 @@
+  <div class="header" id="movetop">
+    <div class="container" style="width: 99.5%;">
+      <div class="header-top">
+        <div class="social-icons" style="float: left;">
+          <ul>
+            <li><a class="facebook" href="#"></a></li>
+            <li><a class="twitter" href="#"></a></li>
+            <li><a class="google-plus" href="#"></a></li>
+          </ul>
+        </div>
+        <div class="logo" style="margin-left: 23%;">
+          <h1 ><a href="index.html">الباحثون المعلوماتيون</a></h1>
+        </div>
+        
+                <% if((@researcher.present?)&&(@researcher.email.present?)) %>
+                  <p style="text-align: right;">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
+                    <%= link_to t(:signout), destroy_researcher_session_path,method: :delete , :style=>"color: white;"%> 
+                    </p>
+                <% else %>
+                <p style="text-align: right;"><a onclick="sign_in()" style="color: white;" >تسجيل الدخول </a> &nbsp;<span class="glyphicon glyphicon-user" aria-hidden="true"></span></p>
+                <% end %>     
+        <div class="clearfix"></div>
+      </div>
+      <!-- navigation -->
+<div class="navigation">
+          <nav class="navbar navbar-default">
+           
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1" style="
+            float: right; <% if((@researcher.present?)&&(@researcher.email.present?)) %> 
+            margin-right: 5%;
+            <% else %>
+            margin-right: 15%;
+            <%end%>
+            ">
+                <ul class="nav navbar-nav">
+                  <li><a href="contact.html">اتصل بنا</a></li>
+                <li><a href="about.html">حولنا</a></li>
+                <li><a href="#categories">البحث المتقدم</a></li>
+                <% if((@researcher.present?)&&(@researcher.email.present?)) %>
+                  <li><a href="#researcher_panel">لوحة تحكم الباحث</a></li>
+                <% end %>    
+                <li><a href="#last_researches">الأبحاث العلمية</a></li>
+                <li class="active"><a href="index.html">الرئيسية <span class="sr-only">(current)</span></a></li>
+                </ul>
+              <div class="clearfix"></div>
+            </div><!-- /.navbar-collapse -->
+          </nav>
+      </div>
+      <!-- //navigation -->
+    </div>
+  </div>
+  <!-- header-section-ends-here -->
+  <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">الباحثون المعلوماتيون</h4>
+          </div>
+          <div class="modal-body" id="signin_modal">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">إغلاق</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal">تسجيل الدخول</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+ 
+ <script>
+ function sign_in() {
+        if (window.XMLHttpRequest) {
+          // code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp=new XMLHttpRequest();
+        } else { // code for IE6, IE5
+          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function() {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            document.getElementById("signin_modal").innerHTML=xmlhttp.responseText;
+            $("#myModal").modal('show');
+          }
+        }
+        xmlhttp.open("GET","http://localhost:3000/researchers/sign_in",true);
+        xmlhttp.send();
+  }
+ </script>   

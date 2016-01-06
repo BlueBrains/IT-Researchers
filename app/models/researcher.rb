@@ -1,5 +1,7 @@
 class Researcher
   include Mongoid::Document
+  rolify
+  include Mongoid::Slug
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
@@ -60,13 +62,10 @@ class Researcher
   field :phone
   field :websiteurl
   field :username, type: String
+  slug :username
   field :provider,type: String
   field :uid,type: String
   field :likes ,type: Array
-  field :admin, type: Boolean
-  field :block, type: Boolean
-  #acts_as_slugoid :generate_from => :username
-  field :role, type: String
   
   def self.new_with_session(params, session)
     super.tap do |researcher|

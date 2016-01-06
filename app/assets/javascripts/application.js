@@ -10,8 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require js/bootstrap
+//= require js/jquery.min
 //= require js/bootstrap-tagsinput
 //= require js/chosen.jquery
 //= require js/chosen.proto
