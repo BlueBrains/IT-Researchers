@@ -16,7 +16,11 @@
               </div>
             <% end %>
              <div class="field">
+             <% if @paper.persisted? %>
+             <iframe src="http://localhost:3000/home/get_xopus/<%= @paper.id%>" width="100%" style="height: 710px;" id="rails_iframe">error!</iframe>                          
+             <%else %>
              <iframe src="http://localhost:3000/home/get_xopus/document" width="100%" style="height: 710px;" id="rails_iframe">error!</iframe>
+             <%end %>
                 
             </div>          
               <div class="field">
