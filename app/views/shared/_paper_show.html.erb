@@ -29,7 +29,6 @@
 							<div id="like">
 								<span id="like_num">likes  &nbsp; <%= @paper.likes %></span><br>
 								<span id="thumbs_link">
-								<%= link_to "Download", paper_download_path(@paper.id)%>
 								<%if(!current_researcher.nil?)%>
 									<% if ((current_researcher.likes.nil?) || (!current_researcher.likes.include?(@paper.id))) %>
 										<a class="glyphicon glyphicon-thumbs-up" style="color: rgb(191, 231, 205) ! important;" onclick="like_unlike()"></a>
@@ -40,23 +39,23 @@
 								</span>
 							</div>
 							<hr>
-							<span class="glyphicon glyphicon-save" style="font-size: 1em ! important; width: 20%; color: rgb(191, 231, 205) ! important;"> <%=paper.likes %></span>
+							<span class="glyphicon glyphicon-save" style="font-size: 1em ! important; color: rgb(191, 231, 205) ! important;"> <%= link_to "تحيمل المقالة", paper_download_path(@paper.id) ,:color=> "rgb(191, 231, 205) ! important;"%></span>
 						</div>
 						<div class="top-blog">
-								<a class="fast" href="#"> الكلمات المفتاحية :
-									<% @paper.tags.each do |tag| %>
-								    	 <%= tag %> &nbsp; , &nbsp;
+								<a class="fast"> الكلمات المفتاحية :
+									<% @paper.keywords.each do |key| %>
+								    	 <%= key %> &nbsp; , &nbsp;
 								    <% end %> 
 								    <br>
+								<p>الإشارات المرجعية :  
+						  		<% @paper.tags.each do |tag| %>
+								   <a><%= tag %></a> | 
+								<% end %>
+								</p>
 								<% if !@paper.abstract.nil? %>	      
 								    <%= @paper.abstract.html_safe %>
 								<% end %>     
 								</a>
-						  		<p>الإشارات المرجعية :  
-						  		<% @paper.tags.each do |tag| %>
-								   <a href="#"><%= tag %></a> | 
-								<% end %>
-								</p>
 								<% if !@paper.introduction.nil? %>	  
 										<p class="sed">
 										  <strong>Literature Survay:</strong>
@@ -119,10 +118,12 @@
 								<%end%>	  									
 						</div> 
 				</div>
-				<div id='attachment'>
+				<div class='row'>
 					<% @paper.post_attachments.each do |attach| %>
-					   <p><%=File.basename(attach.file_identifier)%></p>
-					    <p> <%=  attach.file_url %> </p>
+					   <div class='col-med-3'>
+					   	<a onclick="show_details('<%=File.basename(attach.file_identifier)%>')"><%=File.basename(attach.file_identifier)%></a>
+					   	<input type="hidden" id="<%=File.basename(attach.file_identifier)%>" value="<%=  attach.file_url %>">
+					   </div>	
 					<% end %>                
 				</div>					
 			</div>
@@ -179,6 +180,31 @@
 </div>
 </div>
 <div id"itemform"></div>
+
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">الملحقات</h4>
+          </div>
+          <div class="modal-body">
+          		<div class="row">
+          			<input type="text" id="filename" disabled>
+          		</div>
+          		<div class="row" id="innerview">
+          		</div>	
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">إغلاق</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+ 
 
 <script src="https://js.pusher.com/3.0/pusher.min.js" ></script>
 <script>
@@ -261,4 +287,10 @@ function like_unlike() {
     return xmlhttp.responseText;
 }
 
+function show_details(str) {
+
+	document.getElementById("filename").value=str;
+	document.getElementById("innerview").innerHTML="<iframe src='"+document.getElementById(str).value+"' width='100%'>error!</iframe>";
+	$("#myModal").modal('show');
+  }
 </script>		

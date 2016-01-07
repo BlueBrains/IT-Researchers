@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   
   before_action :authenticate_researcher!
 
-before_action do |controller|               
+  before_action do |controller|               
     :authenticate_researcher! unless ((controller.class == SearchController)||(controller.action_name=="show") ||(controller.class ==  HomeController))
   end
   
