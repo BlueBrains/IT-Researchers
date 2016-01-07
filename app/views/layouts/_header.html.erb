@@ -20,6 +20,9 @@
                     <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>&nbsp;
                     <a style="color: white;" onclick="notification()">الإشعارات</a>
                     <span class="badge"><%= current_researcher.papers.where(seen: false , active: true).count %></span>
+                    &nbsp;|&nbsp;
+                    <span class="glyphicon glyphicon-setting" aria-hidden="true"></span>&nbsp;
+                    <a href="#researcher_panel"  style="color: white;" >لوحة تحكم الباحث</a>
                     </p>
                 <% else %>
                 <p style="text-align: right;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp; <a onclick="sign_in()" style="color: white;" >تسجيل الدخول </a>
@@ -44,24 +47,14 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1" style="
-            float: right; <% if((@researcher.present?)&&(@researcher.email.present?)) %> 
-            margin-right: 5%;
-            <% else %>
-            margin-right: 15%;
-            <%end%>
-            ">
+            <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1" style="float: right;">
                 <ul class="nav navbar-nav">
                   <li><a href="http://localhost:3000/home/contact_us">اتصل بنا</a></li>
                 <li><a href="http://localhost:3000/home/about">حولنا</a></li>
-                <li><a href="#categories">البحث المتقدم</a></li>
-                <% if((@researcher.present?)&&(@researcher.email.present?)) %>
-                  <li><a href="#researcher_panel">لوحة تحكم الباحث</a></li>
-                <% end %>    
+                <li><a href="#categories">البحث المتقدم</a></li>  
                 <li><a href="#last_researches">الأبحاث العلمية</a></li>
-
+                  <li><%=link_to t(:categories),categories_path %></li>
                 <li class="active"><a href="http://localhost:3000/">الرئيسية <span class="sr-only">(current)</span></a></li>
-                <li><%=link_to t(:categories),cats_path%></li>
                 </ul>
               <div class="clearfix"></div>
             </div><!-- /.navbar-collapse -->
