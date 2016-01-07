@@ -46,16 +46,8 @@ class Paper
     @similar ||= self.class.similar_to self
   end
 
-  def activate_msg
-    puts "it worked"
-  end
 
   validates_presence_of :title, :abstract, :introduction, :valuation, :conclusion
   #  searchkick language: "arabic"
-<<<<<<< HEAD
-end
-=======
-
 end
 
->>>>>>> 681d745234ef3db4088f71e2104f996d3705e763
