@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
-  before_action :set_categories
+  before_action :set_categories, only: [:show]
+  before_action :set_cat
   def initialize
     @papers=nil    
   end
@@ -27,5 +28,8 @@ class CategoriesController < ApplicationController
     else
       @categories=Category.roots.page(params[:page]).per(10)
     end    
+  end
+  def set_cat
+    @categories = Category.all.page(params[:page]).per(10)
   end
 end

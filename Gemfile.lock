@@ -166,6 +166,8 @@ GEM
       stringex (~> 2.0)
     mongoid-tags-arent-hard (1.1.5)
       mongoid (>= 3.0.0)
+    mongoid-tree (2.0.1)
+      mongoid (>= 4.0, < 6.0)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -311,6 +313,7 @@ DEPENDENCIES
   mongoid (~> 5)
   mongoid-slug
   mongoid-tags-arent-hard
+  mongoid-tree
   mongoid_commentable!
   omniauth-gplus (~> 2.0)
   pusher
