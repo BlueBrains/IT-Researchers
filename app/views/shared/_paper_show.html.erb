@@ -175,8 +175,8 @@
 					<%= render :partial => 'comments/form', :locals => {:model => @paper, :comment => Comment.new} %>
 				</div>
 			<% else %>
-				<p>يجب أن تكون عضوا حتى تتمكن من إضافة تعليق <%= link_to "Sign Up", new_researcher_registration_path %> 
-				| <%= link_to "Log In", new_researcher_session_path %> </p>
+				<p>يجب أن تكون عضوا حتى تتمكن من إضافة تعليق <%= link_to t(:signup), new_researcher_registration_path %> 
+				| <%= link_to t(:login), new_researcher_session_path %> </p>
 			<%end%>
 			</div>
   </div>
