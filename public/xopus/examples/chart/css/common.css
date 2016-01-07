@@ -1,0 +1,113 @@
+html, body 
+{
+  background: #F0F0F0;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+body, 
+h1, h2, h3, h4, h5, h6
+{
+  font-family: "Bitstream Vera Sans", "Calibri", "Helvetica", "Arial", sans-serif;
+}
+
+body, td, th
+{
+  font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+  color: #212224;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+h1 { 
+  font-size: 175%; 
+}
+
+h2 {
+  font-size: 133%; 
+  margin: 1em 0;
+}
+
+h3 { font-size: 120%; }
+
+.article
+{
+  background: #FFF;
+  padding: 18px;
+  padding-bottom: 0;
+}
+
+.footer
+{
+  border-top: solid 1px #d1d2d4;
+  color: #000;
+  font-size: 82%;
+  padding: 14px 0 18px;
+  margin: 3em 0 0;
+}
+
+a
+{
+  color: #007DAD;
+  cursor: text;
+}
+
+img { margin: 0; }
+img.align-left { margin: 0 1em 0 0; }
+img.align-right { margin: 0 0 0 1em; }
+
+p.align-left { text-align: left; }
+p.align-center { text-align: center; }
+p.align-right { text-align: right; }
+p.align-justify { text-align: justify; }
+
+
+ul
+{
+  margin-left:36px;
+  padding-left:0;
+}
+
+ul li
+{
+  margin-left:0;
+  padding-left:5px;
+}
+
+ul p,
+ol p,
+ul ul,
+ul ol,
+ol ul,
+ol ol
+{
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+ol ol,
+ul ol
+{
+  list-style-type: lower-alpha;
+}
+
+ol ol ol,
+ul ol ol,
+ol ul ol,
+ul ul ol
+{
+  list-style-type: lower-roman;
+}
+
+
+table p
+{
+  margin:0;
+}

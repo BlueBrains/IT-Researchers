@@ -1,0 +1,17 @@
+<%= form_for(@xopus_pdf) do |f| %>
+  <% if @xopus_pdf.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@xopus_pdf.errors.count, "error") %> prohibited this xopus_pdf from being saved:</h2>
+
+      <ul>
+      <% @xopus_pdf.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

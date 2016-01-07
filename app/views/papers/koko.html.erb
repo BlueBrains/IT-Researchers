@@ -1,0 +1,15 @@
+<%=
+#debug @xmldoc 
+  @xmldoc.get_elements('article/title')[0].to_s.gsub(/<\?\/?[^?>]+\?>/, '')%>
+<br>
+<%=
+@xmldoc.get_elements('article/abstract')[0].to_s.gsub(/<\/?[^>]+>/, '')
+ %>
+ <br>
+<%=
+@xmldoc.get_elements('article/introduction')[0].to_s.gsub(/<\/?[^>]+>/, '')
+ %>
+ <br>
+<%=
+@xmldoc.get_elements('article/introduction')[0].to_s.gsub(/<\/?[^>]+>/, '')
+ %>

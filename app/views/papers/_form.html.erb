@@ -1,128 +1,79 @@
-<%= form_for([@researcher,@paper]) do |f| %>
-  <% if @paper.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@paper.errors.count, "error") %> prohibited this paper from being saved:</h2>
+<div class="content">
+    <!-- blogs -->
+  <div class="blog">
+    <div class="container">
+      <h2 class="heading text-center">إضافة البحث العلمي</h2>
+        <div class="single-inline">
+          <%= form_for([@researcher,@paper]) do |f| %>
+            <% if @paper.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@paper.errors.count, "error") %> prohibited this paper from being saved:</h2>
+                <ul>
+                <% @paper.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+             <div class="field">
+             <iframe src="http://localhost:3000/home/get_xopus/document" width="100%" style="height: 710px;" id="rails_iframe">error!</iframe>
+                
+            </div>          
+              <div class="field">
+                <%=f.label t(:category)%>
+                <%=f.select :category,
+                      options_from_collection_for_select(
+                                                                Category.all,
+                                                                :name,
+                                                                :name,
+                                                              ),
+                              {},
+                              {:class => "chosen-select"}%>    
+              </div><br />            
+              <div class="field">
+                 <%= f.label :other_researchers %><br>
+                 <%= f.select :researcher_ids,
+                    options_from_collection_for_select(
+                                                        Researcher.all.ne(_id: current_researcher.id),
+                                                        :id,
+                                                        :username,
+                                                        {:selected => @paper.researchers.map {|res| res.id} }
+                                                      ),
+                      {},
+                      {:multiple => true, :size => 3, :name => 'paper[researcher_ids][]', :class => "chosen-select"}%>
 
-      <ul>
-      <% @paper.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="field">
-    <%=f.label t(:category)%>
-    <%=f.select :category,
-          options_from_collection_for_select(
-                                                    Cat.all,
-                                                    :name,
-                                                    :name,
-                                                  ),
-                  {},
-                  {:class => "chosen-select"}%>    
-  </div><br />  
- <div class="field">
-   <%= f.label :other_researchers %><br>
-   <%= f.select :researcher_ids,
-      options_from_collection_for_select(
-                                          Researcher.all.ne(_id: current_researcher.id),
-                                          :id,
-                                          :username,
-                                          {:selected => @paper.researchers.map {|res| res.id} }
-                                        ),
-        {},
-        {:multiple => true, :size => 3, :name => 'paper[researcher_ids][]', :class => "chosen-select"}%>
-
- </div>    
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div><br>
- <div class="field">
-   <%= f.label :other_researchers %><br>
-   <%= f.select :researcher_ids,
-      options_from_collection_for_select(
-                                          Researcher.all.ne(_id: current_researcher.id),
-                                          :id,
-                                          :username,
-                                          {:selected => @paper.researchers.map {|res| res.id} }
-                                        ),
-        {},
-        {:multiple => true, :size => 3, :name => 'paper[researcher_ids][]', :class => "chosen-select"}%>
-
- </div>   
-  <div class="field">
-    <%= f.label :abstract %><br>
-    <%= f.cktext_area :abstract, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar', :toolbar => 'mini'} %>
-  </div><br>
-  <div class="field">
-    <%= f.label :introduction %><br>
-    <%= f.cktext_area :introduction, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar', :toolbar => 'mini'} %>
-  </div><br>
-  <div class="field">
-    <%= f.label :literature_survey %><br>
-    <%= f.cktext_area :literature_survey, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar', :toolbar => 'mini'} %>
-  </div><br>
-  <div class="field">
-    <%= f.label :notation %><br>
-    <%= f.cktext_area :notation, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar', :toolbar => 'mini'} %>
-  </div><br>    
-  <div class="field">
-    <%= f.label :theory %><br>
-    <%= f.cktext_area :theory, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar', :toolbar => 'mini'} %>
-  </div><br>    
-  <div class="field">
-    <%= f.label :specification %><br>
-    <%= f.cktext_area :specification, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-  </div><br>      
-      <div class="field">
-    <%= f.label :implementation %><br>
-    <%= f.cktext_area :implementation, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-  </div><br>    
-  <div class="field">
-    <%= f.label :valuation %><br>
-    <%= f.cktext_area :valuation, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-  </div><br>    
-  <div class="field">
-    <%= f.label :related_work %><br>
-    <%= f.cktext_area :related_work, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar', :toolbar => 'mini'} %>
-  </div><br>
-  <div class="field">
-    <%= f.label :further_work %><br>
-    <%= f.cktext_area :further_work, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar', :toolbar => 'mini'} %>
-  </div><br>
-  <div class="field">
-    <%= f.label :conclusion %><br>
-    <%= f.cktext_area :conclusion, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar', :toolbar => 'mini'} %>
-  </div><br>
-  <div class="field">
-  <%= f.label :appendices %><br>
-    <%= f.cktext_area :appendices, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar', :toolbar => 'mini'} %>
-  </div><br>  
-  <div class="field">
-  <%= f.label :state %><br>
-  <%= f.select(:state, options_for_select(
-      [
-        ['publish', 'published', { 'class' => 'published_paper' }],
-        ['draft', 'draft', { 'class' => 'draft_paper' }]
-      ], f.object.state
-  )) %>
+               </div>
+              <%= f.fields_for :post_attachments do |p| %>
+                 <div class="field">
+                   <%= p.label :file %><br>
+                   <%= p.file_field :file, :multiple => true, name: "post_attachments[file][]" %>
+                 </div>
+              <% end %>                
+              <%= f.label :state %><br>
+              <%= f.select(:state, options_for_select(
+                  [
+                    ['publish', 'published', { 'class' => 'published_paper' }],
+                    ['draft', 'draft', { 'class' => 'draft_paper' }]
+                  ], f.object.state
+              )) %>
+              </div>
+              <div class="field">
+                <%= f.label :tags %><br />    
+                <%= f.text_field :tags, "data-role" => "tagsinput", "value"=> @paper.tags %>    
+              </div>
+              <div class="field">
+                <%= f.label :keywords %><br />    
+                <%= f.text_field :keywords, "data-role" => "tagsinput", "value"=> @paper.keywords %>    
+              </div>              
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+          <% end %>
+        </div>
+    </div> 
   </div>
-  <div class="field">
-    <%= f.label :tags %><br />    
-    <%= f.text_field :tags, "data-role" => "tagsinput", "value"=> @paper.tags %>    
-  </div>
-  <%= f.fields_for :post_attachments do |p| %>
-     <div class="field">
-       <%= p.label :file %><br>
-       <%= p.file_field :file, :multiple => true, name: "post_attachments[file][]" %>
-     </div>
-   <% end %>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
-
+</div>
+ 
 <script type="text/javascript">  
 $( "#new_paper" ).submit(function( event ) {
   var tag_element = $(".bootstrap-tagsinput").find("input")[0];

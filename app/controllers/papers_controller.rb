@@ -16,6 +16,7 @@ class PapersController < ApplicationController
   def new
     @paper = Paper.new
     @post_attachment = @paper.post_attachments.build
+    response.headers.delete "X-Frame-Options"
   end
 
   def edit
@@ -44,7 +45,50 @@ class PapersController < ApplicationController
         format.json { render json: @paper.errors, status: :unprocessable_entity }
       end
     end
+    require "rexml/document"
+      xmlfile = File.new(Rails.root.join('public',current_researcher.id.to_s+'.xml'))
+      @xmldoc = REXML::Document.new(xmlfile)
+      @paper.title = @xmldoc.get_elements('article/title')[0].to_s.gsub(/<\/?[^>]+>/, '')
+      @paper.abstract = @xmldoc.get_elements('article/abstract')[0].to_s.gsub(/<\/?[^>]+>/, '')
+      @paper.introduction = @xmldoc.get_elements('article/introduction')[0].to_s.gsub(/<\/?[^>]+>/, '')
+      @paper.save
+
+       save_path = Rails.root.join('public',@paper.id.to_s+'.xml')
+      File.open(save_path, "w+") do |f|
+        f.write(@xmldoc)
+      end
+          
   end
+  def self.xmldoc
+    @@xmldoc
+  end
+
+   def download
+      document = Nokogiri::XML(File.read(Rails.root.to_s+'/public/'+params[:paper_id].to_s+'.xml'))
+      template = Nokogiri::XSLT(File.open(Rails.root.to_s+'/public/xopus/examples/simple/xsl/stylesheet.xsl','rb'))
+      #render text:document
+
+      #options = { toc: { xsl_style_sheet: Rails.root.join('/xopus/examples/rich-text/xsl', 'stylesheet.xsl').to_s } }
+      #pdf = WickedPdf.new.pdf_from_string(document, options)
+
+
+      html_document = template.transform(document)
+      #render :text =>document
+      pdf = WickedPdf.new.pdf_from_string(html_document)
+       send_data(pdf, 
+      :filename    => "my_pdf_name.pdf", 
+      :disposition => 'attachment')
+  end
+
+
+  def koko
+
+     require "rexml/document"
+      xmlfile = File.new(Rails.root.join('public','5675ba2c8db1b01b0c000001.xml'))
+      @xmldoc = REXML::Document.new(xmlfile)
+       
+      render :layout=>false     
+  end  
 
   def update
     respond_to do |format|      

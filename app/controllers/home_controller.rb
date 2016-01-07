@@ -63,4 +63,20 @@ class HomeController < ApplicationController
   def set_paper
     @paper = Paper.find(params[:id])
   end
+
+  def get_xopus
+    @filename=params[:id]
+    render :file=>'shared/x' , :layout=>false   
+  end  
+
+    def create_xml_temp
+    #params[:uri]
+    #current_researcher.to_s+
+    save_path = Rails.root.join('public','amer2.xml')
+    File.open(save_path, 'wb') do |file|
+       file << params[:doc]
+    end
+    #TODO: Add your tags
+    render :nothing=>true
+  end
 end
