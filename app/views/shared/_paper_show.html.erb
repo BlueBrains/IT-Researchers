@@ -118,14 +118,6 @@
 								<%end%>	  									
 						</div> 
 				</div>
-				<div class='row'>
-					<% @paper.post_attachments.each do |attach| %>
-					   <div class='col-med-3'>
-					   	<a onclick="show_details('<%=File.basename(attach.file_identifier)%>')"><%=File.basename(attach.file_identifier)%></a>
-					   	<input type="hidden" id="<%=File.basename(attach.file_identifier)%>" value="<%=  attach.file_url %>">
-					   </div>	
-					<% end %>                
-				</div>					
 			</div>
 			<div class="clearfix"> </div>
 			<div class="row">
@@ -145,6 +137,15 @@
 			</center>
 			</div>
 		</div>	
+		<h3>المرفقات</h3><br>
+		<div class='row'>
+					<% @paper.post_attachments.each do |attach| %>
+					   <div class='col-med-3'>
+					   	<a onclick="show_details('<%=File.basename(attach.file_identifier)%>')"><%=File.basename(attach.file_identifier)%></a>
+					   	<input type="hidden" id="<%=File.basename(attach.file_identifier)%>" value="<%=  attach.file_url %>">
+					   </div>	
+					<% end %>                
+				</div>
      		<div class="single-middle">
      			<h3>التعليقات</h3>
 				<div id='comments'>
@@ -181,7 +182,7 @@
 </div>
 <div id"itemform"></div>
 
-    <div id="myModal" class="modal fade" role="dialog">
+    <div id="attachModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -192,9 +193,14 @@
           </div>
           <div class="modal-body">
           		<div class="row">
-          			<input type="text" id="filename" disabled>
+          			اسم الملف المرفق : 
+          			<input type="text" id="filename" disabled style="width: 70%;">
           		</div>
-          		<div class="row" id="innerview">
+          		<br>
+          		<br>
+          		الملف المرفق : 
+
+          		<div class="row" id="innerview" width='100%'>
           		</div>	
           </div>
           <div class="modal-footer">
@@ -290,7 +296,7 @@ function like_unlike() {
 function show_details(str) {
 
 	document.getElementById("filename").value=str;
-	document.getElementById("innerview").innerHTML="<iframe src='"+document.getElementById(str).value+"' width='100%'>error!</iframe>";
-	$("#myModal").modal('show');
+	document.getElementById("innerview").innerHTML="<center><iframe src='"+document.getElementById(str).value+"' >error!</iframe></center>";
+	$("#attachModal").modal('show');
   }
 </script>		
