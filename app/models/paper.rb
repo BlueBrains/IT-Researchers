@@ -26,13 +26,8 @@ class Paper
   field :appendices
   
   field :state
-
-  field :active, type: Boolean do
-    formatted_value do
-      bindings[:object].paper.activate_msg
-    end
-  end
-
+  field :active, type: Boolean 
+  field :seen, type: Boolean 
   field :likers, type: Array
   field :likes, type: Integer
   field :times_seen, type: Integer
@@ -44,10 +39,6 @@ class Paper
 
   def similar
     @similar ||= self.class.similar_to self
-  end
-
-  def activate_msg
-    puts "it worked"
   end
 
   validates_presence_of :title, :abstract, :introduction, :valuation, :conclusion
