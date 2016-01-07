@@ -95,9 +95,28 @@ ar:
       researcher:
         one: "الباحث"
         other: "الباحثون"
-      paper:
-        one: "المقالة العلمية"
-        other: "المقالات العلمية" 
+      category:
+        one: "التصنيف العلمي"
+        other: "التصنيفات العلمية"
+      post_attachment:
+        one: "المرفق"
+        other: "المرفقات"
+      role:
+        one: "الدور"
+        other: "اﻷدوار"
+      ckeditor:
+        asset:
+          one: "الوسيط"
+          other: "الوسائط"
+        attachment_file:
+          one: "الملف"
+          other: "الملفات"
+        picture:
+          one: "الصورة"
+          other: "الصور"        
+        paper:
+          one: "المقالة العلمية"
+          other: "المقالات العلمية" 
       attributes:
         researcher:
           username: "اسم المستخدم"
@@ -592,3 +611,7 @@ ar:
   file: "الملف"
   keywords: "كلمات مفتاحية"
   other_researchers: "باحثون آخرون"
+  websiteurl: "موقع الوب"
+  birthdate: "تاريخ الميلاد"
+  address: "العنوان"
+  phone: "هاتف"

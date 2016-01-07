@@ -29,7 +29,7 @@
 							<span><%= @paper.created_at.strftime("%m-%d") %></span>
 							<hr>
 							<div id="like">
-								<span id="like_num">likes  &nbsp; <%= @paper.likes %></span><br>
+								<span id="like_num">إعجابات  &nbsp; <%= @paper.likes %></span><br>
 								<span id="thumbs_link">
 								<%if(!current_researcher.nil?)%>
 									<% if ((current_researcher.likes.nil?) || (!current_researcher.likes.include?(@paper.id))) %>
@@ -41,7 +41,7 @@
 								</span>
 							</div>
 							<hr>
-							<span class="glyphicon glyphicon-save" style="font-size: 1em ! important; color: rgb(191, 231, 205) ! important;"> <%= link_to "تحيمل المقالة", paper_download_path(@paper.id) ,:color=> "rgb(191, 231, 205) ! important;"%></span>
+							<span class="glyphicon glyphicon-save" style="font-size: 1em ! important; color: rgb(191, 231, 205) ! important;"> <%= link_to "تحميل المقالة", paper_download_path(@paper.id) ,:color=> "rgb(191, 231, 205) ! important;"%></span>
 						</div>
 						<div class="top-blog">
 								<a class="fast"> الكلمات المفتاحية :

@@ -8,29 +8,29 @@
           
               <%= form_for(@researcher) do |f| %>
               <div class="col-md-6 contact-grid">
-                  <%= f.label :username %><br>
+                  <%= f.label t(:username) %><br>
                   <%= f.text_field :username, :class => 'someclass'%>
 
-                  <%= f.label :email %><br>
+                  <%= f.label t(:email) %><br>
                   <%= f.text_field :email, :class => 'someclass'%>
                   
-                  <%= f.label :websiteurl %><br>
+                  <%= f.label t(:websiteurl) %><br>
                   <%= f.text_field :websiteurl, :class => 'someclass'%>
 
-                  <%= f.label :birthdate %><br>
+                  <%= f.label t(:birthdate) %><br>
                   <%= f.text_field :birthdate, :class => 'someclass'%>
 
-                  <%= f.submit %>
+                  <%= f.submit "تعديل البيانات" %>
               </div> 
               <div class="col-md-6 contact-grid">  
-                <%= f.label :address %><br>
+                <%= f.label t(:address) %><br>
                 <%= f.text_field :address, :class => 'someclass'%>
 
 
-                <%= f.label :phone %><br>
+                <%= f.label t(:phone) %><br>
                 <%= f.text_field :phone, :class => 'someclass'%>
 
-                <%= f.label :phone %><br>
+                <%= f.label t(:phone) %><br>
                 <%= f.text_field :phone, :class => 'someclass'%>
               </div>  
               <%end%>
