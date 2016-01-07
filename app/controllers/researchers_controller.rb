@@ -19,15 +19,15 @@ class ResearchersController < Devise::RegistrationsController
       redirect_to :back, :alert => "تم رفض الوصول."
     end
   end
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  
+  def edit
+    super
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+  end
 
   # DELETE /resource
   # def destroy

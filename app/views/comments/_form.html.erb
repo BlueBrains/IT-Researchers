@@ -1,7 +1,7 @@
         <div class="single-bottom">
           <h3>اترك تعليقا</h3>
           <div>
-            <%= form_for [model,comment] do |f| %>
+            <%= form_for [model,comment] , remote: true do |f| %>
               <% if model.errors.any? %>
                 <div id="error_explanation">
                   <h2><%= pluralize(model.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -21,8 +21,8 @@
                 <div class="col-md-3 comment"></div>
                 <div class="col-md-6 comment">
                      <%= f.text_area :text , :rows => "6" , :cols => "77" , :onfocus => "this.value='';" ,:onblur=>"if (this.value == '') {this.value ='التعليق';}" %>
-                  <div class="actions">
-                    <%= f.submit :value => "إضافة تعليق" ,:style=>"width: 80%; margin-right: 10%;" %>
+                  <div class="actions" style="margin-right: 10%;">
+                  <button type="button" onclick="AJAXPost('new_comment')" style="width: 80%; margin: 0px 0.8em; font-size: 1.3em; background: rgb(44, 51, 61) none repeat scroll 0% 0%; padding: 0.4em 0.8em; text-align: center; color: rgb(255, 255, 255); border: medium none; outline: medium none; transition: all 0.5s ease 0s;">إضافة تعليق</button>  
                   </div>
                 </div>
                 <div class="col-md-3 comment"></div> 

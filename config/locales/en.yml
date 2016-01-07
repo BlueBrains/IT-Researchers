@@ -20,7 +20,43 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:  
+  flash_messages:
+    #
+    # These are the translations for the different headings.
+    #
+    headings:
+      success: "Success!"
+      info: "Info!"
+      warning: "Warning!"
+      error: "Error!"
+   #
+    # Add default flash messages:
+    # defaults:
+    #   success: "This is a notification"
+    #   error: "Something went wrong"
+    #   create:
+    #     success: "Successfully created!"
+    #     error: "Something went wrong. Please take a look at the form to see what went wrong."
+    #
+    # Add flash messages for controller actions:
+    # products:
+    #   create:
+    #     success: "This is a notification"
+    #     error: "Something went wrong"
+    #
   devise:
+    avatars:
+      updated: "You updated your avatar successfully."
+      removed: "Your avatar was removed successfully."
+      editor:
+        select_file: "Select file..."
+        uploading: Uploading...
+        remove: "Remove %{attribute}"
+        removing: Removing...
+        crop: Crop
+        cropping: Cropping...
+      errors:
+        server_error: "Server is having hiccups. Please try again later."
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
       send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
@@ -66,6 +102,7 @@ en:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
+      invalid: "Invalid Username or Password "
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
@@ -83,8 +120,24 @@ en:
       taken_in_past: "was already taken in the past!"
       equal_to_current_password: "must be different to the current password!"
       password_format: "must contain big, small letters and digits"
+      weak_password: "not strong enough. Consider adding a number, symbols or more letters to make it stronger."
   mongoid:
-    errors:
+    models: 
+      researcher:
+        one: "Researcher"
+        other: "Researchers"
+      paper:
+        one: "Paper"
+        other: "Papers"
+      attributes:
+        researcher:
+          username: "Username"
+          encrypted_password: "Password"
+          email: "Email"
+        paper:
+          title: "Title"
+          content: "Content"   
+    errors:               
       messages:  
         blank_in_locale:
           "can't be blank in %{location}"     
@@ -101,7 +154,26 @@ en:
           summary: "Tried to set a value of type %{value_class} to a field of type %{field_class}"
           resolution: "Verify if the value to be set correspond to field definition"
         taken:
-          "is already taken"       
+          "is already taken"    
+  breadcrumbs:
+    application:
+      root: "Index"
+    pages:
+      pages: "Pages"
+  helpers:
+    actions: "Actions"
+    links:
+      back: "Back"
+      cancel: "Cancel"
+      confirm: "Are you sure?"
+      destroy: "Delete"
+      new: "New"
+      edit: "Edit"
+    titles:
+      edit: "Edit %{model}"
+      save: "Save %{model}"
+      new: "New %{model}"
+      delete: "Delete %{model}"           
   login: "login"
   username: "username"
   password: "password"
@@ -114,3 +186,13 @@ en:
   welcome: "Welcome"
   confirm_message: "You can confirm your account email through the link below:"
   confirm_link: "Confirm my account"
+  search: "Search"
+  empty_results: 'no results found'
+  categories: "Categories"
+  category: "Category"
+  add_paper: "Add Paper"
+  add_the_paper: "Add the Paper"
+  by: "by"
+  state: "State"
+  back: "Back"
+  tags: "Tags"

@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/molhaMaleh/mongoid_commentable.git
-  revision: cf1dab7b9babc5993af4018d107a1625e7e87226
+  revision: 399620b12e7c6f2022dc40d58a0100de9e853a24
+
   specs:
     mongoid_commentable (0.0.6)
       bson_ext (>= 1.3)

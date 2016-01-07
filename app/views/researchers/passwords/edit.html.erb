@@ -1,23 +1,34 @@
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+  <div class="content">
+    <!--contact-->
+   <div class="contact-section">
+      <div class="container">
+      <h2 class="heading text-center">تعديل كلمة المرور</h2>
+        <div class="contact-main">
+          <div class="col-md-6 contact-grid">
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+              <%= devise_error_messages! %>
+              <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, t(:new_password) %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length.to_s+' '+t(:characters_minimum)%>)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
-  </div>
+              <p class="your-para">كلمة المرور</p>
+                <%= f.label :password, t(:new_password) %><br />
+                <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length.to_s+' '+t(:characters_minimum)%>)</em><br />
+                <% end %>
+                <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+              
 
-  <div class="field">
-    <%= f.label t(:password_confirmation) %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+              <p class="your-para">تأكيد كلمة المرور</p>
+                <%= f.label t(:password_confirmation) %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "off" %>
+              
 
-  <div class="actions">
-    <%= f.submit t(:change_password) %>
-  </div>
-<% end %>
-
+              <div class="send">
+                <%= f.submit t(:change_password) %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>       
 
