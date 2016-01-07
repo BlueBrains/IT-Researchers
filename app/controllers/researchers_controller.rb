@@ -35,6 +35,7 @@ class ResearchersController < Devise::RegistrationsController
   # end
 
   def note
+    @note_paper = current_researcher.papers
     render :layout=>false     
   end
 

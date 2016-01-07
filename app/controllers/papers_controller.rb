@@ -10,6 +10,8 @@ class PapersController < ApplicationController
   end
 
   def show
+    @paper.seen=true
+    @paper.save!
   end
 
   def new
@@ -94,7 +96,5 @@ class PapersController < ApplicationController
       :notation, :theory, :specification, :implementation,
       :valuation, :related_work, :further_work, :conclusion, :appendices, :state, :tags, :researcher_ids)
     end
-
-  end
 
 end

@@ -19,7 +19,7 @@
                     &nbsp;|&nbsp;
                     <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>&nbsp;
                     <a style="color: white;" onclick="notification()">الإشعارات</a>
-                    <span class="badge">42</span>
+                    <span class="badge"><%= current_researcher.papers.where(seen: false , active: true).count %></span>
                     </p>
                 <% else %>
                 <p style="text-align: right;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp; <a onclick="sign_in()" style="color: white;" >تسجيل الدخول </a>

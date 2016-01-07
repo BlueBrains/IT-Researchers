@@ -1,0 +1,20 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+		  <th style="text-align: right;">عنوان البحث</th>
+		  <th style="text-align: right;">الحالة</th>
+		  <th style="text-align: right;">عرض المقالة</th>
+		</tr>
+	</thead>
+<tbody>
+	<% @note_paper.each do |paper|%>
+		<% if(!paper.seen? && paper.active?) %>
+		    <tr>
+				<td><%=paper.title%></td>
+				<td>تم الموافقة على النشر</td>
+				<td><%= link_to 'عرض', [current_researcher,paper]%></td>
+			</tr>
+		<%end%>	
+	<%end%>
+</tbody>
+</table>
