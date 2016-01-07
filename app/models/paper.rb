@@ -2,7 +2,7 @@ class Paper
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::TagsArentHard   
-  include Mongoid::Commentable
+  include Mongoid::Commentable 
   include Mongoid::Slug
   has_and_belongs_to_many :researchers  
   has_many :post_attachments
@@ -33,7 +33,7 @@ class Paper
   field :times_seen, type: Integer
   taggable_with :tags
   taggable_with :keywords
-
+  embeds_many :flags
   scope :exclude, -> paper { ne(_id: paper.id) }
   scope :similar_to, -> paper { exclude(paper).in(tags: paper.tags ) }
 

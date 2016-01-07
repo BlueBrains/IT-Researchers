@@ -1,6 +1,7 @@
 class Comment
   include Mongoid::Document
   include Mongoid_Commentable::Comment
+  include Mongoid::Flaggable
   #include Rakismet::Model
   field :text, :type => String
   field :author, :type => String
