@@ -109,6 +109,22 @@
 				</div>					
 			</div>
 			<div class="clearfix"> </div>
+			<div class="row">
+				<center>
+			<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">
+				<img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
+			</a>
+			<br />
+			<span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">
+				<%= @paper.title %>
+			</span> لـ 
+			<%= link_to @paper.researchers.first.username, researcher_path(@paper.researchers.first) ,"xmlns:cc"=>"http://creativecommons.org/ns#" ,:property=>"cc:attributionName" , :rel=>"cc:attributionURL" %>
+			</a> <br> تخضع لحقوق الملكية الفكرية وفق الشروط التالية :
+			<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
+			<br />النسخة الأصلية من العمل هنا 
+			<%= link_to @paper.title,@paper,"xmlns:dct"=>"http://purl.org/dc/terms/" %>
+			</center>
+			</div>
 		</div>	
      		<div class="single-middle">
      			<h3>التعليقات</h3>
@@ -148,6 +164,9 @@
 
 <script src="https://js.pusher.com/3.0/pusher.min.js" ></script>
 <script>
+var comment_top_ajax='<div class="media-left"><a href="#"><img class="media-object" src="images/co.png" alt=""></a></div><div class="media-body"><h4 class="media-heading">';
+var comment_bottom_ajax="</h4><p>";
+
 var pusher = new Pusher('80b5913c49bad64d4921', {
       encrypted: true
     });
@@ -163,9 +182,11 @@ channel.bind('like', function(data) {
 });
 
 channel.bind('comment', function(data) {
+	//alert(data.message);
   var newdiv = document.createElement('div');
             newdiv.setAttribute('class','media');
-            newdiv.innerHTML=xmlhttp.responseText;
+            newdiv.innerHTML=comment_top_ajax+ data.a_tag + comment_bottom_ajax + data.message +"</p></div>";
+            //alert(newdiv.innerHTML);
             document.getElementById("comments").appendChild(newdiv);
 });
 
@@ -184,4 +205,42 @@ function like_unlike() {
         xmlhttp.open("GET","/paper/<%= @paper.id %>/like",true);
         xmlhttp.send();
   }
+
+  function AJAXPost(formId) {
+    var elem   = document.getElementById(formId).elements;
+    var url    = document.getElementById(formId).action;        
+    var params = "";
+    var value;
+
+    for (var i = 0; i < elem.length; i++) {
+        if (elem[i].tagName == "SELECT") {
+            value = elem[i].options[elem[i].selectedIndex].value;
+        } else {
+            value = elem[i].value;                
+        }
+        params += elem[i].name + "=" + encodeURIComponent(value) + "&";
+    }
+
+    if (window.XMLHttpRequest) {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    } else { 
+        // code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function() {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+          	document.getElementById("itemform").innerHTML="";
+          }
+        }
+
+    xmlhttp.open("POST","/papers/<%= @paper.id %>/comments",true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.setRequestHeader("Content-length", params.length);
+    xmlhttp.setRequestHeader("Connection", "close");
+    xmlhttp.send(params);
+
+    return xmlhttp.responseText;
+}
+
 </script>		

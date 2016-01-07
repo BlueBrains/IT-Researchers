@@ -1,5 +1,58 @@
-<div>hello Mr.<%= @researcher.username %></div>
-<div>آخر منشوراتك</div>
-<!-- //for -->
-<div><%= link_to "إنشاء بحث جديد",  new_researcher_paper_path(@researcher) %></div>
-<%= link_to t(:signout), destroy_researcher_session_path, :method=>'delete' %>
+ <div class="content">
+    <!--contact-->
+   <div class="contact-section">
+      <div class="container">
+      <h2 class="heading text-center">بيانات الملف الشخصي</h2>
+      	<h1 class="heading text-center" ><%= @researcher.username %></h1>
+        <div class="contact-main">
+          <div class="col-md-6 contact-grid">
+          		<p class="sed-para"> <h3>لقد قمت بنشر 5 مقالات علمية</h3></p>
+						<p class="para1">Lorem ipsum dolor sit amet. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.  </p>
+						<div class="more-address"> 
+								<address>
+								  <strong>Twitter, Inc.</strong><br>
+								  795 Folsom Ave, Suite 600<br>
+								  San Francisco, CA 94107<br>
+								  <abbr title="Phone">P:</abbr> (123) 456-7890
+								</address>
+								<address>
+								  <strong>Full Name</strong><br>
+								  <a href="mailto:info@example.com">mail@example.com</a>
+							   </address>
+						  </div>
+          </div>
+          <div class="col-md-6 contact-grid">
+          	<%= form_for(resource, :as => resource_name) do |f| %>
+            <%= devise_error_messages! %>
+
+            <div class="field">
+              <p class="your-para"><%= f.label t(:email) %></p><br />
+              <%= f.email_field :email, autofocus: true ,:style => "width: 80%; padding: 0.8em; margin: 0px 0px 0.8em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; outline: medium none; border: 1px solid rgb(218, 218, 218);"%>
+            </div>
+            <div class="field" style="width: 80%;">
+              <p class="your-para"><%= f.label t(:username) %></p><br />
+              <%= f.text_field :username%>
+            </div>
+            <div class="field">
+              <p class="your-para"><%= f.label t(:password) %></p>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length.to_s+' '+t(:characters_minimum)%>)</em>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "off" ,:style => "width: 80%; padding: 0.8em; margin: 0px 0px 0.8em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; outline: medium none; border: 1px solid rgb(218, 218, 218);"%>
+            </div>
+
+            <div class="field">
+              <p class="your-para"><%= f.label t(:password_confirmation) %></p><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off" ,:style => "width: 80%; padding: 0.8em; margin: 0px 0px 0.8em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; outline: medium none; border: 1px solid rgb(218, 218, 218);"%>
+            </div>
+
+            <div class="send">
+              <%= f.submit t(:signup) %>
+            </div>
+          <% end %>
+
+	      </div>
+        </div> 
+      </div>
+  </div>		
+</div>  

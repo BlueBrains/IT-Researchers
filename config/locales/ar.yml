@@ -1,5 +1,44 @@
 ar: 
+  flash_messages:
+    #
+    # These are the translations for the different headings.
+    #
+    headings:
+      success: "نجاح!"
+      info: "ملاحظة!"
+      notice: "ملاحظة!"
+      warning: "تنبيه!"
+      alert: "تنبيه!"
+      error: "خطأ!"
+   #
+    # Add default flash messages:
+    defaults:
+      close: "أغلق"
+    #  success: "This is a notification"
+    #   error: "Something went wrong"
+    #   create:
+    #     success: "Successfully created!"
+    #     error: "Something went wrong. Please take a look at the form to see what went wrong."
+    #
+    # Add flash messages for controller actions:
+    # products:
+    #   create:
+    #     success: "This is a notification"
+    #     error: "Something went wrong"
+    #
   devise: 
+    avatars:
+      updated: "تم تعديل صورة الحساب بنجاح"
+      removed: "تم حذف صورة الحساب بنجاح"
+      editor:
+        select_file: "حدد ملفاً..."
+        uploading: "جاري الرفع..."
+        remove: "حذف %{attribute}"
+        removing: "جاري الحذف..."
+        crop: "اقتصاص"
+        cropping: "جاري اﻻقتصاص..."
+      errors:
+        server_error: "حصل خطأ ما ، يرجى إعادة المحاولة"
     confirmations: 
       confirmed: "تمّ تأكيد حسابك بنجاح."
       send_instructions: "ستصلك خلال دقائق رسالة على بريدك الإلكترونيّ تتضمّن الخطوات اللّازمة لتأكيد حسابك."
@@ -46,12 +85,28 @@ ar:
       already_signed_out: "تمّ تسجيل الخروج بنجاح."
       signed_in: "تمّ تسجيل الدخول بنجاح."
       signed_out: "تمّ تسجيل الخروج بنجاح."
+      invalid: "اسم مستخدم أو كلمة مرور غير صحيحة"
     unlocks: 
       send_instructions: "سيصلك خلال دقائق بريدًا إلكترونيًّا يتضمّن المعلومات اللّازمة لتنشيط حسابك."
       send_paranoid_instructions: "إذا كان حسابك موجودًاً، فسيصلك خلال دقائق بريدًا إلكترونيًّا يتضمّن المعلومات اللّازمة لتنشيطه."
       unlocked: "تمّ إعادة تفعيل حسابك بنجاح، يُرجى تسجيل الدخول للمُتابعة." 
   mongoid:
-    errors:
+    models: 
+      researcher:
+        one: "الباحث"
+        other: "الباحثون"
+      paper:
+        one: "المقالة العلمية"
+        other: "المقالات العلمية" 
+      attributes:
+        researcher:
+          username: "اسم المستخدم"
+          encrypted_password: "كلمة السر"
+          email: "البريد اﻻلكتروني"
+        paper:
+          title: "العنوان"
+          content: "المحتوى"                    
+    errors:                    
       messages:
         blank_in_locale:
           "لا يمكن أن يكون %{location} فارغاً"
@@ -213,6 +268,7 @@ ar:
     format: "%{attribute} %{message}"
     messages:
       already_confirmed: "تمّ تأكيد الحساب مُسبقًا، يُرجى مُحاولة تسجيل الدخول."
+      weak_password: "ليست قوية كفاية، أقترح عليك إضافة رموز،أرقام أو حروف أكثر لجعلها أقوى"
       confirmation_period_expired: "كان يجب تأكيده خلال %{period}، يُرجى طلب تأكيد الحساب مُجدّدًا."
       expired: "انتهت صلاحيته، يُرجى الطلب من جديد."
       not_found: "غير موجود."
@@ -350,26 +406,6 @@ ar:
       long: "%B %d, %Y %H:%M"
       short: "%d %b %H:%M"
     pm: مساءً                       
-  email: "البريد اﻹلكتروني"
-  login: "تسجيل الدخول"
-  password: "كلمة السر"
-  password_confirmation: "تأكيد كلمة المرور"
-  signup: التسجيل
-  username: "اسم المستخدم"
-  signout: "تسجيل الخروج"
-  characters_minimum: "على اﻷقل"
-  resend_confirmation_instructions: "أعد إرسال معلومات التأكيد"
-  welcome: "أهلاً"
-  confirm_message: "يمكنك تأكيد حسابك من خلال الرابط التالي:"
-  confirm_link: "تأكيد الحساب"
-  new_password: "كلمة السر الجديدة"
-  change_password: "غير كلمة السر"
-  send_reset_password: "أرسل تعليمات تغيير كلمة السر"
-  forgot_password: "نسيت كلمة السر ؟"
-  didnt_receive_confirmation: "لم تصلك رسالة التأكيد"
-  reset_instruction: "أحدٌ ما أرسل رسالة تغيير كلمة السر، إن كنت قد فعلت ذلك فيمكنك تغيير كلمة السر من الرابط التالي:"
-  ignore_reset_email: "إذا لم تكن صاحب الطلب يمكنك تجاهل هذه الرسالة."
-  sign_in_with_provider: "سجل الدخول بـ %{provider}"
   admin:
     loading: "تحميل..."
     home:
@@ -502,3 +538,54 @@ ar:
         default_col_sep: ","
         col_sep: "الفاصل بين الحقول"
         col_sep_help: "اتركه فارغا لتعين الفاصل الافتراضي ('%{value}')" # الفاصل الافتراضي default_col_sep
+  breadcrumbs:
+    application:
+      root: "الصفحة الرئيسية"
+    pages:
+      pages: "صفحات"
+  helpers:
+    actions: "أفعال"
+    links:
+      back: "للخلف"
+      cancel: "إلغاء اﻷمر"
+      confirm: "هل أنت متأكد؟"
+      destroy: "حذف"
+      new: "جديد"
+      edit: "تعديل"
+    titles:
+      edit: "تعديل %{model}"
+      save: "حفظ %{model}"
+      new: "%{model} جديد"
+      delete: "حذف %{model}"  
+  email: "البريد اﻹلكتروني"
+  login: "تسجيل الدخول"
+  password: "كلمة السر"
+  password_confirmation: "تأكيد كلمة المرور"
+  signup: التسجيل
+  username: "اسم المستخدم"
+  signout: "تسجيل الخروج"
+  characters_minimum: "على اﻷقل"
+  resend_confirmation_instructions: "أعد إرسال معلومات التأكيد"
+  welcome: "أهلاً"
+  confirm_message: "يمكنك تأكيد حسابك من خلال الرابط التالي:"
+  confirm_link: "تأكيد الحساب"
+  new_password: "كلمة السر الجديدة"
+  change_password: "غير كلمة السر"
+  send_reset_password: "أرسل تعليمات تغيير كلمة السر"
+  forgot_password: "نسيت كلمة السر ؟"
+  didnt_receive_confirmation: "لم تصلك رسالة التأكيد"
+  reset_instruction: "أحدٌ ما أرسل رسالة تغيير كلمة السر، إن كنت قد فعلت ذلك فيمكنك تغيير كلمة السر من الرابط التالي:"
+  ignore_reset_email: "إذا لم تكن صاحب الطلب يمكنك تجاهل هذه الرسالة."
+  sign_in_with_provider: "سجل الدخول بـ %{provider}"
+  search: "بحث"
+  empty_results: 'لا توجد نتائج'
+  categories: "التصنيفات العلمية"
+  category: "التصنيف العلمي"
+  add_paper: "إضافة مقالة"
+  add_the_paper: "إضافة المقالة"
+  by: "قام بالنشر"
+  state: "الحالة"
+  back: "للخلف"
+  title: "العنوان"
+  content: "المحتوى"
+  tags: "الوسوم"
