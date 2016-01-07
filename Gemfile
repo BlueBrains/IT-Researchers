@@ -81,8 +81,10 @@ gem 'omniauth-gplus','~> 2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
- gem 'pusher'
+gem 'pusher'
 
+#for spam detection
+#gem 'rakismet'
 group :test do
   gem 'minitest-around'
   gem 'database_cleaner'
