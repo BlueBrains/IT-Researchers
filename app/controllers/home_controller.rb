@@ -54,6 +54,12 @@ class HomeController < ApplicationController
     #redirect_to paper_path(@paper)
   end
 
+  def about
+  end  
+
+  def contact_us
+  end  
+
   def set_paper
     @paper = Paper.find(params[:id])
   end

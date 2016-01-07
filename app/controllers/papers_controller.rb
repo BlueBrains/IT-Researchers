@@ -9,6 +9,8 @@ class PapersController < ApplicationController
   end
 
   def show
+    @paper.seen=true
+    @paper.save!
   end
 
   def new

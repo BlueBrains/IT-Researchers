@@ -16,9 +16,16 @@
                   <p style="text-align: right;">
                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
                     <%= link_to t(:signout), destroy_researcher_session_path, method: :delete , :style=>"color: white;"%>
+                    &nbsp;|&nbsp;
+                    <span class="glyphicon glyphicon-bell" aria-hidden="true"></span>&nbsp;
+                    <a style="color: white;" onclick="notification()">الإشعارات</a>
+                    <span class="badge"><%= current_researcher.papers.where(seen: false , active: true).count %></span>
                     </p>
                 <% else %>
-                <p style="text-align: right;"><a onclick="sign_in()" style="color: white;" >تسجيل الدخول </a> &nbsp;<span class="glyphicon glyphicon-user" aria-hidden="true"></span></p>
+                <p style="text-align: right;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> &nbsp; <a onclick="sign_in()" style="color: white;" >تسجيل الدخول </a>
+                  &nbsp;|&nbsp;
+                  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> &nbsp;
+                <a href="http://localhost:3000/researchers/sign_up" style="color: white;" >إضافة حساب جديد </a> </p>
                 <% end %>     
         <div class="clearfix"></div>
       </div>
@@ -45,14 +52,15 @@
             <%end%>
             ">
                 <ul class="nav navbar-nav">
-                  <li><a href="contact.html">اتصل بنا</a></li>
-                <li><a href="about.html">حولنا</a></li>
+                  <li><a href="http://localhost:3000/home/contact_us">اتصل بنا</a></li>
+                <li><a href="http://localhost:3000/home/about">حولنا</a></li>
                 <li><a href="#categories">البحث المتقدم</a></li>
                 <% if((@researcher.present?)&&(@researcher.email.present?)) %>
                   <li><a href="#researcher_panel">لوحة تحكم الباحث</a></li>
                 <% end %>    
                 <li><a href="#last_researches">الأبحاث العلمية</a></li>
-                <li class="active"><a href="index.html">الرئيسية <span class="sr-only">(current)</span></a></li>
+
+                <li class="active"><a href="http://localhost:3000/">الرئيسية <span class="sr-only">(current)</span></a></li>
                 <li><%=link_to t(:categories),categories_path%></li>
                 </ul>
               <div class="clearfix"></div>
@@ -63,7 +71,7 @@
     </div>
   </div>
   <!-- header-section-ends-here -->
-  <div id="myModal" class="modal fade" role="dialog">
+    <div id="myModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -77,13 +85,32 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">إغلاق</button>
-            <button type="button" class="btn btn-success" data-dismiss="modal">تسجيل الدخول</button>
           </div>
         </div>
 
       </div>
     </div>
  
+   <div id="noteModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">الباحثون المعلوماتيون</h4>
+          </div>
+          <div class="modal-body" id="notification_modal">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">إغلاق</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
  <script>
  function sign_in() {
         if (window.XMLHttpRequest) {
@@ -99,6 +126,23 @@
           }
         }
         xmlhttp.open("GET","http://localhost:3000/researchers/sign_in",true);
+        xmlhttp.send();
+  }
+
+  function notification() {
+        if (window.XMLHttpRequest) {
+          // code for IE7+, Firefox, Chrome, Opera, Safari
+          xmlhttp=new XMLHttpRequest();
+        } else { // code for IE6, IE5
+          xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange=function() {
+          if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+            document.getElementById("notification_modal").innerHTML=xmlhttp.responseText;
+            $("#noteModal").modal('show');
+          }
+        }
+        xmlhttp.open("GET","http://localhost:3000/researchers/note",true);
         xmlhttp.send();
   }
  </script>   

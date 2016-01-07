@@ -26,13 +26,18 @@ class ResearchersController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    super
+    update_resource(resource, update_params)
   end
 
   # DELETE /resource
   # def destroy
   #   super
   # end
+
+  def note
+    @note_paper = current_researcher.papers
+    render :layout=>false     
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -49,10 +54,15 @@ class ResearchersController < Devise::RegistrationsController
   def configure_sign_up_params
     devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:email,:username,:password,:password_confirmation)}
   end
-  #private
-  #def researcher_params
-   # params.require(:researcher).permit(:email,:username,:password)
-  #end
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+  
+  private
+  def researcher_params
+    params.require(:researcher).permit(:general_info, :phone, :address, :birthdate, :avatar, :websiteurl)
+  end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
   #   devise_parameter_sanitizer.for(:account_update) << :attribute
