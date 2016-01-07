@@ -12,8 +12,6 @@
 //
 //= require js/jquery.min
 //= require js/bootstrap-tagsinput
-//= require js/chosen.jquery
-//= require js/chosen.proto
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .

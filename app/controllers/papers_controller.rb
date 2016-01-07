@@ -6,7 +6,6 @@ class PapersController < ApplicationController
 
   def index
     @papers = @researcher.papers.page(params[:page]).per(8)
-    #authorize! :read, @papers
   end
 
   def show
@@ -92,7 +91,7 @@ class PapersController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def paper_params      
-      params.require(:paper).permit(:title, :abstract, :introduction, :literature_survey, 
+      params.require(:paper).permit(:category, :title, :abstract, :introduction, :literature_survey, 
       :notation, :theory, :specification, :implementation,
       :valuation, :related_work, :further_work, :conclusion, :appendices, :state, :tags, :researcher_ids)
     end

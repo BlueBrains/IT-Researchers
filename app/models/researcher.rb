@@ -5,6 +5,8 @@ class Researcher
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
+  after_create :assign_role
+
   has_and_belongs_to_many :papers
   
 
