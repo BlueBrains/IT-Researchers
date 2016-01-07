@@ -142,6 +142,7 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.99)
+    mini_magick (4.3.6)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     minitest-around (0.3.2)
@@ -305,6 +306,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
+  mini_magick
   minitest-around
   mongoid (~> 5)
   mongoid-slug

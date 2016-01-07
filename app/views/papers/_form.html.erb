@@ -11,6 +11,30 @@
     </div>
   <% end %>
   <div class="field">
+    <%=f.label t(:category)%>
+    <%=f.select :category,
+          options_from_collection_for_select(
+                                                    Category.all,
+                                                    :name,
+                                                    :name,
+                                                  ),
+                  {},
+                  {:class => "chosen-select"}%>    
+  </div><br />  
+ <div class="field">
+   <%= f.label :other_researchers %><br>
+   <%= f.select :researcher_ids,
+      options_from_collection_for_select(
+                                          Researcher.all.ne(_id: current_researcher.id),
+                                          :id,
+                                          :username,
+                                          {:selected => @paper.researchers.map {|res| res.id} }
+                                        ),
+        {},
+        {:multiple => true, :size => 3, :name => 'paper[researcher_ids][]', :class => "chosen-select"}%>
+
+ </div>    
+  <div class="field">
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div><br>
@@ -26,7 +50,7 @@
         {},
         {:multiple => true, :size => 3, :name => 'paper[researcher_ids][]', :class => "chosen-select"}%>
 
- </div>  
+ </div>   
   <div class="field">
     <%= f.label :abstract %><br>
     <%= f.cktext_area :abstract, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar', :toolbar => 'mini'} %>

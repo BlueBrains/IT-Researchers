@@ -8,10 +8,13 @@ Rails.application.routes.draw do
   # authenticated :researcher do
   #   root :to => 'researcher#index', as: :authenticated_root
   # end
+  get 'category/index'
+
   as :researcher do   
     root :to => 'home#index'
     get 'papers/:id' =>'home#show'
     get 'home/index'
+    get 'search', :to => 'search#new',:as => 'search'
     get 'paper/:id/like' => "home#like_it", :as => 'like_paper'
     devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations' }#, passwords: 'researchers/passwords', omniauth_callbacks: 'researchers/omniauth_callbacks' }
   end
@@ -28,6 +31,9 @@ end
 
 resources :papers, only: [:index]
 resources :post_attachments
+
+get 'papers/:category_name',:to => 'papers#index'
+resources :categories 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

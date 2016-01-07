@@ -30,6 +30,8 @@ gem 'cancancan', '~> 1.10'
 #for roles
 gem 'rolify'
 
+gem 'mini_magick'
+
 #pagination gem
 gem 'kaminari'
 

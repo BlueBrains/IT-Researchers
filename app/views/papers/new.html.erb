@@ -2,10 +2,5 @@
 
 <%= render 'form' %>
 
-<!-- <%= form_for [@researcher,@paper] do |form| -%> -->
-  <!-- <%= form.cktext_area :title, :class => 'someclass', :ckeditor => {:language => 'ar'} %> -->
-  <!-- <%= form.cktext_area :content, :value => 'Default value', :id => 'sometext' %> -->
-  <!-- <%= cktext_area :state, :info, :cols => 40, :ckeditor => {:uiColor => '#AADC6E', :toolbar => 'mini'} %> -->
-<!-- <% end -%> -->
 
-<%= link_to 'Back', researcher_papers_path(@researcher) %>
+<%= link_to t(:back), researcher_papers_path(@researcher) %>

@@ -41,4 +41,3 @@ class Paper
   validates_presence_of :title, :abstract, :introduction, :valuation, :conclusion
   #  searchkick language: "arabic"
 end
-

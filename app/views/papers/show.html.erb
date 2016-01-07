@@ -1,5 +1,5 @@
 <%= render partial: 'shared/paper_show', :locals => {:paper=> @paper}%>
 <strong>State:</strong>
 <%= @paper.state %>
-<%= link_to 'Edit', edit_researcher_paper_path(@researcher,@paper) %> |
-<%= link_to 'Back', researcher_papers_path(@researcher) %>
+<%= link_to t(:edit), edit_researcher_paper_path(@researcher,@paper) %> |
+<%= link_to t(:back), researcher_papers_path(@researcher) %>
