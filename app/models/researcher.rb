@@ -2,7 +2,6 @@ class Researcher
   include Mongoid::Document
   rolify
   include Mongoid::Slug
-  before_save :assign_role
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 

@@ -8,6 +8,7 @@ class Paper
   has_many :post_attachments
   accepts_nested_attributes_for :post_attachments
   belongs_to :category
+  accepts_nested_attributes_for :comments
   
   field :title
   slug :title
@@ -25,6 +26,13 @@ class Paper
   field :appendices
   
   field :state
+
+  field :active, type: Boolean do
+    formatted_value do
+      bindings[:object].paper.activate_msg
+    end
+  end
+
   field :likers, type: Array
   field :likes, type: Integer
   field :times_seen, type: Integer
@@ -38,7 +46,12 @@ class Paper
     @similar ||= self.class.similar_to self
   end
 
+  def activate_msg
+    puts "it worked"
+  end
+
   validates_presence_of :title, :abstract, :introduction, :valuation, :conclusion
   #  searchkick language: "arabic"
+
 end
 
