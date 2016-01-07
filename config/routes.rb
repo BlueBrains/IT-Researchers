@@ -12,18 +12,21 @@ Rails.application.routes.draw do
   resources :xopus_pdfs do
     post :create_xml_temp, on: :collection
   end
-as :researcher do
-  root :to => 'home#index'
 
-  # post 'researcher/create_xml_temp' => 'xopus_pdfs#create_xml_temp'
-  get '/start', :to => redirect('/xopus/examples/simple/start.html')
-  get 'home/get_xopus/:id' =>'home#get_xopus'
-  get 'papers/:id' =>'home#show'
-  get 'home/index'
-  get 'paper/koko' => 'papers#koko'
-  get 'paper/:id/like' => "home#like_it", :as => 'like_paper'
-  devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations' }#, passwords: 'researchers/passwords', omniauth_callbacks: 'researchers/omniauth_callbacks' }
-end
+  get 'category/index'
+
+  as :researcher do   
+    root :to => 'home#index'
+    get 'home/get_xopus/:id' =>'home#get_xopus'
+    get 'papers/:id' =>'home#show'
+    get 'home/index'
+    get 'search', :to => 'search#new',:as => 'search'
+    get 'home/about'
+    get 'researchers/note'
+    get 'home/contact_us'
+    get 'paper/:id/like' => "home#like_it", :as => 'like_paper'
+    devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations' }#, passwords: 'researchers/passwords', omniauth_callbacks: 'researchers/omniauth_callbacks' }
+  end
    
   as :researcher do        
      resources :researchers do
@@ -38,6 +41,9 @@ end
 
 resources :papers, only: [:index]
 resources :post_attachments
+
+get 'papers/:category_name',:to => 'papers#index'
+resources :categories 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -27,10 +27,14 @@ gem 'wkhtmltopdf-binary'
 #authentication gem
 gem 'devise','~> 3.5'
 
+gem 'mongoid-tree', :require => 'mongoid/tree'
+
 #authorization gem
 gem 'cancancan', '~> 1.10'
 #for roles
 gem 'rolify'
+
+gem 'mini_magick'
 
 #pagination gem
 gem 'kaminari'

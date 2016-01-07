@@ -1,5 +1,6 @@
 class ResearchersController < Devise::RegistrationsController
-before_filter :configure_sign_up_params, only: [:create]
+  before_filter :authenticate_researcher!
+  before_action :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -18,20 +19,26 @@ before_filter :configure_sign_up_params, only: [:create]
       redirect_to :back, :alert => "تم رفض الوصول."
     end
   end
-  # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  
+  def edit
+    super
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    update_resource(resource, researcher_params)
+    render :file=>'researchers/show'
+  end
 
   # DELETE /resource
   # def destroy
   #   super
   # end
+
+  def note
+    @note_paper = current_researcher.papers
+    render :layout=>false     
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -48,10 +55,15 @@ before_filter :configure_sign_up_params, only: [:create]
   def configure_sign_up_params
     devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:email,:username,:password,:password_confirmation)}
   end
-  #private
-  #def researcher_params
-   # params.require(:researcher).permit(:email,:username,:password)
-  #end
+
+  def update_resource(resource, params)
+    resource.update_without_password(params)
+  end
+  
+  private
+  def researcher_params
+    params.require(:researcher).permit(:general_info, :phone, :address, :birthdate, :avatar, :websiteurl)
+  end
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
   #   devise_parameter_sanitizer.for(:account_update) << :attribute

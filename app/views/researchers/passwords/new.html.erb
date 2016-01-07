@@ -1,13 +1,24 @@
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="content">
+    <!--contact-->
+   <div class="contact-section">
+      <div class="container">
+      <h2 class="heading text-center">Contact Us</h2>
+        <div class="contact-main">
+          <div class="col-md-6 contact-grid">
+			<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+			<%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label t(:email) %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+			<p class="your-para">البريد الالكتروني</p>
+			<%= f.label t(:email) %><br />
+			<%= f.email_field :email, autofocus: true %>
+			
 
-  <div class="actions">
-    <%= f.submit t(:send_reset_password) %>
-  </div>
-<% end %>
-
+			<div class="send">
+			<%= f.submit t(:send_reset_password) %>
+			</div>
+			<% end %>
+ 			</div>
+        </div>
+      </div> 
+    </div>
+  </div>       

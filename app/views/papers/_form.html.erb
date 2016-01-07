@@ -8,7 +8,6 @@
             <% if @paper.errors.any? %>
               <div id="error_explanation">
                 <h2><%= pluralize(@paper.errors.count, "error") %> prohibited this paper from being saved:</h2>
-
                 <ul>
                 <% @paper.errors.full_messages.each do |message| %>
                   <li><%= message %></li>
@@ -16,29 +15,40 @@
                 </ul>
               </div>
             <% end %>
-           <div class="field">
-           <iframe src="http://localhost:3000/home/get_xopus/document" width="100%" style="height: 710px;" id="rails_iframe">error!</iframe>
-              
-          </div>          
-            <div class="field">
-               <%= f.label :other_researchers %><br>
-               <%= f.select :researcher_ids,
-                  options_from_collection_for_select(
-                                                      Researcher.all.ne(_id: current_researcher.id),
-                                                      :id,
-                                                      :username,
-                                                      {:selected => @paper.researchers.map {|res| res.id} }
-                                                    ),
-                    {},
-                    {:multiple => true, :size => 3, :name => 'paper[researcher_ids][]', :class => "chosen-select"}%>
+             <div class="field">
+             <iframe src="http://localhost:3000/home/get_xopus/document" width="100%" style="height: 710px;" id="rails_iframe">error!</iframe>
+                
+            </div>          
+              <div class="field">
+                <%=f.label t(:category)%>
+                <%=f.select :category,
+                      options_from_collection_for_select(
+                                                                Category.all,
+                                                                :name,
+                                                                :name,
+                                                              ),
+                              {},
+                              {:class => "chosen-select"}%>    
+              </div><br />            
+              <div class="field">
+                 <%= f.label :other_researchers %><br>
+                 <%= f.select :researcher_ids,
+                    options_from_collection_for_select(
+                                                        Researcher.all.ne(_id: current_researcher.id),
+                                                        :id,
+                                                        :username,
+                                                        {:selected => @paper.researchers.map {|res| res.id} }
+                                                      ),
+                      {},
+                      {:multiple => true, :size => 3, :name => 'paper[researcher_ids][]', :class => "chosen-select"}%>
 
-             </div>
-            <%= f.fields_for :post_attachments do |p| %>
-               <div class="field">
-                 <%= p.label :file %><br>
-                 <%= p.file_field :file, :multiple => true, name: "post_attachments[file][]" %>
                </div>
-             <% end %>                
+              <%= f.fields_for :post_attachments do |p| %>
+                 <div class="field">
+                   <%= p.label :file %><br>
+                   <%= p.file_field :file, :multiple => true, name: "post_attachments[file][]" %>
+                 </div>
+              <% end %>                
               <%= f.label :state %><br>
               <%= f.select(:state, options_for_select(
                   [
@@ -51,13 +61,15 @@
                 <%= f.label :tags %><br />    
                 <%= f.text_field :tags, "data-role" => "tagsinput", "value"=> @paper.tags %>    
               </div>
-  
-
-            <div class="actions">
-              <%= f.submit %>
-            </div>
+              <div class="field">
+                <%= f.label :keywords %><br />    
+                <%= f.text_field :keywords, "data-role" => "tagsinput", "value"=> @paper.keywords %>    
+              </div>              
+              <div class="actions">
+                <%= f.submit %>
+              </div>
           <% end %>
-          </div>
+        </div>
     </div> 
   </div>
 </div>

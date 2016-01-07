@@ -1,0 +1,17 @@
+<%@categories.each do |category| %>
+   <div class="row">     
+     <div class="col-md-4">
+        <h3><%=category.name%></h3>
+        <%=link_to category_path(category) do%>
+          <img class="img-responsive" src="<%=category.picture.url%>" alt="">          
+        <%end%>
+     </div>     
+  </div>
+<%end%>
+<div class="row text-center">
+  <div class="col-lg-12">
+    <ul class="pagination">
+       <%= paginate @categories %>
+    </ul>
+  </div>
+</div> 

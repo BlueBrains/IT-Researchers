@@ -1,5 +1,51 @@
-<div>hello Mr.<%= @researcher.username %></div>
-<div>آخر منشوراتك</div>
-<!-- //for -->
-<div><%= link_to "إنشاء بحث جديد",  new_researcher_paper_path(@researcher) %></div>
-<%= link_to t(:signout), destroy_researcher_session_path, :method=>'delete' %>
+ <div class="content">
+    <!--contact-->
+   <div class="contact-section">
+      <div class="container">
+    <%if(!current_researcher.nil?)%>
+      <div calss="row" style="margin-bottom: 5%;">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-10">
+          <ol class="breadcrumb">
+            <li><a href="http://localhost:3000/researchers/<%=@researcher.id%>/edit">تعديل البيانات الشخصية</a></li>
+            <li class="active"><strong> عرض البيانات</strong></li>
+        </ol>
+      </div>
+    </div>
+    <%end%>
+
+      <h2 class="heading text-center">بيانات الملف الشخصي</h2>
+      	<h1 class="heading text-center" ></h1>
+        <div class="contact-main">
+          <div class="col-md-6 contact-grid">
+          	<p class="sed-para"> <h3>عدد المقالات المنشورة <%=@researcher.papers.count%> </h3></p>
+            
+						<div class="more-address"> 
+								<address>
+								  <h3><strong>العنوان : </strong></h3><br>
+								  </h3><%= @researcher.address %></h3><br>
+								  --------------------------<br>
+								  <h3><abbr title="Phone">الهاتف : </abbr></h3> <h4><%= @researcher.phone %></h4>
+								</address>
+								<address><h4>
+								  <strong>ص . ب </strong><br>
+								  <a href="">4568</a></h4>
+							   </address>
+						  </div>
+          </div>
+          <div class="col-md-6 contact-grid">
+
+            <div class="field">
+              <h3>
+              <p class="your-para"> اسم الباحث : <%= @researcher.username %> </p><br />
+              <p class="your-para"> البريد الالكتروني : <%= @researcher.email %></p><br />
+              <p class="your-para"> الموقع الشخصي : <%= @researcher.websiteurl %></p><br />
+              <p class="your-para">  الصورة الشخصية : <%= @researcher.avatar %></p><br />
+              <p class="your-para"> يوم الميلاد : <%= @researcher.birthdate %></p><br />
+            </h3>
+            </div>
+	        </div>
+        </div> 
+      </div>
+  </div>		
+</div>  

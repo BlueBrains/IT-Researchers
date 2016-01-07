@@ -5,6 +5,9 @@ class ApplicationController < ActionController::Base
   
   before_action :authenticate_researcher!
 
+before_action do |controller|               
+    :authenticate_researcher! unless ((controller.class == SearchController)||(controller.action_name=="show") ||(controller.class ==  HomeController))
+  end
   
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to main_app.root_url, :notice => exception
@@ -20,5 +23,9 @@ class ApplicationController < ActionController::Base
   end
   def after_sign_up_path_for(resource)
     root_path
+  end
+
+  def current_ability
+    @current_ability ||= Ability.new(current_researcher)
   end
 end

@@ -5,6 +5,8 @@ class Researcher
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
+  after_create :assign_role
+
   has_and_belongs_to_many :papers
   
 
@@ -77,9 +79,13 @@ class Researcher
   
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |researcher|
-    researcher.email = auth.info.email
-    researcher.password = Devise.friendly_token[0,20]       
+      researcher.email = auth.info.email
+      researcher.password = Devise.friendly_token[0,20]       
+    end
   end
-end
+
+  def assign_role
+    self.add_role "researcher"
+  end
 
 end

@@ -1,14 +1,16 @@
 class PapersController < ApplicationController
-
+  before_filter :authenticate_researcher!
   before_action :set_researcher
   before_action :set_paper, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
     @papers = @researcher.papers.page(params[:page]).per(8)
-    #authorize! :read, @papers
   end
 
   def show
+    @paper.seen=true
+    @paper.save!
   end
 
   def new
@@ -133,7 +135,7 @@ class PapersController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def paper_params      
-      params.require(:paper).permit(:title, :abstract, :introduction, :literature_survey, 
+      params.require(:paper).permit(:category, :title, :abstract, :introduction, :literature_survey, 
       :notation, :theory, :specification, :implementation,
       :valuation, :related_work, :further_work, :conclusion, :appendices, :state, :tags, :researcher_ids)
     end

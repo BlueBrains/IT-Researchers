@@ -1,28 +1,42 @@
-<%= form_for(resource, :as => resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<div class="content">
+    <!--contact-->
+   <div class="contact-section">
+      <div class="container">
+      <h2 class="heading text-center">إضافة حساب جديد</h2>
+        <div class="contact-main">
+          <div class="col-md-3 contact-grid"></div>        
+          <div class="col-md-6 contact-grid">          
+          <%= form_for(resource, :as => resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label t(:email) %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-  <div class="field">
-    <%= f.label t(:username) %><br />
-    <%= f.text_field :username%>
-  </div>
-  <div class="field">
-    <%= f.label t(:password) %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length.to_s+' '+t(:characters_minimum)%>)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+            <div class="field">
+              <%= f.label t(:email) %><br /><br />
+              <%= f.email_field :email, autofocus: true ,:style=>"width: 100%; padding: 0.8em; margin: 0px 0px 0.8em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; outline: medium none; border: 1px solid rgb(218, 218, 218);"%>
+            </div>
+            <div class="field">
+              <%= f.label t(:username) %><br /><br />
+              <%= f.text_field :username%>
+            </div>
+            <div class="field">
+              <%= f.label t(:password) %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length.to_s+' '+t(:characters_minimum)%>)</em>
+              <% end %><br /><br />
+              <%= f.password_field :password, autocomplete: "off" ,:style=>"width: 100%; padding: 0.8em; margin: 0px 0px 0.8em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; outline: medium none; border: 1px solid rgb(218, 218, 218);"%>
+            </div>
 
-  <div class="field">
-    <%= f.label t(:password_confirmation) %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit t(:signup) %>
-  </div>
-<% end %>
+            <div class="field">
+              <%= f.label t(:password_confirmation) %><br /><br />
+              <%= f.password_field :password_confirmation, autocomplete: "off" ,:style=>"width: 100%; padding: 0.8em; margin: 0px 0px 0.8em; background: rgb(255, 255, 255) none repeat scroll 0% 0%; outline: medium none; border: 1px solid rgb(218, 218, 218);"%>
+            </div>
+            <br />
+            <div class="actions">
+              <%= f.submit t(:signup) ,:class=>"btn btn-info"%>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-md-3 contact-grid"></div>          
+        </div> 
+      </div>
+  </div>    
+</div>
