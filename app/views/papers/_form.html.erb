@@ -14,7 +14,7 @@
     <%=f.label t(:category)%>
     <%=f.select :category,
           options_from_collection_for_select(
-                                                    Category.all,
+                                                    Cat.all,
                                                     :name,
                                                     :name,
                                                   ),
