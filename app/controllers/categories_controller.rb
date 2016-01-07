@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
   def autocomplete
     render json: @categories
   end
-  def index          
+  def index
   end 
   def show
     if(@papers.present?)
