@@ -94,4 +94,6 @@ class PapersController < ApplicationController
       :valuation, :related_work, :further_work, :conclusion, :appendices, :state, :tags, :researcher_ids)
     end
 
+  end
+
 end

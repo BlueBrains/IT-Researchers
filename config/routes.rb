@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     root :to => 'home#index'
     get 'papers/:id' =>'home#show'
     get 'home/index'
+    get 'home/about'
+    get 'researchers/note'
+    get 'home/contact_us'
     get 'paper/:id/like' => "home#like_it", :as => 'like_paper'
     devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations' }#, passwords: 'researchers/passwords', omniauth_callbacks: 'researchers/omniauth_callbacks' }
   end

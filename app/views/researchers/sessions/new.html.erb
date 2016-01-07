@@ -1,15 +1,12 @@
 <h2><%= t :login %></h2>
 <%= form_for(resource, :as => resource_name, url: session_path(resource_name)) do |f| %>
-  <p class="notice"><%= notice %></p>
+  <!-- <p class="notice"><%= notice %></p> -->
   <p class="alert"><%= alert %></p>
-  <div class="field">
     <%= f.label (t(:username)) %><br />
     <%= f.text_field :username, autofocus: true , :class =>"form-control"%>
-  </div>
-
-  <div class="field">
+  <br>
     <%= f.label (t(:password)) %><br />
     <%= f.password_field :password, autocomplete: "off" ,:class =>"form-control"%>
-  </div>
-    <%= f.submit (t(:login)) %>
+  <br>
+    <%= f.submit (t(:login)) ,:class=>"btn btn-success" %>
 <% end %>
