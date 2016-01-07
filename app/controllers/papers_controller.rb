@@ -1,5 +1,4 @@
-class PapersController < ApplicationController
-  before_filter :authenticate_researcher!
+class PapersController < ApplicationController 
   before_action :set_researcher
   before_action :set_paper, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
@@ -13,10 +12,10 @@ class PapersController < ApplicationController
     @paper.save!
   end
 
-  def new
+  def new    
     @paper = Paper.new
     @post_attachment = @paper.post_attachments.build
-    response.headers.delete "X-Frame-Options"
+    #response.headers.delete "X-Frame-Options"
   end
 
   def edit
@@ -107,7 +106,7 @@ class PapersController < ApplicationController
             @post_attachment = @paper.post_attachments.create!(:file => a)
           end
         end        
-        format.html { redirect_to [@researcher,@paper], notice: 'Paper was successfully updated.' }
+        format.html { redirect_to [@researcher,@paper], notice: 'تم تعديل المقالة بنجاح.' }
         format.json { render :show, status: :ok, location: @paper }
       else
         format.html { render :edit }
@@ -119,14 +118,14 @@ class PapersController < ApplicationController
   def destroy
     @paper.destroy
     respond_to do |format|
-      format.html { redirect_to researcher_papers_url(@researcher), notice: 'Paper was successfully destroyed.' }
+      format.html { redirect_to researcher_papers_url(@researcher), notice: 'تم حذف المقالة بنجاح.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.    
-    def set_researcher
+    def set_researcher      
       @researcher = current_researcher
     end
 

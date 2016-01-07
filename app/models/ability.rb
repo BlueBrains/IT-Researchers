@@ -7,6 +7,7 @@ class Ability
     researcher ||= guest # Guest user if there's no user
     # Define abilities for the passed in user here. For example:
     #
+    
       if researcher.has_role? :admin
         can :manage, :all
       else

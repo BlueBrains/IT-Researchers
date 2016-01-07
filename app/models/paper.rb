@@ -41,6 +41,6 @@ class Paper
     @similar ||= self.class.similar_to self
   end
 
-  #  searchkick language: "arabic"
+  #searchkick language: "arabic"
 end
 

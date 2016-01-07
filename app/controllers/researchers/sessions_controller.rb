@@ -8,9 +8,10 @@ class Researchers::SessionsController < Devise::SessionsController
     respond_with(resource, serialize_options(resource), :layout => false)   
   end
   # POST /resource/sign_up
-  def create
-    #byebug    
-    super         
+  def create        
+    super do |researcher|
+      researcher.add_role :researcher
+    end         
   end
 
   # DELETE /resource/sign_out

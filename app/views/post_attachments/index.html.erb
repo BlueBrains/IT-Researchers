@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Post Attachments</h1>
+<h1>مرفقات المنشور</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Paper</th>
-      <th>Fname</th>
+      <th>المقالة</th>
+      <th>اﻻسم</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,9 +16,9 @@
       <tr>
         <td><%= post_attachment.paper_id %></td>
         <td><%= post_attachment.fname %></td>
-        <td><%= link_to 'Show', post_attachment %></td>
-        <td><%= link_to 'Edit', edit_post_attachment_path(post_attachment) %></td>
-        <td><%= link_to 'Destroy', post_attachment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'عرض', post_attachment %></td>
+        <td><%= link_to 'تعديل', edit_post_attachment_path(post_attachment) %></td>
+        <td><%= link_to 'حذف', post_attachment, method: :delete, data: { confirm: 'هل أنت متأكد?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Post attachment', new_post_attachment_path %>
+<%= link_to 'مرفق جديد', new_post_attachment_path %>

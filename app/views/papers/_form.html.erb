@@ -7,7 +7,7 @@
           <%= form_for([@researcher,@paper]) do |f| %>
             <% if @paper.errors.any? %>
               <div id="error_explanation">
-                <h2><%= pluralize(@paper.errors.count, "error") %> prohibited this paper from being saved:</h2>
+                <h2><%= pluralize(@paper.errors.count, "error") %> منعت هذه المقالة من الحفظ:</h2>
                 <ul>
                 <% @paper.errors.full_messages.each do |message| %>
                   <li><%= message %></li>
@@ -35,7 +35,7 @@
                               {:class => "chosen-select"}%>    
               </div><br />            
               <div class="field">
-                 <%= f.label :other_researchers %><br>
+                 <%= f.label t(:other_researchers) %><br>
                  <%= f.select :researcher_ids,
                     options_from_collection_for_select(
                                                         Researcher.all.ne(_id: current_researcher.id),
@@ -49,11 +49,11 @@
                </div>
               <%= f.fields_for :post_attachments do |p| %>
                  <div class="field">
-                   <%= p.label :file %><br>
+                   <%= p.label t(:file) %><br>
                    <%= p.file_field :file, :multiple => true, name: "post_attachments[file][]" %>
                  </div>
               <% end %>                
-              <%= f.label :state %><br>
+              <%= f.label t(:state) %><br>
               <%= f.select(:state, options_for_select(
                   [
                     ['publish', 'published', { 'class' => 'published_paper' }],
@@ -62,15 +62,15 @@
               )) %>
               </div>
               <div class="field">
-                <%= f.label :tags %><br />    
+                <%= f.label t(:tags) %><br />    
                 <%= f.text_field :tags, "data-role" => "tagsinput", "value"=> @paper.tags %>    
               </div>
               <div class="field">
-                <%= f.label :keywords %><br />    
+                <%= f.label t(:keywords) %><br />    
                 <%= f.text_field :keywords, "data-role" => "tagsinput", "value"=> @paper.keywords %>    
               </div>              
               <div class="actions">
-                <%= f.submit %>
+                <%= f.submit t(:add_the_paper) %>
               </div>
           <% end %>
         </div>
