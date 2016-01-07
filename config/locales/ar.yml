@@ -98,6 +98,9 @@ ar:
       category:
         one: "التصنيف العلمي"
         other: "التصنيفات العلمية"
+      flag:
+        one: "اﻹبلاغ"
+        other: "اﻹبلاغات"
       post_attachment:
         one: "المرفق"
         other: "المرفقات"
