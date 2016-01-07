@@ -21,7 +21,7 @@
                     <a style="color: white;" onclick="notification()">الإشعارات</a>
                     <span class="badge"><%= current_researcher.papers.where(seen: false , active: true).count %></span>
                     &nbsp;|&nbsp;
-                    <span class="glyphicon glyphicon-setting" aria-hidden="true"></span>&nbsp;
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;
                     <a href="#researcher_panel"  style="color: white;" >لوحة تحكم الباحث</a>
                     </p>
                 <% else %>
