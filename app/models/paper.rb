@@ -8,6 +8,7 @@ class Paper
   has_many :post_attachments
   accepts_nested_attributes_for :post_attachments
   belongs_to :category
+  accepts_nested_attributes_for :comments
   
   field :title
   slug :title
@@ -25,6 +26,8 @@ class Paper
   field :appendices
   
   field :state
+  field :active, type: Boolean 
+  field :seen, type: Boolean 
   field :likers, type: Array
   field :likes, type: Integer
   field :times_seen, type: Integer
@@ -40,5 +43,6 @@ class Paper
 
   validates_presence_of :title, :abstract, :introduction, :valuation, :conclusion
   #  searchkick language: "arabic"
+
 end
 

@@ -1,5 +1,6 @@
 class ResearchersController < Devise::RegistrationsController
-before_filter :configure_sign_up_params, only: [:create]
+    before_filter :authenticate_researcher!
+    before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up

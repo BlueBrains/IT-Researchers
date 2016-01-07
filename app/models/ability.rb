@@ -8,11 +8,17 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
       if researcher.has_role? :admin
-         can :manage, :all
+        can :manage, :all
       else
-        can :read, Paper unless researcher.has_role? :block
-        #can :create, Paper if researcher.has_role? :researcher
-        can [:update, :destroy], Paper, :researcher_id => researcher._id  if researcher.has_role? :researcher
+        unless researcher.has_role? :blocked
+          can [:index, :show], Paper
+          can [:create, :new], Paper if researcher.has_role? :researcher
+          can [:update, :destroy], Paper, :researcher_id => researcher._id  if researcher.has_role? :researcher
+        end
+      #else
+      #  can :read, Paper unless researcher.has_role? :block
+      #  #can :create, Paper if researcher.has_role? :researcher
+      #  can [:update, :destroy], Paper, :researcher_id => researcher._id  if researcher.has_role? :researcher
       end
     #
     # The first argument to `can` is the action you are giving the user
