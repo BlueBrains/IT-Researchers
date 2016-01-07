@@ -43,8 +43,8 @@ class Researcher
 
 
   #field :_id, type: String, default: ->{ username }
-  field :general_info,          type:String
-  field :phone,                 type:String
+  field :general_info,         type:String
+  field :phone,                type:String
   field :address,              type:String
   field :birthdate,            type:Date
   ## Lockable

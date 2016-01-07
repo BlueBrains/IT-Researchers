@@ -15,6 +15,7 @@
 							<div id="like">
 								<span id="like_num">likes  &nbsp; <%= @paper.likes %></span><br>
 								<span id="thumbs_link">
+								<%= link_to "Download", paper_download_path(@paper.id)%>
 								<% if ((current_researcher.likes.nil?) || (!current_researcher.likes.include?(@paper.id))) %>
 									<a class="glyphicon glyphicon-thumbs-up" style="color: rgb(191, 231, 205) ! important;" onclick="like_unlike()"></a>
 
@@ -118,7 +119,7 @@
 						<div class="media">
 		                  <div class="media-left">
 			                  <a href="#">
-			                    <img class="media-object" src="images/co.png" alt="">
+			                    <img class="media-object" src="/images/co.png" alt="">
 			                  </a>
 		                  </div>
 		                  <div class="media-body">

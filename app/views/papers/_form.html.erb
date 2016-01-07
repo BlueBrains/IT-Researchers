@@ -4,7 +4,6 @@
     <div class="container">
       <h2 class="heading text-center">إضافة البحث العلمي</h2>
         <div class="single-inline">
-
           <%= form_for([@researcher,@paper]) do |f| %>
             <% if @paper.errors.any? %>
               <div id="error_explanation">
@@ -20,34 +19,40 @@
            <div class="field">
            <iframe src="http://localhost:3000/home/get_xopus/document" width="100%" style="height: 710px;" id="rails_iframe">error!</iframe>
               
-          </div>
+          </div>          
             <div class="field">
-              <%= f.label :conclusion %><br>
-              <%= f.cktext_area :conclusion, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-            </div><br>
-            <div class="field">
-            <%= f.label :appendices %><br>
-              <%= f.cktext_area :appendices, :class => 'someclass', :ckeditor => {:uiColor => '#2C333D', :language => 'ar'} %>
-            </div><br>  
-            <div class="field">
-            <%= f.label :state %><br>
-            <%= f.select(:state, options_for_select(
-                [
-                  ['publish', 'published', { 'class' => 'published_paper' }],
-                  ['draft', 'draft', { 'class' => 'draft_paper' }]
-                ], f.object.state
-            )) %>
-            </div>
-            <div class="field">
-              <%= f.label :tags %><br />    
-              <%= f.text_field :tags, "data-role" => "tagsinput", "value"=> @paper.tags %>    
-            </div>
+               <%= f.label :other_researchers %><br>
+               <%= f.select :researcher_ids,
+                  options_from_collection_for_select(
+                                                      Researcher.all.ne(_id: current_researcher.id),
+                                                      :id,
+                                                      :username,
+                                                      {:selected => @paper.researchers.map {|res| res.id} }
+                                                    ),
+                    {},
+                    {:multiple => true, :size => 3, :name => 'paper[researcher_ids][]', :class => "chosen-select"}%>
+
+             </div>
             <%= f.fields_for :post_attachments do |p| %>
                <div class="field">
                  <%= p.label :file %><br>
                  <%= p.file_field :file, :multiple => true, name: "post_attachments[file][]" %>
                </div>
-             <% end %>
+             <% end %>                
+              <%= f.label :state %><br>
+              <%= f.select(:state, options_for_select(
+                  [
+                    ['publish', 'published', { 'class' => 'published_paper' }],
+                    ['draft', 'draft', { 'class' => 'draft_paper' }]
+                  ], f.object.state
+              )) %>
+              </div>
+              <div class="field">
+                <%= f.label :tags %><br />    
+                <%= f.text_field :tags, "data-role" => "tagsinput", "value"=> @paper.tags %>    
+              </div>
+  
+
             <div class="actions">
               <%= f.submit %>
             </div>
@@ -56,11 +61,16 @@
     </div> 
   </div>
 </div>
-          <script type="text/javascript">  
-          $( "#new_paper" ).submit(function( event ) {
-            var e = $(".bootstrap-tagsinput").find("input")[0];
-            var ee = $(':focus').context.activeElement;
-            if(ee==e)
-              event.preventDefault();
-          });
-          </script>
+ 
+<script type="text/javascript">  
+$( "#new_paper" ).submit(function( event ) {
+  var tag_element = $(".bootstrap-tagsinput").find("input")[0];
+  var active_element = $(':focus').context.activeElement;
+  if(tag_element==active_element)
+    event.preventDefault();  
+});
+$(".chosen-select").chosen({disable_search_threshold: 2,
+                            no_results_text: "Oops, nothing found!",
+                            width: "20%",
+                            max_selected_options: 3});
+</script>

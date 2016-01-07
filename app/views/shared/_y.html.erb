@@ -1,0 +1,6 @@
+<%=
+@xmldoc.get_elements('//title')%><br><%=
+@xmldoc.elements.each("article "){ 
+           |e| puts "Title : " + e.attributes["title"].to_s
+        }
+        %>

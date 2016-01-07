@@ -21,10 +21,16 @@ class PapersController < ApplicationController
   end
 
   def create
-    @paper = current_researcher.papers.new(paper_params)
-
-    respond_to do |format|
+    @paper = current_researcher.papers.new(paper_params)    
+    respond_to do |format|      
       if @paper.save
+        params[:paper][:researcher_ids].shift
+        if !params[:paper][:researcher_ids].nil?
+          params[:paper][:researcher_ids].each do |res|
+            researcher = Researcher.find(res)
+            @paper.researchers.push(researcher)
+          end
+        end
         if !params[:post_attachments].nil?
           params[:post_attachments]['file'].each do |a|
             @post_attachment = @paper.post_attachments.create!(:file => a)
@@ -37,11 +43,68 @@ class PapersController < ApplicationController
         format.json { render json: @paper.errors, status: :unprocessable_entity }
       end
     end
+    require "rexml/document"
+      xmlfile = File.new(Rails.root.join('public',current_researcher.id.to_s+'.xml'))
+      @xmldoc = REXML::Document.new(xmlfile)
+      @paper.title = @xmldoc.get_elements('article/title')[0].to_s.gsub(/<\/?[^>]+>/, '')
+      @paper.abstract = @xmldoc.get_elements('article/abstract')[0].to_s.gsub(/<\/?[^>]+>/, '')
+      @paper.introduction = @xmldoc.get_elements('article/introduction')[0].to_s.gsub(/<\/?[^>]+>/, '')
+      @paper.save
+
+       save_path = Rails.root.join('public',@paper.id.to_s+'.xml')
+      File.open(save_path, "w+") do |f|
+        f.write(@xmldoc)
+      end
+          
+  end
+  def self.xmldoc
+    @@xmldoc
   end
 
+   def download
+      document = Nokogiri::XML(File.read(Rails.root.to_s+'/public/'+params[:paper_id].to_s+'.xml'))
+      template = Nokogiri::XSLT(File.open(Rails.root.to_s+'/public/xopus/examples/simple/xsl/stylesheet.xsl','rb'))
+      #render text:document
+
+      #options = { toc: { xsl_style_sheet: Rails.root.join('/xopus/examples/rich-text/xsl', 'stylesheet.xsl').to_s } }
+      #pdf = WickedPdf.new.pdf_from_string(document, options)
+
+
+      html_document = template.transform(document)
+      #render :text =>document
+      pdf = WickedPdf.new.pdf_from_string(html_document)
+       send_data(pdf, 
+      :filename    => "my_pdf_name.pdf", 
+      :disposition => 'attachment')
+  end
+
+
+  def koko
+
+     require "rexml/document"
+      xmlfile = File.new(Rails.root.join('public','5675ba2c8db1b01b0c000001.xml'))
+      @xmldoc = REXML::Document.new(xmlfile)
+       
+      render :layout=>false     
+  end  
+
   def update
-    respond_to do |format|
+    respond_to do |format|      
       if @paper.update(paper_params)
+        params[:paper][:researcher_ids].shift
+        if !params[:paper][:researcher_ids].nil?
+          @paper.researcher_ids.clear
+          @paper.researchers.push(current_researcher)
+          params[:paper][:researcher_ids].each do |res|
+            researcher = Researcher.find(res)
+            @paper.researchers.push(researcher)
+          end
+        end
+        if !params[:post_attachments].nil?
+          params[:post_attachments]['file'].each do |a|
+            @post_attachment = @paper.post_attachments.create!(:file => a)
+          end
+        end        
         format.html { redirect_to [@researcher,@paper], notice: 'Paper was successfully updated.' }
         format.json { render :show, status: :ok, location: @paper }
       else
@@ -72,7 +135,7 @@ class PapersController < ApplicationController
     def paper_params      
       params.require(:paper).permit(:title, :abstract, :introduction, :literature_survey, 
       :notation, :theory, :specification, :implementation,
-      :valuation, :related_work, :further_work, :conclusion, :appendices, :state, :tags)
+      :valuation, :related_work, :further_work, :conclusion, :appendices, :state, :tags, :researcher_ids)
     end
 
 end
