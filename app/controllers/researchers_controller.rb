@@ -26,7 +26,8 @@ class ResearchersController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    update_resource(resource, update_params)
+    update_resource(resource, researcher_params)
+    render :file=>'researchers/show'
   end
 
   # DELETE /resource

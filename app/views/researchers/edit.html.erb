@@ -1,0 +1,38 @@
+ <div class="content">
+    <!--contact-->
+   <div class="contact-section">
+      <div class="container">
+      <h2 class="heading text-center">بيانات الملف الشخصي</h2>
+      	<h1 class="heading text-center" ><%= @researcher.username %></h1>
+        <div class="contact-main">
+          
+              <%= form_for(@researcher) do |f| %>
+              <div class="col-md-6 contact-grid">
+                  <%= f.label :username %><br>
+                  <%= f.text_field :username, :class => 'someclass'%>
+
+                  <%= f.label :email %><br>
+                  <%= f.text_field :email, :class => 'someclass'%>
+                  
+                  <%= f.label :websiteurl %><br>
+                  <%= f.text_field :websiteurl, :class => 'someclass'%>
+
+                  <%= f.label :birthdate %><br>
+                  <%= f.text_field :birthdate, :class => 'someclass'%>
+
+                  <%= f.submit %>
+              </div> 
+              <div class="col-md-6 contact-grid">  
+                <%= f.label :address %><br>
+                <%= f.text_field :address, :class => 'someclass'%>
+
+                
+                <%= f.label :phone %><br>
+                <%= f.text_field :phone, :class => 'someclass'%>
+              </div>  
+              <%end%>
+	        
+        </div> 
+      </div>
+  </div>		
+</div> 
