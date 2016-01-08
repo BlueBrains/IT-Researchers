@@ -1,1 +1,13 @@
-<%=paginate @results%>
+<div class="row">                    
+  <%@results.each do |paper|%>
+    <%= render partial: 'shared/paper_preview', :locals => {:paper=> paper}%>
+  <%end%>
+</div>
+<br>
+<div class="row text-center">
+   <div class="col-lg-12">
+     <ul class="pagination">
+       <%= paginate @results %>
+     </ul>
+   </div>
+</div>

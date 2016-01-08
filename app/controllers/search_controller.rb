@@ -1,6 +1,8 @@
 class SearchController < ApplicationController
   def new              
-    @results=Paper.search(*search_params)                 
+    Paper.reindex
+    @results=Paper.search("test")                 
+
     respond_to do |format|
       format.html {redirect_to root_path}
       format.js      

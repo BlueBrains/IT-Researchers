@@ -27,6 +27,9 @@ gem 'devise','~> 3.5'
 
 gem 'mongoid-tree', :require => 'mongoid/tree'
 
+#search gem
+gem 'searchkick','~> 1.0'
+
 #authorization gem
 gem 'cancancan', '~> 1.10'
 #for roles
