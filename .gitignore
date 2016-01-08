@@ -17,3 +17,4 @@
 /tmp
 /public/uploads
 Gemfile.lock
+.byebug_history

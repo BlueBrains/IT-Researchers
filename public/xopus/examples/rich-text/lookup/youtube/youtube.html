@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<title>YouTube</title>
+		<style type='text/css'>
+			body {
+				font-family: Arial, Helvetica, sans-serif;
+			}
+
+			#column1 {
+				position: absolute;
+				top:0; left:0; bottom:0; right:250px;
+				padding:5px 5px 0 5px;
+				overflow-y: scroll;
+			}
+
+			#column2 {
+				position:absolute;
+				top:0; right:0;
+				width: 250px;
+				background:white;
+			}
+
+			#search {
+				padding:0 0 0 24px;
+			}
+
+			label {
+				font-size: 16px;
+				font-weight: bold;
+				line-height: 1.7em;
+			}
+
+			#tags {
+				font-size: 16px;
+			}
+
+			#column1 .img {
+				display:inline-block;
+				float:left;
+				margin:3px 5px 3px 1px;
+				padding:3px 3px 10px 3px;
+				cursor: pointer;
+				cursor: hand;
+				vertical-align: middle;
+			}
+
+			#column1 .img img {
+				width:210px; height:158px;
+			}
+
+			#column1 .img .legend {
+				width:220px;
+				overflow:hidden;
+				text-overflow:ellipsis;
+				white-space:nowrap;
+				text-align:center;
+				font-size:80%;
+			}
+
+			#column1 .img:hover {
+				background-color: #efefef;
+			}
+		</style>
+		<script src='https://apis.google.com/js/client.js'></script>
+		<script type='text/javascript'>
+			function init() {
+				// this API key will only work for localhost and xopus.com, use your own if you want to make this work on other domains
+				gapi.client.setApiKey('AIzaSyAXOUuG2-3Wl9-g_2zCRsLCHMke6VyDJbw');
+				gapi.client.load('youtube', 'v3', function() {
+					searchVideo();
+					document.getElementById('search').onsubmit = go;
+				});
+			}
+
+			function searchVideo() {
+				var q = document.getElementById('tags').value;
+
+				var request = gapi.client.youtube.search.list({
+					part: 'snippet',
+					type: 'video',
+					q: q
+				});
+
+				request.execute(function(response) {
+					jsonYouTubeFeed(response.result);
+				});
+			}
+
+			function go(event) {
+				event.preventDefault();
+				searchVideo();
+			}
+
+			function jsonYouTubeFeed(result) {
+				cleanup();
+				var entries = result.items;
+				for (var i=0; i < entries.length; i++) {
+					var entry = entries[i];
+					var id = entry.id.videoId;
+					var title = entry.snippet.title;
+					var thumbnail = entry.snippet.thumbnails.medium.url;
+					addItem(id, title, thumbnail);
+				}
+			}
+
+			function cleanup() {
+				document.getElementById('column1').innerHTML = '';
+				document.getElementById('column1').scrollTop = 0;
+			}
+
+			function addItem(id, title, thumbnail) {
+				var div = document.createElement('div');
+				div.className = 'img';
+				div.id = id;
+				var legend = document.createElement('div');
+				legend.className = 'legend';
+				legend.innerHTML = title;
+				var img = document.createElement('img');
+				img.setAttribute('src', thumbnail);
+				div.onclick = chooseVideo;
+				div.appendChild(img);
+				div.appendChild(legend);
+				document.getElementById('column1').appendChild(div);
+			}
+
+			function chooseVideo(evt) {
+				return top.choose({src: 'http://www.youtube.com/v/' + this.id});
+			}
+
+			window.onload = init;
+		</script>
+	</head>
+	<body>
+		<div id="column1">
+		</div>
+		<div id="column2">
+			<img src="logo.png" width="250"/>
+			<form id="search">
+				<p>
+					<label for="tags" onclick="cleanup()">Find a video of...</label><br />
+					<input id="tags" value="wooden shoes"/>
+					<input id="go" type="submit" value="GO" />
+				</p>
+		  </form>
+		</div>
+  </body>
+</html>

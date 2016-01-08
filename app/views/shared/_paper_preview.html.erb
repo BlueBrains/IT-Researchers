@@ -1,11 +1,27 @@
-<div class="col-md-4 news-section-grid" sstyle="border: 1px solid white;">
-    <div class="news-section-grid-right" style="padding-right: 5%;">
-        <a ><%= link_to paper.title,paper%></a>
-        <p><%=paper.times_seen%><br><%= paper.abstract.html_safe if !paper.abstract.nil? %></p>
+<div class="col-md-4 blog-to" style="border: 1px solid rgb(21, 19, 19); margin-right: 5px; width: 32%;">            
+  <div class="blog-top">
+    <div class="blog-left">
+      <b><%= paper.created_at.strftime("%Y") %></b>
+      <span><%= paper.created_at.strftime("%m-%d") %></span>
+      <hr>
+      <div class="row">
+      	<center>
+      	<div class="col-lg-6">
+      	<span class="glyphicon glyphicon-eye-open " style="font-size: 1em ! important; width: 20%;"> <%=paper.times_seen%></span>
+      	</div> 
+      	<div class="col-lg-6">
+      	<span class="glyphicon glyphicon-thumbs-up " style="font-size: 1em ! important; width: 20%;"> <%=paper.likes%></span>
+      	</div>
+      	</center> 
+      </div>  
     </div>
-    <div class="news-section-grid-left">
-        <h3><%=paper.updated_at.strftime("%Y")%></h3>
-        <h3><%=paper.updated_at.strftime("%m-%d")%></h3>
+    <div class="blog-right">
+        <h3 class="fast"><%= link_to paper.title,paper ,:style=>"color: black;"%></h3>
+        <hr>
+        <p class="sed"><%= paper.abstract.html_safe if !paper.abstract.nil? %></p> 
+    </div> 
+    <div class="clearfix"> 
+    <%= link_to 'Show', paper ,:class=> "more"%>
     </div>
-    <div class="clearfix"></div>
+  </div>
 </div>

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   
+  
   mount Ckeditor::Engine => '/ckeditor'
   mount Wirispluginengine::Engine => 'wirispluginengine'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -8,10 +9,15 @@ Rails.application.routes.draw do
   # authenticated :researcher do
   #   root :to => 'researcher#index', as: :authenticated_root
   # end
+  resources :xopus_pdfs do
+    post :create_xml_temp, on: :collection
+  end
+
   get 'category/index'
 
   as :researcher do   
     root :to => 'home#index'
+    get 'home/get_xopus/:id' =>'home#get_xopus'
     get 'papers/:id' =>'home#show'
     get 'home/index'
     get 'search', :to => 'search#new',:as => 'search'
@@ -21,7 +27,7 @@ Rails.application.routes.draw do
     get 'paper/:id/like' => "home#like_it", :as => 'like_paper'
     devise_for :researchers, controllers: { sessions: 'researchers/sessions', registrations: 'researchers',confirmations: 'researchers/confirmations' }#, passwords: 'researchers/passwords', omniauth_callbacks: 'researchers/omniauth_callbacks' }
   end
-
+   
   as :researcher do        
      resources :researchers do
       resources :papers
@@ -29,6 +35,7 @@ Rails.application.routes.draw do
   end
 
 resources :papers, only: [:show] do
+  get '/download/:paper_id' =>'papers#download', :as => 'download'
   resources :comments
 end
 

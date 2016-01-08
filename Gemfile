@@ -21,7 +21,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 #ODM, this is essential for libraries like devise
 gem 'mongoid', '~> 5'
 gem 'bson_ext'
-
+#for download pdf and convert
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 #authentication gem
 gem 'devise','~> 3.5'
 

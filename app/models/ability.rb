@@ -7,13 +7,14 @@ class Ability
     researcher ||= guest # Guest user if there's no user
     # Define abilities for the passed in user here. For example:
     #
+    
       if researcher.has_role? :admin
         can :manage, :all
       else
         unless researcher.has_role? :blocked
           can [:index, :show], Paper
           can [:create, :new], Paper if researcher.has_role? :researcher
-          can [:update, :destroy], Paper, :researcher_id => researcher._id  if researcher.has_role? :researcher
+          can [:edit, :update, :destroy], Paper, :id => researcher.id  if researcher.has_role? :researcher
         end
       #else
       #  can :read, Paper unless researcher.has_role? :block

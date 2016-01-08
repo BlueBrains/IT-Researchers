@@ -589,3 +589,6 @@ ar:
   title: "العنوان"
   content: "المحتوى"
   tags: "الوسوم"
+  file: "الملف"
+  keywords: "كلمات مفتاحية"
+  other_researchers: "باحثون آخرون"

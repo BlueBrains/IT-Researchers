@@ -28,7 +28,7 @@ class PostAttachmentsController < ApplicationController
 
     respond_to do |format|
       if @post_attachment.save
-        format.html { redirect_to @post_attachment, notice: 'Post attachment was successfully created.' }
+        format.html { redirect_to @post_attachment, notice: 'تم رفع المرفقات بنجاح.' }
         format.json { render :show, status: :created, location: @post_attachment }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class PostAttachmentsController < ApplicationController
   def update
     respond_to do |format|
       if @post_attachment.update(post_attachment_params)
-        format.html { redirect_to @post_attachment, notice: 'Post attachment was successfully updated.' }
+        format.html { redirect_to @post_attachment, notice: 'تم تعديل المرفقات بنجاح.' }
         format.json { render :show, status: :ok, location: @post_attachment }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class PostAttachmentsController < ApplicationController
   def destroy
     @post_attachment.destroy
     respond_to do |format|
-      format.html { redirect_to post_attachments_url, notice: 'Post attachment was successfully destroyed.' }
+      format.html { redirect_to post_attachments_url, notice: 'تم حذف المرفقات بنجاح.' }
       format.json { head :no_content }
     end
   end

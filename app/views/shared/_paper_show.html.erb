@@ -1,11 +1,27 @@
   <div class="content">
   <!-- Single-page -->
     <div class="single-page">
+    	<%if(!current_researcher.nil? && (current_researcher.id==@paper.researchers.first.id))%>
+    	<div calss="row" style="margin-bottom: 5%;">
+    		<div class="col-lg-2"></div>
+    		<div class="col-lg-8">
+		    	<ol class="breadcrumb">
+		    	    <%if(@researcher.present?)%>
+					  <li><%= link_to 'العودة إلى جميع المقالات', researcher_papers_path(@researcher) %></li>
+					  <li><%= link_to 'تعديل المقالة', edit_researcher_paper_path(@researcher,@paper) %></li>
+					<%end%>
+					  <li class="active"><strong>الحالة : <%= @paper.state %></strong></li>
+				</ol>
+			</div>
+			<div class="col-lg-2"></div>
+		</div>
+		<%end%>
+		<br>
+	<div calss="row">
       <div class="container">
       	<h2 class="heading text-center"><%= @paper.title %></h2>
       	<div class="blog-to1 service_info" >		
 			<p id="notice"><%= notice %></p>
-
 			<div id="paper-content">
 				<div class="blog-top" style="text-align: right;">
 						<div class="blog-left">
@@ -15,30 +31,33 @@
 							<div id="like">
 								<span id="like_num">likes  &nbsp; <%= @paper.likes %></span><br>
 								<span id="thumbs_link">
-								<% if ((current_researcher.likes.nil?) || (!current_researcher.likes.include?(@paper.id))) %>
-									<a class="glyphicon glyphicon-thumbs-up" style="color: rgb(191, 231, 205) ! important;" onclick="like_unlike()"></a>
-
-								<%else %>
-									<a class="glyphicon glyphicon-thumbs-down" style="color: rgb(191, 231, 205) ! important;" onclick="like_unlike()"></a>
+								<%if(!current_researcher.nil?)%>
+									<% if ((current_researcher.likes.nil?) || (!current_researcher.likes.include?(@paper.id))) %>
+										<a class="glyphicon glyphicon-thumbs-up" style="color: rgb(191, 231, 205) ! important;" onclick="like_unlike()"></a>
+									<%else %>
+										<a class="glyphicon glyphicon-thumbs-down" style="color: rgb(191, 231, 205) ! important;" onclick="like_unlike()"></a>
+									<%end%>
 								<%end%>
 								</span>
 							</div>
+							<hr>
+							<span class="glyphicon glyphicon-save" style="font-size: 1em ! important; color: rgb(191, 231, 205) ! important;"> <%= link_to "تحيمل المقالة", paper_download_path(@paper.id) ,:color=> "rgb(191, 231, 205) ! important;"%></span>
 						</div>
 						<div class="top-blog">
-								<a class="fast" href="#"> الكلمات المفتاحية :
-									<% @paper.tags.each do |tag| %>
-								    	 <%= tag %> &nbsp; , &nbsp;
+								<a class="fast"> الكلمات المفتاحية :
+									<% @paper.keywords.each do |key| %>
+								    	 <%= key %> &nbsp; , &nbsp;
 								    <% end %> 
 								    <br>
+								<p>الإشارات المرجعية :  
+						  		<% @paper.tags.each do |tag| %>
+								   <a><%= tag %></a> | 
+								<% end %>
+								</p>
 								<% if !@paper.abstract.nil? %>	      
 								    <%= @paper.abstract.html_safe %>
 								<% end %>     
 								</a>
-						  		<p>الإشارات المرجعية :  
-						  		<% @paper.tags.each do |tag| %>
-								   <a href="#"><%= tag %></a> | 
-								<% end %>
-								</p>
 								<% if !@paper.introduction.nil? %>	  
 										<p class="sed">
 										  <strong>Literature Survay:</strong>
@@ -101,12 +120,6 @@
 								<%end%>	  									
 						</div> 
 				</div>
-				<div id='attachment'>
-					<% @paper.post_attachments.each do |attach| %>
-					   <p><%=File.basename(attach.file_identifier)%></p>
-					    <p> <%=  attach.file_url %> </p>
-					<% end %>                
-				</div>					
 			</div>
 			<div class="clearfix"> </div>
 			<div class="row">
@@ -126,6 +139,15 @@
 			</center>
 			</div>
 		</div>	
+		<h3>المرفقات</h3><br>
+		<div class='row'>
+					<% @paper.post_attachments.each do |attach| %>
+					   <div class='col-med-3'>
+					   	<a onclick="show_details('<%=File.basename(attach.file_identifier)%>')"><%=File.basename(attach.file_identifier)%></a>
+					   	<input type="hidden" id="<%=File.basename(attach.file_identifier)%>" value="<%=  attach.file_url %>">
+					   </div>	
+					<% end %>                
+				</div>
      		<div class="single-middle">
      			<h3>التعليقات</h3>
 				<div id='comments'>
@@ -153,14 +175,44 @@
 					<%= render :partial => 'comments/form', :locals => {:model => @paper, :comment => Comment.new} %>
 				</div>
 			<% else %>
-				<p>you should be a member to leave a comment <%= link_to "Sign Up", new_researcher_registration_path %> 
+				<p>يجب أن تكون عضوا حتى تتمكن من إضافة تعليق <%= link_to "Sign Up", new_researcher_registration_path %> 
 				| <%= link_to "Log In", new_researcher_session_path %> </p>
 			<%end%>
 			</div>
   </div>
 </div>
-
+</div>
 <div id"itemform"></div>
+
+    <div id="attachModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">الملحقات</h4>
+          </div>
+          <div class="modal-body">
+          		<div class="row">
+          			اسم الملف المرفق : 
+          			<input type="text" id="filename" disabled style="width: 70%;">
+          		</div>
+          		<br>
+          		<br>
+          		الملف المرفق : 
+
+          		<div class="row" id="innerview" width='100%'>
+          		</div>	
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">إغلاق</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+ 
 
 <script src="https://js.pusher.com/3.0/pusher.min.js" ></script>
 <script>
@@ -243,4 +295,10 @@ function like_unlike() {
     return xmlhttp.responseText;
 }
 
+function show_details(str) {
+
+	document.getElementById("filename").value=str;
+	document.getElementById("innerview").innerHTML="<center><iframe src='"+document.getElementById(str).value+"' >error!</iframe></center>";
+	$("#attachModal").modal('show');
+  }
 </script>		

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="robots" content="noindex">
+
+    <title>Simple example</title>
+
+    <!-- Start Xopus -->
+    <link rel="stylesheet" type="text/css" href="http://localhost:3000/xopus/examples/simple/css/wysiwyg.css"/>
+    <script type="text/javascript" src="http://localhost:3000/xopus/xopus/xopus.js"></script>
+  </head>
+  <body>
+    <div id="page">
+      <!-- The Xopus Canvas -->
+      <div xopus="true">
+        <xml>
+          <x:config version="1.0" xmlns:x="http://www.xopus.com/xmlns/config">
+            <x:javascript src="http://localhost:3000/xopus/examples/simple/js/save.js"/>
+            <x:javascript>Editor.SpellChecking.addPersonalWords("en-US", ["Xopus", "wysiwyg"]);</x:javascript>
+            <%if @filename=="document"%>
+            <x:pipeline xml="http://localhost:3000/xopus/examples/simple/xml/<%=@filename%>.xml" xsd="http://localhost:3000/xopus/examples/simple/xsd/schema.xsd">
+            <% else %>
+              <x:pipeline xml="http://localhost:3000/<%=@filename%>.xml" xsd="http://localhost:3000/xopus/examples/simple/xsd/schema.xsd">
+            <%end%>
+              <x:view name="WYSIWYG View">
+                <x:transform xsl="http://localhost:3000/xopus/examples/simple/xsl/stylesheet.xsl"/>
+              </x:view>
+              <x:view name="Tags On View">
+                <x:transform xsl="http://localhost:3000/xopus/examples/simple/xsl/stylesheet.xsl"/>
+                <x:tagTransform/>
+              </x:view>
+              <x:view name="XML View">
+                <x:treeTransform/>
+              </x:view>
+            </x:pipeline>
+            <x:import src="http://localhost:3000/xopus/examples/simple/config/config.xml"/>
+          </x:config>
+        </xml>
+      </div>
+    </div>
+  </body>
+</html>
