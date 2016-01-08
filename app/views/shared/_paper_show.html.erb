@@ -43,81 +43,87 @@
 							<hr>
 							<span class="glyphicon glyphicon-save" style="font-size: 1em ! important; color: rgb(191, 231, 205) ! important;"> <%= link_to "تحيمل المقالة", paper_download_path(@paper.id) ,:color=> "rgb(191, 231, 205) ! important;"%></span>
 						</div>
-						<div class="top-blog">
-								<a class="fast"> الكلمات المفتاحية :
+						<div class="top-blog">								
+								<div id ="keywords">
+									<a class="fast"> الكلمات المفتاحية : </a>
 									<% @paper.keywords.each do |key| %>
 								    	 <%= key %> &nbsp; , &nbsp;
 								    <% end %> 
 								    <br>
-								<p>الإشارات المرجعية :  
-						  		<% @paper.tags.each do |tag| %>
-								   <a><%= tag %></a> | 
-								<% end %>
-								</p>
-								<% if !@paper.abstract.nil? %>	      
-								    <%= @paper.abstract.html_safe %>
-								<% end %>     
-								</a>
-								<% if !@paper.introduction.nil? %>	  
-										<p class="sed">
-										  <strong>Literature Survay:</strong>
-										</p>
-										  <%= @paper.introduction.html_safe %>
-								<%end%>	  	
+								</div>
+								<div id="abstract">
+									<% if !@paper.abstract.nil? %>	      
+									    <%= @paper.abstract %>
+									<% end %>
+								</div>     								
+								<div id ="introduction">
+									<% if !@paper.introduction.nil? %>	  
+											<p class="sed">
+											  <strong>Literature Survay:</strong>
+											</p>
+											  <%= @paper.introduction %>
+									<%end%>	  	
+								</div>
 								<% if !@paper.notation.nil? %>	  
 										<p class="sed">
 										  <strong>Notation:</strong>
 										</p>
-										  <%= @paper.notation.html_safe %>
+										  <%= @paper.notation %>
 								<%end%>	  		
 								<% if !@paper.theory.nil? %>	  
 										<p class="sed">
 										  <strong>Theory:</strong>
 										</p>
-										  <%= @paper.theory.html_safe %>
+										  <%= @paper.theory %>
 								<%end%>	  			
 								<% if !@paper.specification.nil? %>	  
 										<p class="sed">
 										  <strong>Specification:</strong>
 										</p>
-										  <%= @paper.specification.html_safe %>
+										  <%= @paper.specification %>
 								<%end%>	  				
 								<% if !@paper.implementation.nil? %>	  
 										<p class="sed">
 										  <strong>Implementation:</strong>
 										</p>
-										  <%= @paper.implementation.html_safe %>
+										  <%= @paper.implementation %>
 								<%end%>	  					
 								<% if !@paper.valuation.nil? %>	 
 									<p class="sed">
 									  <strong>Valuation:</strong>
 									</p>
-									  <%= @paper.valuation.html_safe %>
+									  <%= @paper.valuation %>
 								<%end%>	  						  
 								<% if !@paper.related_work.nil? %>	  
 										<p class="sed">
 										  <strong>Related work:</strong>
 										</p>
-										  <%= @paper.related_work.html_safe %>
+										  <%= @paper.related_work %>
 								<%end%>	  			
 								<% if !@paper.further_work.nil? %>	  
 										<p class="sed">
 										  <strong>Further work:</strong>
 										</p>
-										  <%= @paper.further_work.html_safe %>
+										  <%= @paper.further_work %>
 								<%end%>
 								<% if !@paper.conclusion.nil? %>	  
 									<p class="sed">
 									  <strong>conclusion:</strong>
 									</p>
-									  <%= @paper.conclusion.html_safe %>
+									  <%= @paper.conclusion %>
 								<%end%>	  								  
 								<% if !@paper.appendices.nil? %>	  
 										<p class="sed">
 										  <strong>Appendices:</strong>
 										</p>
-										  <%= @paper.appendices.html_safe %>
+										  <%= @paper.appendices %>
 								<%end%>	  									
+								<div id="tags">
+									<a class="fast">الإشارات المرجعية :  </a>
+							  		<% @paper.tags.each do |tag| %>
+									   <a><%= link_to tag+"#", tag_path(tag)  %></a> | 
+									<% end %>									
+								</div>								
 						</div> 
 				</div>
 			</div>

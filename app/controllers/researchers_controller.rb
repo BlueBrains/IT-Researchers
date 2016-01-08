@@ -66,7 +66,7 @@ class ResearchersController < Devise::RegistrationsController
 	end
 	# If you have extra params to permit, append them to the sanitizer.
 	# def configure_account_update_params
-	#   devise_parameter_sanitizer.for(:account_update) << :attribute
+	#   devise_parameter_sanitizer.for(:account_update) {|u| u.permit(:general_info, :phone, :address, :birthdate, :avatar, :websiteurl)}
 	# end
 
 	# The path used after sign up.

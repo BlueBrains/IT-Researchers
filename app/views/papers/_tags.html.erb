@@ -1,0 +1,19 @@
+<div class="content">
+    <!-- blogs -->
+  <div class="blog">
+    <div class="container">
+      <h2 class="heading text-center">نتائج البحث</h2>
+        <div class="single-inline">
+            <p id="notice"><%= notice %></p>               
+				  <%@results.each do |paper|%>
+				    <%= render partial: 'shared/paper_preview', :locals => {:paper=> paper}%>			    				  
+			    <%end%>
+        </div>
+    </div> 
+  </div>
+</div>    
+<nav>
+  <ul class="pagination blog-pagination">
+    <%= paginate @results %>
+  </ul>
+</nav>  

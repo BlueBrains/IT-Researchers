@@ -4,13 +4,14 @@
           <li><img src="/images/1.jpg" alt="" style="opacity: 0.85;"></li>
         </ul>
             <div class="callbacks_div" style="z-index: 10; margin-top: 22%; margin-left: 5%; margin-right: 37%;">
-              <form style="width: 100%;">           
-              <div class="input-group"  style="opacity: 0.6;">
-                  <input type="text" class="search-form-control " value="عنوان البحث" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'أدخل الكلمات المفتاحية للبحث';}" style="direction: rtl;">
-                  <span class="input-group-btn">
-                    <button type="submit" class="btn-lg btn-search-default" style="border-radius: 0px ! important;" type="button">! ابحث </button>
-                  </span>
+              <%= form_tag("/search", method: "get", style: "width: 100%") do %>                
+                <div class="input-group"  style="opacity: 0.6;">
+                    <input type="text" name = "phrase" class="search-form-control " value="عنوان البحث" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'أدخل الكلمات المفتاحية للبحث';}" style="direction: rtl;">
+                    <span class="input-group-btn">
+                      <button type="submit" class="btn-lg btn-search-default" style="border-radius: 0px ! important;" type="button">! ابحث </button>
+                    </span>
                 </div>
+              <%end%>
               <div class="col-md-12 welcome_top_right" style="text-align: right;">
                 <h2 style="color: white;">أهلا و سهلا</h3>
                 <h3 style="color: white;">الهدف من مشروع الباحثون المعلوماتيون</h5>

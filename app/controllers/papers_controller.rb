@@ -37,29 +37,26 @@ class PapersController < ApplicationController
             @post_attachment = @paper.post_attachments.create!(:file => a)
           end
         end
+        require "rexml/document"
+          xmlfile = File.new(Rails.root.join('public',current_researcher.id.to_s+'.xml'))
+          @xmldoc = REXML::Document.new(xmlfile)
+          @paper.title = @xmldoc.get_elements('article/title')[0].to_s.gsub(/<\/?[^>]+>/, '')
+          @paper.abstract = @xmldoc.get_elements('article/abstract')[0].to_s.gsub(/<\/?[^>]+>/, '')
+          @paper.introduction = @xmldoc.get_elements('article/introduction')[0].to_s.gsub(/<\/?[^>]+>/, '')
+          @paper.save
+
+          save_path = Rails.root.join('public',@paper.id.to_s+'.xml')
+          File.open(save_path, "w+") do |f|
+            f.write(@xmldoc)
+          end      
+
         format.html { redirect_to [@researcher,@paper], notice: 'Paper was successfully created.' }
-        format.json { render :show, status: :created, location: @paper }
+        format.json { render :show, status: :created, location: @paper }          
       else
         format.html { render :new }
         format.json { render json: @paper.errors, status: :unprocessable_entity }
       end
-    end
-    require "rexml/document"
-      xmlfile = File.new(Rails.root.join('public',current_researcher.id.to_s+'.xml'))
-      @xmldoc = REXML::Document.new(xmlfile)
-      @paper.title = @xmldoc.get_elements('article/title')[0].to_s.gsub(/<\/?[^>]+>/, '')
-      @paper.abstract = @xmldoc.get_elements('article/abstract')[0].to_s.gsub(/<\/?[^>]+>/, '')
-      @paper.introduction = @xmldoc.get_elements('article/introduction')[0].to_s.gsub(/<\/?[^>]+>/, '')
-      @paper.save
-
-       save_path = Rails.root.join('public',@paper.id.to_s+'.xml')
-      File.open(save_path, "w+") do |f|
-        f.write(@xmldoc)
-      end
-          
-  end
-  def self.xmldoc
-    @@xmldoc
+    end        
   end
 
    def download
@@ -79,15 +76,13 @@ class PapersController < ApplicationController
       :disposition => 'attachment')
   end
 
-
-  def koko
-
-     require "rexml/document"
-      xmlfile = File.new(Rails.root.join('public','5675ba2c8db1b01b0c000001.xml'))
-      @xmldoc = REXML::Document.new(xmlfile)
-       
-      render :layout=>false     
-  end  
+#for test purposes
+  # def koko 
+  #    require "rexml/document"
+  #     xmlfile = File.new(Rails.root.join('public','5675ba2c8db1b01b0c000001.xml'))
+  #     @xmldoc = REXML::Document.new(xmlfile)       
+  #     render :layout=>false     
+  # end  
 
   def update
     respond_to do |format|      
@@ -105,7 +100,16 @@ class PapersController < ApplicationController
           params[:post_attachments]['file'].each do |a|
             @post_attachment = @paper.post_attachments.create!(:file => a)
           end
-        end        
+        end
+
+        require "rexml/document"
+          xmlfile = File.new(Rails.root.join('public',@paper.id.to_s+'.xml'))
+          @xmldoc = REXML::Document.new(xmlfile)
+          @paper.title = @xmldoc.get_elements('article/title')[0].to_s.gsub(/<\/?[^>]+>/, '')
+          @paper.abstract = @xmldoc.get_elements('article/abstract')[0].to_s.gsub(/<\/?[^>]+>/, '')
+          @paper.introduction = @xmldoc.get_elements('article/introduction')[0].to_s.gsub(/<\/?[^>]+>/, '')
+          @paper.save!          
+
         format.html { redirect_to [@researcher,@paper], notice: 'تم تعديل المقالة بنجاح.' }
         format.json { render :show, status: :ok, location: @paper }
       else
@@ -123,6 +127,11 @@ class PapersController < ApplicationController
     end
   end
 
+  def find_by_tag
+    @results = Paper.with_all_tags(params[:tag]).page(params[:page]).per(8)
+    render :file => "papers/_tags"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.    
     def set_researcher      
@@ -136,7 +145,7 @@ class PapersController < ApplicationController
     def paper_params      
       params.require(:paper).permit(:category, :title, :abstract, :introduction, :literature_survey, 
       :notation, :theory, :specification, :implementation,
-      :valuation, :related_work, :further_work, :conclusion, :appendices, :state, :tags, :researcher_ids)
+      :valuation, :related_work, :further_work, :conclusion, :appendices, :state, :tags, :researcher_ids, :keywords)
     end
 
 end

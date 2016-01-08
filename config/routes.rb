@@ -35,9 +35,10 @@ Rails.application.routes.draw do
   end
 
 resources :papers, only: [:show] do
-  get '/download/:paper_id' =>'papers#download', :as => 'download'
+  get '/download/:paper_id' =>'papers#download', :as => 'download'  
   resources :comments
 end
+get '/tags/:tag' => 'papers#find_by_tag', :as => "tag"
 
 resources :papers, only: [:index]
 resources :post_attachments
