@@ -1,0 +1,40 @@
+<div class="col-md-4 blog-to" style="border: 1px solid rgb(21, 19, 19); margin-right: 5px; width: 32%;">            
+  <div class="blog-top">
+    <div class="blog-left">
+      <b><%= paper.created_at.strftime("%Y") %></b>
+      <span><%= paper.created_at.strftime("%m-%d") %></span>
+      <hr>
+      <div class="row">
+      	<center>
+      	<div class="col-lg-6">
+      	<span class="glyphicon glyphicon-eye-open " style="font-size: 1em ! important; width: 20%;"> <%=paper.times_seen%></span>
+      	</div> 
+      	<div class="col-lg-6">
+      	<span class="glyphicon glyphicon-thumbs-up " style="font-size: 1em ! important; width: 20%;"> <%=paper.likes%></span>
+      	</div>
+      	</center> 
+      </div>  
+    </div>
+    <div class="blog-right">
+        <% if  details[:highlight][:title] %>
+          <h3 class="fast"><%= link_to details[:highlight][:title].html_safe, paper ,:style=>"color: black;"%></h3>
+        <%else%>
+          <h3 class="fast"><%= link_to paper.title,paper ,:style=>"color: black;"%></h3>
+        <%end%>
+        <hr>
+        <% if  details[:highlight][:abstract] %>
+          <h3 class="fast"><%= details[:highlight][:abstract].html_safe %></h3>
+        <%else%>
+          <p class="sed"><%= paper.abstract.html_safe if !paper.abstract.nil? %></p> 
+        <%end%>
+        <% if  details[:highlight][:introduction] %>
+          <h3 class="fast"><%= details[:highlight][:introduction].html_safe %></h3>
+        <%else%>
+          <p class="sed"><%= paper.abstract.html_safe if !paper.introduction.nil? %></p> 
+        <%end%>        
+    </div> 
+    <div class="clearfix"> 
+    <%= link_to 'Show', paper ,:class=> "more"%>
+    </div>
+  </div>
+</div>

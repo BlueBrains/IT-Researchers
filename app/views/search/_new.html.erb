@@ -1,13 +1,19 @@
-<div class="row">                    
-  <%@results.each do |paper|%>
-    <%= render partial: 'shared/paper_preview', :locals => {:paper=> paper}%>
-  <%end%>
-</div>
-<br>
-<div class="row text-center">
-   <div class="col-lg-12">
-     <ul class="pagination">
-       <%= paginate @results %>
-     </ul>
-   </div>
-</div>
+<div class="content">
+    <!-- blogs -->
+  <div class="blog">
+    <div class="container">
+      <h2 class="heading text-center">نتائج البحث</h2>
+        <div class="single-inline">
+            <p id="notice"><%= notice %></p>               
+			  <%@results.with_details.each do |paper, details|%>
+			    <%= render partial: 'shared/search_preview', :locals => {:paper=> paper, :details=>details}%>			    
+			  <%end%>			
+        </div>
+    </div> 
+  </div>
+</div>    
+<nav>
+  <ul class="pagination blog-pagination">
+    <%= paginate @results %>
+  </ul>
+</nav>  

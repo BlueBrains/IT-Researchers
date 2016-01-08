@@ -1,12 +1,12 @@
 class SearchController < ApplicationController
   def new              
     Paper.reindex
-    @results=Paper.search("test")                 
-
-    respond_to do |format|
-      format.html {redirect_to root_path}
-      format.js      
-    end
+    @results=Paper.search params[:phrase], fields: [:title, :abstract, :introduction, :tags, :keywords], highlight: true, highlight: {tag: "<strong style='background: yellow;'>"}
+    render file: "search/_new"
+    # respond_to do |format|
+    #   format.html {redirect_to root_path}
+    #   format.js      
+    # end
   end  
   private
   def search_params    
