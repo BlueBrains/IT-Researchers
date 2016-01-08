@@ -12,9 +12,13 @@ class Ability
         can :manage, :all
       else
         unless researcher.has_role? :blocked
-          can [:index, :show], Paper
-          can [:create, :new], Paper if researcher.has_role? :researcher
-          can [:edit, :update, :destroy], Paper, :id => researcher.id  if researcher.has_role? :researcher
+          can [:index, :show, :download, :find_by_tag], Paper
+          if researcher.has_role? :researcher
+            can [:create, :new], Paper 
+            can [:edit, :update, :destroy], Paper do |paper| 
+              paper.researcher_ids.include? researcher.id 
+            end
+          end
         end
       #else
       #  can :read, Paper unless researcher.has_role? :block
