@@ -8,10 +8,10 @@ class Researcher
   after_create :assign_role
 
   has_and_belongs_to_many :papers
-  
+
 
   devise :database_authenticatable, :registerable, :validatable#,:confirmable,:recoverable,:omniauthable, :omniauth_providers => [:gplus]
-  
+
   #, :rememberable, :trackable
 
   ## Database authenticatable
@@ -59,7 +59,6 @@ class Researcher
 
   field :avatar, type: String
   field :description
-  field :coordinates, :type => Array
   field :address
   field :phone
   field :websiteurl
@@ -68,7 +67,10 @@ class Researcher
   field :provider,type: String
   field :uid,type: String
   field :likes ,type: Array
-  
+
+  #index({email: 1},{unique: true})
+  #index({username: 1},{unique: true})
+  #index({likes: 1})
   def self.new_with_session(params, session)
     super.tap do |researcher|
       if data = session["devise.gplus"] && session["devise.gplus"]["extra"]["raw_info"]
@@ -76,11 +78,11 @@ class Researcher
       end
     end
   end
-  
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |researcher|
       researcher.email = auth.info.email
-      researcher.password = Devise.friendly_token[0,20]       
+      researcher.password = Devise.friendly_token[0,20]
     end
   end
 
