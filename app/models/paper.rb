@@ -33,7 +33,6 @@ class Paper
   field :times_seen, type: Integer
   taggable_with :tags
   taggable_with :keywords
-  embeds_many :flags
   scope :exclude, -> paper { ne(_id: paper.id) }
   scope :similar_to, -> paper { exclude(paper).in(tags: paper.tags ) }
 
