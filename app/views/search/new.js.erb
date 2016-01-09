@@ -1,5 +1,0 @@
-<% if ((@results!=nil)&&(@results.count > 0))%>  
-$("#index-page-content").html("<%= j render :partial => 'search/new'%>");
-<% else %>
-$("#index-page-content").html("<%= j render 'search/emptyresults'%>");
-<% end %>

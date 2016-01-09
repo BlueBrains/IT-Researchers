@@ -9,7 +9,7 @@
           </ul>
         </div>
         <div class="logo" style="margin-left: 23%;">
-          <h1 ><a href="index.html">الباحثون المعلوماتيون</a></h1>
+          <h1 ><a href="index.html">مجتمع الباحثون المعلوماتيون</a></h1>
         </div>
         
                 <% if((@researcher.present?)&&(@researcher.email.present?)) %>
@@ -51,9 +51,13 @@
                 <ul class="nav navbar-nav">
                   <li><a href="http://localhost:3000/home/contact_us">اتصل بنا</a></li>
                 <li><a href="http://localhost:3000/home/about">حولنا</a></li>
-                <li><a href="#categories">البحث المتقدم</a></li>  
-                <li><a href="#last_researches">الأبحاث العلمية</a></li>
-                  <li><%=link_to t(:categories),categories_path %></li>
+                <li><%= link_to "البحث المتقدم", search_path %></li>  
+                <% if controller_name == "home" && action_name == "index" %>
+                  <li><a href="#last_researches">الأبحاث العلمية المشهورة</a> ></li>
+                <%else%>
+                  <li><%= link_to "اﻷبحاث العلمية المشهورة", root_path+"#last_researches"%></li>
+                <%end%>
+                  <li><%=link_to t(:categories), categories_path %></li>
                 <li class="active"><a href="http://localhost:3000/">الرئيسية <span class="sr-only">(current)</span></a></li>
                 </ul>
               <div class="clearfix"></div>
@@ -71,7 +75,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">الباحثون المعلوماتيون</h4>
+            <h4 class="modal-title">مجتمع الباحثون المعلوماتيون</h4>
           </div>
           <div class="modal-body" id="signin_modal">
 
@@ -91,7 +95,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">الباحثون المعلوماتيون</h4>
+            <h4 class="modal-title">مجتمع الباحثون المعلوماتيون</h4>
           </div>
           <div class="modal-body" id="notification_modal">
 

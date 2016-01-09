@@ -4,7 +4,7 @@
           <li><img src="/images/1.jpg" alt="" style="opacity: 0.85;"></li>
         </ul>
             <div class="callbacks_div" style="z-index: 10; margin-top: 22%; margin-left: 5%; margin-right: 37%;">
-              <%= form_tag("/search", method: "get", style: "width: 100%") do %>                
+              <%= form_tag("/search/results", method: "get", style: "width: 100%") do %>                
                 <div class="input-group"  style="opacity: 0.6;">
                     <input type="text" name = "phrase" class="search-form-control " value="عنوان البحث" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'أدخل الكلمات المفتاحية للبحث';}" style="direction: rtl;">
                     <span class="input-group-btn">
@@ -12,10 +12,10 @@
                     </span>
                 </div>
               <%end%>
-              <div class="col-md-12 welcome_top_right" style="text-align: right;">
-                <h2 style="color: white;">أهلا و سهلا</h3>
-                <h3 style="color: white;">الهدف من مشروع الباحثون المعلوماتيون</h5>
-                <p style="color: white;">يهدف هذا المشروع إلى توفير منصة اجتماعية تشاركية بين الباحثين و الطلاب المهتمين بتقنيات تكنولوجيا المعلومات تمكنهم من الوصول إلى الموارد العلمية و المشاركة في بنائها و نقدها و مما يسهل عملية الوصول إلى المعلومة.</p>
+              <div class="col-md-12 welcome_top_right" style="text-align: right;background-color: #2C333D;opacity: 0.7;padding: 15px;">
+                <h1 style="color: white;text-align:center">أهلاً بك!</h1><br>
+                <h2 style="color: white;margin-bottom:7px">الهدف من مشروع الباحثين المعلوماتيين:</h2>
+                <p style="color: white; font-size: x-large;">يهدف هذا المشروع إلى توفير منصة اجتماعية تشاركية بين الباحثين و الطلاب المهتمين بتقنيات تكنولوجيا المعلومات تمكنهم من الوصول إلى الموارد العلمية و المشاركة في بنائها و نقدها و مما يسهل عملية الوصول إلى المعلومة.</p>
                 </div>
               </form>
             </div>
@@ -25,7 +25,7 @@
              <div class="container">
                 <div class="news-section-head text-center">
                     <header>
-                        <h2> آخر الأبحاث العلمية</h2>
+                        <h2> أكثر اﻷبحاث العلمية مشاهدة</h2>
                     </header>
                 </div>
                 <div class="news-section-grids">
