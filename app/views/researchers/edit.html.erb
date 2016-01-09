@@ -7,26 +7,24 @@
         <div class="contact-main">
           
               <%= form_for(@researcher) do |f| %>
-              <div class="col-md-6 contact-grid">                
-                  
-                  <%= f.label :websiteurl %><br>
-                  <%= f.text_field :websiteurl, :class => 'someclass'%>
+                <div class="col-md-6 contact-grid">                                
+                    <%= f.label t(:websiteurl) %><br>
+                    <%= f.text_field :websiteurl, :class => 'someclass'%>
 
-                  <%= f.label :birthdate %><br>
-                  <%= f.text_field :birthdate, :class => 'someclass'%>
-
-              </div> 
-              <div class="col-md-6 contact-grid">  
-                <%= f.label :address %><br>
-                <%= f.text_field :address, :class => 'someclass'%>
+                    <%= f.label t(:birthdate) %><br>
+                    <%= f.text_field :birthdate, :class => 'someclass'%>
+                </div> 
+                <div class="col-md-6 contact-grid">  
+                  <%= f.label t(:address) %><br>
+                  <%= f.text_field :address, :class => 'someclass'%>
 
 
-                <%= f.label :phone %><br>
-                <%= f.text_field :phone, :class => 'someclass'%>                
-              </div>
-              <div class='col-md-12 contact-grid'>
-                <%= f.submit %>
-              </div>
+                  <%= f.label :phone %><br>
+                  <%= f.text_field :phone, :class => 'someclass'%>                
+                </div>
+                <div class='col-md-12 contact-grid'>
+                  <%= f.submit "تعديل البيانات" %>
+                </div>
               <%end%>
 	        
         </div> 

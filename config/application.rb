@@ -29,6 +29,8 @@ module Researchers
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :ar
     config.action_view.embed_authenticity_token_in_remote_forms = true
+    #config.rakismet.key = '3b596f84c73e'
+    #config.rakismet.url = 'http://localhost:3000/'
     config.generators do |g|
       g.orm= :mongoid
     end

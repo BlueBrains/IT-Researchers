@@ -22,7 +22,7 @@
   </xsl:template>
   
   <xsl:template match="footer">
-    <div class="footer"><xsl:apply-templates select="node()" /></div>
+    <div class="footer-r"><xsl:apply-templates select="node()" /></div>
   </xsl:template>
 
   <xsl:template match="paragraph">

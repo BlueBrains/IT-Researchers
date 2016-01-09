@@ -29,7 +29,7 @@
 							<span><%= @paper.created_at.strftime("%m-%d") %></span>
 							<hr>
 							<div id="like">
-								<span id="like_num">likes  &nbsp; <%= @paper.likes %></span><br>
+								<span id="like_num">إعجابات  &nbsp; <%= @paper.likes %></span><br>
 								<span id="thumbs_link">
 								<%if(!current_researcher.nil?)%>
 									<% if ((current_researcher.likes.nil?) || (!current_researcher.likes.include?(@paper.id))) %>
@@ -41,7 +41,7 @@
 								</span>
 							</div>
 							<hr>
-							<span class="glyphicon glyphicon-save" style="font-size: 1em ! important; color: rgb(191, 231, 205) ! important;"> <%= link_to "تحيمل المقالة", paper_download_path(@paper.id) ,:color=> "rgb(191, 231, 205) ! important;"%></span>
+							<span class="glyphicon glyphicon-save" style="font-size: 1em ! important; color: rgb(191, 231, 205) ! important;"> <%= link_to "تحميل المقالة", paper_download_path(@paper.id) ,:color=> "rgb(191, 231, 205) ! important;"%></span>
 						</div>
 						<div class="top-blog">								
 								<div id ="keywords">
@@ -126,8 +126,8 @@
 					<%= render :partial => 'comments/form', :locals => {:model => @paper, :comment => Comment.new} %>
 				</div>
 			<% else %>
-				<p>يجب أن تكون عضوا حتى تتمكن من إضافة تعليق <%= link_to "Sign Up", new_researcher_registration_path %> 
-				| <%= link_to "Log In", new_researcher_session_path %> </p>
+				<p>يجب أن تكون عضوا حتى تتمكن من إضافة تعليق <%= link_to t(:signup), new_researcher_registration_path %> 
+				| <%= link_to t(:login), new_researcher_session_path %> </p>
 			<%end%>
 			</div>
   </div>

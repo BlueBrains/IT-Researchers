@@ -196,3 +196,4 @@ en:
   state: "State"
   back: "Back"
   tags: "Tags"
+  spam_comment: "this comment is spam! please update"

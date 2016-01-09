@@ -1,6 +1,6 @@
 class PapersController < ApplicationController 
   before_action :set_researcher
-  before_action :set_paper, only: [:show, :edit, :update, :destroy]
+  before_action :set_paper, only: [:show, :edit, :update, :destroy,:flag_it]
   load_and_authorize_resource
 
   def index
@@ -25,7 +25,7 @@ class PapersController < ApplicationController
   end
 
   def create
-    @paper = current_researcher.papers.new(paper_params)    
+    @paper = @researcher.papers.new(paper_params)    
     respond_to do |format|      
       if @paper.save
         params[:paper][:researcher_ids].shift
@@ -53,7 +53,7 @@ class PapersController < ApplicationController
             f.write(@xmldoc)
           end      
 
-        format.html { redirect_to [@researcher,@paper], notice: 'Paper was successfully created.' }
+        format.html { redirect_to [@researcher,@paper], notice: 'تم نشر المقالة بنجاح.' }
         format.json { render :show, status: :created, location: @paper }          
       else
         format.html { render :new }
@@ -86,6 +86,11 @@ class PapersController < ApplicationController
   #     @xmldoc = REXML::Document.new(xmlfile)       
   #     render :layout=>false     
   # end  
+
+  def flag_it
+    @flag=@paper.flags.new(params[:reason])
+    @flag.save
+  end
 
   def update
     respond_to do |format|      
@@ -142,7 +147,11 @@ class PapersController < ApplicationController
     end
 
     def set_paper
-      @paper = current_researcher.papers.find(params[:id])
+      if(@researcher.present?)
+        @paper = @researcher.papers.find(params[:id])
+      else
+        @paper=Paper.find(params[:id])
+      end
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def paper_params      
