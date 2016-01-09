@@ -4,10 +4,42 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
+@font-face {
+   font-family: 'Lato-Regular';
+   src: url(/fonts/Lato-Regular.ttf)format('truetype');
+}
+@font-face {
+   font-family: 'font-a';
+   src: url(/fonts/abuhmeda-f2.ttf)format('truetype');
+}
+@font-face {
+   font-family: 'font-b';
+   src: url(/fonts/b-shadi.ttf)format('truetype');
+}
+@font-face {
+   font-family: 'font-c';
+   src: url(/fonts/boahmed-alhour.ttf)format('truetype');
+}
+@font-face {
+   font-family: 'font-d';
+   src: url(/fonts/amiri-bold.ttf)format('truetype');
+}
+@font-face {
+   font-family: 'font-e';
+   src: url(/fonts/amiri-boldslanted.ttf)format('truetype');
+}
+@font-face {
+   font-family: 'font-f';
+   src: url(/fonts/amiri-regular.ttf)format('truetype');
+}
+@font-face {
+   font-family: 'font-g';
+   src: url(/fonts/amiri-slanted.ttf)format('truetype');
+}
 body{
 	padding:0;
 	margin:0;	
-   font-family: 'Lato-Regular';
+   font-family: 'font-d';
 	background:#fff;
 }
 body a{
@@ -17,10 +49,7 @@ body a{
 	-o-transition:0.5s all;
 	-ms-transition:0.5s all;
 }
-@font-face {
-   font-family: 'Lato-Regular';
-   src: url(http://localhost:3000/fonts/Lato-Regular.ttf)format('truetype');
-}
+
 input[type="button"],input[type="submit"]{
 	transition:0.5s all;
 	-webkit-transition:0.5s all;
@@ -33,7 +62,7 @@ h1,h2,h3,h4,h5,h6{
 }	
 p{
 	margin:0;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'font-d', sans-serif;
 }
 ul{
 	margin:0;
