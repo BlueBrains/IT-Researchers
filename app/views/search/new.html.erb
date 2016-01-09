@@ -1,0 +1,17 @@
+<div class="content">
+    <!-- blogs -->
+  <div class="blog">
+    <div class="container">
+      <%= form_tag("/search/results", method: "get", style: "width: 40%", remote: true) do %>                
+        <div class="input-group"  style="opacity: 0.6;">
+            <input type="text" name = "phrase" class="search-form-control " value="عنوان البحث" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'أدخل الكلمات المفتاحية للبحث';}" style="direction: rtl;">
+            <span class="input-group-btn">
+              <button type="submit" class="btn-lg btn-search-default" style="border-radius: 0px ! important;" type="button">! ابحث </button>
+            </span>
+        </div>
+      <%end%>    
+	  <h2 class="heading text-center" style="margin-top:10%">نتائج البحث</h2>
+	  <div id="index-page-content"></div>
+    </div> 
+  </div>
+</div>

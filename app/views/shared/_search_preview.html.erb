@@ -30,7 +30,7 @@
         <% if  details[:highlight][:introduction] %>
           <h3 class="fast"><%= details[:highlight][:introduction].html_safe %></h3>
         <%else%>
-          <p class="sed"><%= paper.abstract.html_safe if !paper.introduction.nil? %></p> 
+          <p class="sed"><%= paper.introduction.html_safe if !paper.introduction.nil? %></p> 
         <%end%>        
     </div> 
     <div class="clearfix"> 

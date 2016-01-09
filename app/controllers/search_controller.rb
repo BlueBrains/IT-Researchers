@@ -1,13 +1,15 @@
 class SearchController < ApplicationController
-  def new              
+  def new                   
+  end
+  def show
     Paper.reindex
     @results=Paper.search params[:phrase], fields: [:title, :abstract, :introduction, :tags, :keywords], highlight: true, highlight: {tag: "<strong style='background: yellow;'>"}
-    render file: "search/_new"
-    # respond_to do |format|
-    #   format.html {redirect_to root_path}
-    #   format.js      
-    # end
-  end  
+    #render file: "search/_new"
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
   private
   def search_params    
      pars=params.permit(:search_title,:min_date,:max_date,:exact_match,:tags,:category,:timeago,:page,:partial_match,:researcher_ids)

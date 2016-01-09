@@ -1,19 +1,14 @@
-<div class="content">
-    <!-- blogs -->
-  <div class="blog">
-    <div class="container">
-      <h2 class="heading text-center">نتائج البحث</h2>
-        <div class="single-inline">
-            <p id="notice"><%= notice %></p>               
-			  <%@results.with_details.each do |paper, details|%>
-			    <%= render partial: 'shared/search_preview', :locals => {:paper=> paper, :details=>details}%>			    
-			  <%end%>			
-        </div>
-    </div> 
-  </div>
-</div>    
-<nav>
-  <ul class="pagination blog-pagination">
-    <%= paginate @results %>
-  </ul>
-</nav>  
+	  	<% if ((results!=nil)&&(results.count > 0)) %>
+		  	<div class="single-inline">
+			  	<%results.with_details.each do |paper, details|%>
+			    	<%= render partial: 'shared/search_preview', :locals => {:paper=> paper, :details=>details}%>			    
+			  	<%end%>			
+			</div>
+			<nav>
+		  		<ul class="pagination blog-pagination">
+		    		<%= paginate results %>
+		  		</ul>
+			</nav>  
+		<%else%>
+			<%= render partial: 'search/emptyresults' %>
+		<%end%>
