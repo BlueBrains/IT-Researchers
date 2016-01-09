@@ -33,7 +33,9 @@ class Paper
   field :times_seen, type: Integer
   taggable_with :tags
   taggable_with :keywords
-
+  
+  scope :published, -> { where(state: "published")}
+  scope :ordered, -> { order(created_at: :desc)}  
   scope :exclude, -> paper { ne(_id: paper.id) }
   scope :similar_to, -> paper { exclude(paper).in(tags: paper.tags ) }
 
