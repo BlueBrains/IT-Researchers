@@ -11,8 +11,7 @@ class HomeController < ApplicationController
 
   def index  	  	
     @researcher = current_researcher
-  	@researchers = Researcher.all
-    @papers=Paper.all.limit(8)  
+    @papers=Paper.published.order_by(:times_seen => 'desc').limit(8)
     @index=false
 
     #render :file=>'home/index' , :layout=>false     
@@ -20,11 +19,13 @@ class HomeController < ApplicationController
     #   {"$unwind" => "$paper_ids"},
     #   {"$group" => {_id: "$_id", paper_ids: {"$push"=>"$paper_ids"}, size: {"$sum" => 1}}}, 
     #   {"$sort" => {size: 1}}]);
-    @most_watched_papers=Paper.order_by(:times_seen => 'desc').limit(8)
   end
     
   def show
     @paper.inc(times_seen: 1)
+    document = Nokogiri::XML(File.read(Rails.root.to_s+'/public/'+@paper.id.to_s+'.xml'))
+    template = Nokogiri::XSLT(File.open(Rails.root.to_s+'/public/xopus/examples/simple/xsl/stylesheet.xsl','rb'))
+    @html_document = template.transform(document)     
     @related_papers = @paper.similar.limit(3)
   end
 

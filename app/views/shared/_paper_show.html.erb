@@ -51,73 +51,18 @@
 								    <% end %> 
 								    <br>
 								</div>
-								<div id="abstract">
-									<% if !@paper.abstract.nil? %>	      
-									    <%= @paper.abstract %>
-									<% end %>
-								</div>     								
-								<div id ="introduction">
-									<% if !@paper.introduction.nil? %>	  
-											<p class="sed">
-											  <strong>Literature Survay:</strong>
-											</p>
-											  <%= @paper.introduction %>
-									<%end%>	  	
+								<style type="text/css">
+									.article h1{
+										font-size: 33px;
+										margin-top: 20px;
+									}
+									.article p{
+										font-size: 20px;	
+									}
+								</style>
+								<div id="paper_content" style="direction: ltr;text-align: left;margin:30px 10px 70px 10px">
+									<%= @html_document.to_html.html_safe %>
 								</div>
-								<% if !@paper.notation.nil? %>	  
-										<p class="sed">
-										  <strong>Notation:</strong>
-										</p>
-										  <%= @paper.notation %>
-								<%end%>	  		
-								<% if !@paper.theory.nil? %>	  
-										<p class="sed">
-										  <strong>Theory:</strong>
-										</p>
-										  <%= @paper.theory %>
-								<%end%>	  			
-								<% if !@paper.specification.nil? %>	  
-										<p class="sed">
-										  <strong>Specification:</strong>
-										</p>
-										  <%= @paper.specification %>
-								<%end%>	  				
-								<% if !@paper.implementation.nil? %>	  
-										<p class="sed">
-										  <strong>Implementation:</strong>
-										</p>
-										  <%= @paper.implementation %>
-								<%end%>	  					
-								<% if !@paper.valuation.nil? %>	 
-									<p class="sed">
-									  <strong>Valuation:</strong>
-									</p>
-									  <%= @paper.valuation %>
-								<%end%>	  						  
-								<% if !@paper.related_work.nil? %>	  
-										<p class="sed">
-										  <strong>Related work:</strong>
-										</p>
-										  <%= @paper.related_work %>
-								<%end%>	  			
-								<% if !@paper.further_work.nil? %>	  
-										<p class="sed">
-										  <strong>Further work:</strong>
-										</p>
-										  <%= @paper.further_work %>
-								<%end%>
-								<% if !@paper.conclusion.nil? %>	  
-									<p class="sed">
-									  <strong>conclusion:</strong>
-									</p>
-									  <%= @paper.conclusion %>
-								<%end%>	  								  
-								<% if !@paper.appendices.nil? %>	  
-										<p class="sed">
-										  <strong>Appendices:</strong>
-										</p>
-										  <%= @paper.appendices %>
-								<%end%>	  									
 								<div id="tags">
 									<a class="fast">الإشارات المرجعية :  </a>
 							  		<% @paper.tags.each do |tag| %>
