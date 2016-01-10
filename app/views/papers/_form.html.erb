@@ -81,7 +81,9 @@ $( "#new_paper" ).submit(function( event ) {
   var tag_element = $(".bootstrap-tagsinput").find("input")[0];
   var active_element = $(':focus').context.activeElement;
   if(tag_element==active_element)
-    event.preventDefault();  
+    event.preventDefault();
+  else
+    $("#SaveButton").click();
 });
 $("#paper_researcher_ids").chosen({disable_search_threshold: 2,
                             no_results_text: "لا توجد نتائج!",

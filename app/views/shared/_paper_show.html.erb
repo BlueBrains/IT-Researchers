@@ -20,8 +20,7 @@
 	<div calss="row">
       <div class="container">
       	<h2 class="heading text-center"><%= @paper.title %></h2>
-      	<div class="blog-to1 service_info" >		
-			<p id="notice"><%= notice %></p>
+      	<div class="blog-to1 service_info" >					
 			<div id="paper-content">
 				<div class="blog-top" style="text-align: right;">
 						<div class="blog-left">
@@ -66,7 +65,7 @@
 								<div id="tags">
 									<a class="fast">الإشارات المرجعية :  </a>
 							  		<% @paper.tags.each do |tag| %>
-									   <a><%= link_to tag+"#", tag_path(tag)  %></a> | 
+									   <span><%= link_to tag+"#", tag_path(tag) %></span>
 									<% end %>									
 								</div>								
 						</div> 

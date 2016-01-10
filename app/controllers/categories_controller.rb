@@ -1,14 +1,18 @@
 class CategoriesController < ApplicationController
   before_action :set_categories, only: [:show]
   before_action :set_cat
-  def initialize
-    @papers=nil    
-  end
+  
+  # def initialize
+  #   @papers=nil    
+  # end
+  
   def autocomplete
     render json: @categories
   end
+  
   def index
   end 
+  
   def show
     if(@papers.present?)
       render 'papers/index'
@@ -16,7 +20,9 @@ class CategoriesController < ApplicationController
       render :index
     end   
   end
+  
   private
+  
   def set_categories
     category=Category.find(params[:id])    
     if(category.present?)
