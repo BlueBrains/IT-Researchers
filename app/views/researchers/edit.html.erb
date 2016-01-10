@@ -5,25 +5,35 @@
       <h2 class="heading text-center">بيانات الملف الشخصي</h2>
       	<h1 class="heading text-center" ><%= @researcher.username %></h1>
         <div class="contact-main">
-          
-              <%= form_for(@researcher) do |f| %>
-                <div class="col-md-6 contact-grid">                                
+            <style type="text/css">
+            .field{
+              margin: 20px 10px;
+              width: 40%;
+            }
+            </style>  
+              <%= form_for(@researcher) do |f| %>                
+                <div class = "field">
                     <%= f.label t(:websiteurl) %><br>
-                    <%= f.text_field :websiteurl, :class => 'someclass'%>
-
-                    <%= f.label t(:birthdate) %><br>
-                    <%= f.text_field :birthdate, :class => 'someclass'%>
-                </div> 
-                <div class="col-md-6 contact-grid">  
-                  <%= f.label t(:address) %><br>
-                  <%= f.text_field :address, :class => 'someclass'%>
-
-
-                  <%= f.label :phone %><br>
-                  <%= f.text_field :phone, :class => 'someclass'%>                
+                    <%= f.url_field :websiteurl, :class => 'form-control'%>
                 </div>
-                <div class='col-md-12 contact-grid'>
-                  <%= f.submit "تعديل البيانات" %>
+                <div class = "field">
+                    <%= f.label t(:birthdate) %><br>
+                    <%= f.datetime_local_field :birthdate, :class => 'form-control'%>
+                </div>                
+                <div class = "field">
+                  <%= f.label t(:address) %><br>
+                  <%= f.text_field :address, :class => 'form-control'%>
+                </div>
+                <div class = "field">
+                  <%= f.label :phone %><br>
+                  <%= f.telephone_field :phone , :class => 'form-control' %>
+                  </div>                
+                <div class = "field">
+                 <%= f.label "الصورة الشخصية" %><br>
+                 <%= f.file_field :avatar, :class => "btn btn-default"%>                                                      
+                 </div>
+                 <div class = "field">
+                  <%= f.submit "تعديل البيانات", :class =>"btn btn-default" %>
                 </div>
               <%end%>
 	        

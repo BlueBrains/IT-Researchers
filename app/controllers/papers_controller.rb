@@ -26,6 +26,7 @@ class PapersController < ApplicationController
 
   def create
     @paper = @researcher.papers.new(paper_params)    
+    @paper.category = Category.find(params[:category])
     respond_to do |format|      
       if @paper.save
         params[:paper][:researcher_ids].shift

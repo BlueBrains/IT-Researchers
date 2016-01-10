@@ -38,9 +38,9 @@
             <div class="field">
               <h3>
               <p class="your-para"> اسم الباحث : <%= @researcher.username %> </p><br />
+              <p class="your-para">  الصورة الشخصية : <%= image_tag(@researcher.avatar.home.url, alt: "Edit Entry", :class=>"img-rounded pull-xs-left")  %></p><br />
               <p class="your-para"> البريد الالكتروني : <%= @researcher.email %></p><br />
-              <p class="your-para"> الموقع الشخصي : <%= @researcher.websiteurl %></p><br />
-              <p class="your-para">  الصورة الشخصية : <%= @researcher.avatar %></p><br />
+              <p class="your-para"> الموقع الشخصي : <%= @researcher.websiteurl %></p><br />              
               <p class="your-para"> يوم الميلاد : <%= @researcher.birthdate %></p><br />
             </h3>
             </div>

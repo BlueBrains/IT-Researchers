@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   as :researcher do   
     root :to => 'home#index'
     get 'home/get_xopus/:id' =>'home#get_xopus'
+    get 'home/feed'
     get 'papers/:id' =>'home#show'
     get 'home/index'
     get 'search', :to => 'search#new',:as => 'search'

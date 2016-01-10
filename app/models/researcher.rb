@@ -57,10 +57,9 @@ class Researcher
 
   #field :_id, type: String, default: ->{ username }
 
-  field :avatar, type: String
+  mount_uploader :avatar,AvatarUploader
   field :description
-  field :address
-  field :phone
+  field :address  
   field :websiteurl
   field :username, type: String
   slug :username
