@@ -8,7 +8,14 @@ Pusher.logger = Rails.logger
 
 class HomeController < ApplicationController
  before_action :set_paper, only: [:show]
-
+  
+  def feed
+    @papers = Paper.published
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+  
   def index  	  	
     @researcher = current_researcher
     @papers=Paper.published.order_by(:times_seen => 'desc').limit(8)
