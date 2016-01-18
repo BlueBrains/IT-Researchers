@@ -34,7 +34,7 @@ class Paper
   taggable_with :tags
   taggable_with :keywords
   
-  scope :published, -> { where(state: "published")}
+  scope :published, -> { where(active: true, state: "published")}
   scope :ordered, -> { order(created_at: :desc)}  
 
   scope :exclude, -> paper { ne(_id: paper.id) }

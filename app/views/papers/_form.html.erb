@@ -61,7 +61,7 @@
               <%= f.label t(:state) %><br>
               <%= f.select(:state, options_for_select(
                   [
-                    ['publish', 'published', { 'class' => 'published_paper' }],
+                    ['pend', 'pendding', { 'class' => 'published_paper' }],
                     ['draft', 'draft', { 'class' => 'draft_paper' }]
                   ], f.object.state
               ),{}, {:class => "form-control", :style => "width:20%;"}) %>

@@ -1,10 +1,1 @@
 <%= render partial: 'shared/paper_show', :locals => {:paper=> @paper}%>
-
-
-<%@related_papers.in_groups_of(4,false) do |group|%>
-      <div class="row">                    
-        <%group.each do |paper|%>
-          <%= render partial: 'shared/paper_preview', :locals => {:paper=> paper}%>
-        <%end%>
-      </div>
-<%end%>

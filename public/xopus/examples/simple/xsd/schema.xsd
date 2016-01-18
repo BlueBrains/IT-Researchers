@@ -5,9 +5,9 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element ref="title"/>
-         <xs:element ref="abstract" minOccurs="0" maxOccurs="unbounded" />
-           <xs:element ref="introduction" minOccurs="0" maxOccurs="unbounded" />
-          <xs:element ref="paper_body" minOccurs="0" maxOccurs="unbounded" />
+         <xs:element ref="abstract" minOccurs="0" maxOccurs="1" />
+           <xs:element ref="introduction" minOccurs="0" maxOccurs="1" />
+          <xs:element ref="paper_body" minOccurs="0" maxOccurs="1" />
        
         <xs:element ref="footer"/>        
       </xs:sequence>
@@ -18,7 +18,7 @@
    <xs:complexType name="abstractType">
     <xs:sequence>
       <xs:element ref="title"/>
-       <xs:element ref="paragraph" />
+       <xs:element ref="paragraph_no_image" />
     </xs:sequence>
   </xs:complexType>
   
@@ -95,6 +95,17 @@
   </xs:complexType>
 
   <xs:element name="title" type="plainText" />
+
+<xs:element name="paragraph_no_image">
+    <xs:complexType>
+      <xs:complexContent mixed="true">
+        <xs:extension base="inlineInside_no_imageType">
+          <xs:attribute name="align" type="alignType" default="left" />
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+
 
   <xs:element name="paragraph">
     <xs:complexType>
@@ -182,6 +193,19 @@
       <xs:element ref="linebreak"/>
     </xs:choice>
   </xs:complexType>
+
+
+  <xs:complexType name="inlineInside_no_imageType" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="strong"/>
+      <xs:element ref="emphasis"/>
+      <xs:element ref="underline"/>
+      <xs:element ref="subscript"/>
+      <xs:element ref="superscript"/>
+      <xs:element ref="link"/>
+    </xs:choice>
+  </xs:complexType>
+
 
   <xs:element name="unorderedlist" type="listType" />
   <xs:element name="orderedlist" type="listType" />

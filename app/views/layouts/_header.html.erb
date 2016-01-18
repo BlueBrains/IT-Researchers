@@ -6,6 +6,7 @@
             <li><a class="facebook" href="#"></a></li>
             <li><a class="twitter" href="#"></a></li>
             <li><a class="google-plus" href="#"></a></li>
+            <i><a href="http://localhost:3000/home/feed.rss"><img src="/images/rss.png" style="width: 30px;padding-bottom: 17px;" ></a></i>
           </ul>
         </div>
         <div class="logo" style="margin-left: 23%;">
@@ -51,7 +52,7 @@
                 <ul class="nav navbar-nav">
                   <li><a href="http://localhost:3000/home/contact_us">اتصل بنا</a></li>
                 <li><a href="http://localhost:3000/home/about">حولنا</a></li>
-                <li><%= link_to "البحث المتقدم", search_path %></li>  
+                <li><%= link_to "البحث", search_path %></li>  
                 <% if controller_name == "home" && action_name == "index" %>
                   <li><a href="#last_researches">الأبحاث العلمية المشهورة</a> ></li>
                 <%else%>
@@ -143,4 +144,3 @@
         xmlhttp.send();
   }
  </script>   
-<p id="notice"><%= notice %></p>

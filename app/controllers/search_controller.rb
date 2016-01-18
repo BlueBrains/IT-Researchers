@@ -2,7 +2,7 @@ class SearchController < ApplicationController
   def new                   
   end
   def show
-    Paper.reindex
+    #Paper.reindex
     @results=Paper.search params[:phrase], fields: [:title, :abstract, :introduction, :tags, :keywords], highlight: true, highlight: {tag: "<strong style='background: yellow;'>"}
     #render file: "search/_new"
     respond_to do |format|

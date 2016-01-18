@@ -78,12 +78,20 @@ function doMouseClickRow(evt)
   var el = getRowElementFromEvent(evt);
   if (!el)
     return;
-
   var newRowNumber = getRowNumber(el);
-
-  selectRow(newRowNumber);
+  //alert(newRowNumber);
+  if(newRowNumber!=5)
+    selectRow(newRowNumber);
 }
 
+function add_url()
+{
+  //alert(document.getElementById("url").value);
+  var current_val=document.getElementById("url").value
+  document.getElementById("new_url").id = current_val;
+   selectRow(5);
+    document.getElementById(current_val).id="new_url";
+}
 function doKeyDown(evt)
 {
   var el = getRowElementFromEvent(evt);

@@ -60,14 +60,18 @@ class XopusPdfsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  def create_xml_temp
+ def create_xml_temp
     #params[:uri]
     #current_researcher.to_s+
-    save_path = Rails.root.join('public',current_researcher.id.to_s+'.xml')
+    if(params[:file].to_s=="document")
+      save_path = Rails.root.join('public',current_researcher.id.to_s+'.xml')
+    else
+      save_path = Rails.root.join('public',params[:file].to_s+'_tmp.xml')
+    end
     File.open(save_path, "w+") do |f|
       f.write(params[:doc])
     end
-      render :nothing=>true
+    render :nothing=>true
   end
   private
     # Use callbacks to share common setup or constraints between actions.

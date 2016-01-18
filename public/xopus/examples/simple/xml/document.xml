@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <article xml:lang="en-US">
-  <title>Example document</title>
+  <title>paper title</title>
   <abstract>
     <title>abstract</title>
-    <paragraph>For an example of the combination of schema validation and an intuitive user interface  select the two items in the list above and click the ordered list button.</paragraph>
+    <paragraph_no_image>write paper abstract here.</paragraph_no_image>
   </abstract>
   <introduction>
     <title>introduction</title>
-    <paragraph>test intro</paragraph>
+    <paragraph>write paper introduction here.</paragraph>
   </introduction>
   <paper_body>
   <section>
@@ -28,8 +28,8 @@
   </section>
   <valuation>
     <title>valuaion</title>
-    <paragraph>koool howa</paragraph>
+    <paragraph>write paper valuation here.</paragraph>
   </valuation>
 </paper_body>
-  <footer>Xopus, online editing</footer>
+  <footer>end your paper</footer>
 </article>

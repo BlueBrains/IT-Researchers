@@ -8,11 +8,15 @@ class PapersController < ApplicationController
   end
 
   def show
-    @paper.seen=true
-    @paper.save!
+    if(@paper.active==true)
+      @paper.seen=true
+      @paper.state = "published"
+      @paper.save!
+    end  
     document = Nokogiri::XML(File.read(Rails.root.to_s+'/public/'+@paper.id.to_s+'.xml'))
     template = Nokogiri::XSLT(File.open(Rails.root.to_s+'/public/xopus/examples/simple/xsl/stylesheet.xsl','rb'))
     @html_document = template.transform(document)    
+    @related_papers = @paper.similar.limit(3)
   end
 
   def new    
@@ -36,6 +40,8 @@ class PapersController < ApplicationController
             @paper.researchers.push(researcher)
           end
         end
+        @paper.seen = false
+        @paper.save!
         if !params[:post_attachments].nil?
           params[:post_attachments]['file'].each do |a|
             @post_attachment = @paper.post_attachments.create!(:file => a)
@@ -112,12 +118,17 @@ class PapersController < ApplicationController
         end
 
         require "rexml/document"
-          xmlfile = File.new(Rails.root.join('public',@paper.id.to_s+'.xml'))
+          xmlfile = File.new(Rails.root.join('public',@paper.id.to_s+'_tmp.xml'))
           @xmldoc = REXML::Document.new(xmlfile)
           @paper.title = @xmldoc.get_elements('article/title')[0].to_s.gsub(/<\/?[^>]+>/, '')
-          @paper.abstract = @xmldoc.get_elements('article/abstract/paragraph')[0].to_s.gsub(/<\/?[^>]+>/, '')
+          @paper.abstract = @xmldoc.get_elements('article/abstract')[0].to_s.gsub(/<\/?[^>]+>/, '')
           @paper.introduction = @xmldoc.get_elements('article/introduction')[0].to_s.gsub(/<\/?[^>]+>/, '')
-          @paper.save!          
+          @paper.save
+
+          save_path = Rails.root.join('public',@paper.id.to_s+'.xml')
+          File.open(save_path, "w+") do |f|
+            f.write(@xmldoc)
+          end 
 
         format.html { redirect_to [@researcher,@paper], notice: 'تم تعديل المقالة بنجاح.' }
         format.json { render :show, status: :ok, location: @paper }
